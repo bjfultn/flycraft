@@ -173,12 +173,14 @@ Shiu's constants were fit to FlyWire. MaleCNS synapse counts may run on a differ
 1. Start at `w_scale = 1.0`.
 2. Run 2 s of brain time under a uniform grey eye image.
 3. The run "runs away" if more than 0.5% of neurons fire above 100 Hz, or the population mean exceeds 20 Hz. Poisson-driven input neurons are left out of both figures: the retina sets their rates, not `w_scale`.
-4. If it runs away, bisect `w_scale` downward (at most 8 halvings, then bisection to 5% precision) to the largest value that does not.
+4. Find the largest `w_scale` that does not run away. If 1.0 runs away, halve until it does not (at most 8 halvings); if it does not, double until it does (at most 8 doublings). Then bisect the last step to 5% precision. If no scale up to 256 runs away, G0 fails.
 5. Record the result in `calibration.json`.
 
 Each G1 rung (7.3) gets its own G0, because a rung can change the input. If G0 fails on a rung, that rung fails and the ladder moves on.
 
 The same rule applied to every brain is the fairness guarantee. We do not hand-tune any brain.
+
+The search runs both ways so that every brain sits at its own edge of runaway. A first version searched only downward from 1.0. The real wiring runs away at 1.0 and landed at its edge (0.84), but the scrambled twins are nearly silent at 1.0 (0.04 Hz) and stayed there, at about 75% of their own edge (1.25 to 1.375). That would let anyone say the control was starved. Searching up as well changes nothing for the real wiring. (Decided 2026-10-08, before pre-registration.)
 
 ## 6. Real and scrambled wiring (first-class)
 

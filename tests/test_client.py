@@ -696,7 +696,21 @@ def test_main_sizes_the_sc2_window(monkeypatch):
 
   monkeypatch.setattr(sc2_compat, "SC2Game", launch)
   assert main(["--scripted", "--mode", "train", "--seed", "4", "--window", "1600x1200"]) == 0
-  assert seen == {"args": ("MoveToBeacon", 84, "train", 4, False), "window": (1600, 1200)}
+  assert seen == {"args": ("MoveToBeacon", 84, "train", 4, False), "window": (1600, 1200),
+                  "race": "terran"}
+
+
+def test_main_plays_defeat_marines_as_zerg(monkeypatch):
+  sc2_compat = pytest.importorskip("flycraft.game.sc2_compat")
+  seen = {}
+
+  def launch(*args, **kwargs):
+    seen.update(kwargs, args=args)
+    return FakeGame(frames=48)
+
+  monkeypatch.setattr(sc2_compat, "SC2Game", launch)
+  assert main(["--scripted", "--mode", "train", "--map", "DefeatMarines"]) == 0
+  assert (seen["args"][0], seen["race"]) == ("DefeatMarines", "zerg")
 
 
 @pytest.mark.parametrize("argv", [

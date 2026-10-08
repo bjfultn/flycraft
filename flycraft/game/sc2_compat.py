@@ -8,6 +8,7 @@
 - SC2Game is the client's Game: one SC2 process for the whole run. pysc2 reads absl flags,
   which only absl's app.run parses; the client has its own argparse, so SC2Game takes the
   flags' defaults.
+- DefeatMarines is registered with pysc2 here, under Maps/flycraft; flycraft-maps builds it.
 """
 
 from __future__ import annotations
@@ -16,13 +17,14 @@ import ctypes
 import os
 import subprocess
 import sys
+from pathlib import Path
 
 # pysc2 imports pygame, which greets on stdout, and the client's stdout carries only records.
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 
 import numpy as np
 from absl import flags
-from pysc2 import maps
+from pysc2 import maps, run_configs
 from pysc2.env import sc2_env
 from pysc2.lib import actions, features, remote_controller, sc_process
 from pysc2.lib import protocol as sc2_protocol
@@ -41,6 +43,18 @@ SC2_ERRORS = (sc_process.SC2LaunchError, sc2_protocol.ConnectionError, sc2_proto
 # pysc2 raises ValueError when the game stops advancing ("didn't advance to the expected
 # game loop"), so in play it is SC2 failing too.
 PLAY_ERRORS = (*SC2_ERRORS, ValueError)
+BUILT = "flycraft"  # the Maps directory of the maps flycraft-maps builds
+
+
+class DefeatMarines(maps.lib.Map):
+  """Zerglings against marines (spec M3c). pysc2 plays every Map subclass with a filename,
+  under its class name; the settings are its minigames'."""
+  directory = BUILT
+  filename = "DefeatMarines"
+  players = 1
+  score_index = 0
+  game_steps_per_episode = 0
+  step_mul = 8
 
 
 def _log(text: str) -> None:
@@ -64,7 +78,7 @@ def to_call(action: Action, available) -> actions.FunctionCall:
 
 def all_selected(obs) -> bool:
   """Whether every army unit is selected, so an order reaches the whole squad. DefeatRoaches
-  sends new marines when a wave falls; they arrive unselected."""
+  and DefeatMarines send new units when a wave falls; they arrive unselected."""
   selected = max(len(obs["single_select"]), len(obs["multi_select"]))
   return selected >= int(obs["player"][features.Player.army_count])
 
@@ -138,17 +152,32 @@ def minimize_windows(pid: int, user32=None) -> int:
   return len(changed)
 
 
+def check_built(map_name: str) -> None:
+  """A map flycraft builds must be there before SC2 starts: pysc2 reads the map only once SC2
+  is up, and says only that it is not found."""
+  map_inst = maps.get(map_name)
+  if map_inst.directory != BUILT:
+    return
+  data_dir = run_configs.get().data_dir  # where pysc2 will read it
+  path = Path(data_dir) / "Maps" / map_inst.path
+  if not path.is_file():
+    raise SetupError(f"no {map_name} map at {path}: build it with "
+                     f'flycraft-maps --sc2path "{data_dir}"')
+
+
 class SC2Game:
   """The client's Game on real SC2 (spec 7.5): step_mul 1 here, the client passes its own."""
 
   def __init__(self, map_name: str, screen: int, mode: str, run_seed: int,
-               realtime: bool = False, window: tuple[int, int] = WINDOW, log=_log):
+               realtime: bool = False, window: tuple[int, int] = WINDOW, log=_log,
+               race: str = "terran"):
     minimized = mode != "watch"
     use_flag_defaults()
     install_launch_shim(minimized, window)
     try:
+      check_built(map_name)
       self.env = sc2_env.SC2Env(
-        map_name=map_name, players=[sc2_env.Agent(sc2_env.Race.terran)],
+        map_name=map_name, players=[sc2_env.Agent(sc2_env.Race[race])],
         agent_interface_format=features.AgentInterfaceFormat(
           feature_dimensions=features.Dimensions(screen=screen, minimap=MINIMAP)),
         step_mul=1, realtime=realtime, random_seed=run_seed, visualize=False)

@@ -11,6 +11,7 @@ pytest.importorskip("pysc2")
 
 from absl import flags  # noqa: E402
 from pysc2 import maps  # noqa: E402
+from pysc2.env import sc2_env  # noqa: E402
 from pysc2.lib import actions, features, protocol, sc_process  # noqa: E402
 
 from flycraft.game import sc2_compat  # noqa: E402
@@ -189,6 +190,7 @@ def test_sc2game_drives_the_env(env):
   assert (kw["map_name"], kw["step_mul"], kw["random_seed"], kw["realtime"]) == (
     "MoveToBeacon", 1, 3, False)
   assert kw["agent_interface_format"].feature_dimensions.screen == (84, 84)
+  assert kw["players"] == [sc2_env.Agent(sc2_env.Race.terran)]
   assert sc_process.StarcraftProcess is sc2_compat._Process
   assert (sc2_compat._Process.minimized, sc2_compat._Process.window_size) == (
     False, (1600, 1200))
@@ -248,6 +250,49 @@ def test_a_bad_setting_is_a_setup_error(env, monkeypatch, error):
                       lambda **kw: FakeEnv(fail=("init", error), **kw))
   with pytest.raises(SetupError, match="cannot start as configured"):
     sc2_compat.SC2Game("MoveToBecon", 84, "watch", run_seed=0)
+
+
+def test_defeat_marines_is_a_pysc2_minigame_under_flycraft():
+  marines, roaches = maps.get("DefeatMarines"), maps.get("DefeatRoaches")
+  assert marines.path == "flycraft/DefeatMarines.SC2Map"
+  settings = ("players", "score_index", "game_steps_per_episode", "step_mul")
+  assert [getattr(marines, k) for k in settings] == [getattr(roaches, k) for k in settings]
+
+
+@pytest.fixture
+def sc2_dir(monkeypatch, tmp_path):
+  """An SC2 install for pysc2's run config, with no maps yet."""
+  monkeypatch.setattr(sc2_compat.run_configs, "get",
+                      lambda: types.SimpleNamespace(data_dir=str(tmp_path)))
+  return tmp_path
+
+
+def test_defeat_marines_plays_as_zerg_once_built(env, sc2_dir):
+  built = sc2_dir / "Maps" / "flycraft" / "DefeatMarines.SC2Map"
+  built.parent.mkdir(parents=True)
+  built.write_bytes(b"map")
+  sc2_compat.SC2Game("DefeatMarines", 84, "train", run_seed=0, race="zerg")
+  (made,) = env.made
+  assert (made.kwargs["map_name"], made.kwargs["players"]) == (
+    "DefeatMarines", [sc2_env.Agent(sc2_env.Race.zerg)])
+
+
+def test_an_unbuilt_map_says_to_build_it_before_sc2_starts(env, sc2_dir):
+  with pytest.raises(SetupError) as e:
+    sc2_compat.SC2Game("DefeatMarines", 84, "train", run_seed=0, race="zerg")
+  assert str(e.value) == (
+    f"no DefeatMarines map at {sc2_dir / 'Maps' / 'flycraft' / 'DefeatMarines.SC2Map'}: "
+    f'build it with flycraft-maps --sc2path "{sc2_dir}"')
+  assert env.made == []
+
+
+def test_sc2s_own_maps_are_not_looked_for(env, monkeypatch):
+  def no_install():
+    raise sc_process.SC2LaunchError("No SC2 Versions found")
+
+  monkeypatch.setattr(sc2_compat.run_configs, "get", no_install)
+  sc2_compat.SC2Game("DefeatRoaches", 84, "train", run_seed=0)  # pysc2 finds those itself
+  assert len(env.made) == 1
 
 
 def test_close_never_raises(env, monkeypatch):

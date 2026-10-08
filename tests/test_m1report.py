@@ -68,11 +68,12 @@ def test_m1_report_on_a_passing_ladder(tmp_path, synth_cfg, synth_dir):
   cfg = with_overrides(synth_cfg, {**SHORT, "calibration.ladder": ["default", "vpn"]})
   assert run_m1(cfg, tmp_path, QUIET, pins=synth_dir[1]["pins"]) == 0
   rec = json.loads((tmp_path / "calibration.json").read_text())
-  # synth DNa02 stay silent (turn_silent below), so only LC10a drives the pass (Minor 7)
-  assert rec["result"] == "PASS on rung vpn (LC10a only; DNs not significant)"
+  # G0 doubles the synth brain far past 1, where its DNa02 turn too (Minor 7)
+  assert rec["result"] == "PASS on rung vpn (LC10a and DNs)"
   assert rec["ladder"]["rung"] == "vpn"
   assert [t["rung"] for t in rec["ladder"]["tried"]] == ["default", "vpn"]
-  assert rec["w_scale"] == 1.0 and rec["decoder_calibration"]["turn_silent"] is True
+  assert rec["w_scale"] == rec["ladder"]["tried"][1]["g0_scale"] > 1.0
+  assert rec["decoder_calibration"]["turn_silent"] is False
   assert rec["wiring"]["label"] == "REAL WIRING"
   assert rec["retina"]["map"] == "affine" and rec["speed_s_per_sim_s"] > 0
   assert "git_sha" in rec and "flycraft_version" in rec  # best-effort code version (Minor 5)
@@ -81,6 +82,15 @@ def test_m1_report_on_a_passing_ladder(tmp_path, synth_cfg, synth_dir):
   for text in ("Rung **vpn** passed", "## Sign rule", "histamine", "| 25.0 |", "![retina map]"):
     assert text in report
   assert (tmp_path / "retina.png").read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
+
+
+@pytest.mark.parametrize("z_lc10a, z_dn, suffix", [
+  (4.0, -4.0, " (LC10a and DNs)"),
+  (4.0, 1.0, " (LC10a only; DNs not significant)"),
+  (-1.0, 4.0, " (DNs only; LC10a not significant)"),
+  (1.0, 1.0, "")])
+def test_the_result_names_the_signals_that_passed(z_lc10a, z_dn, suffix):
+  assert m1report._signal_suffix(SimpleNamespace(z_lc10a=z_lc10a, z_dn=z_dn), 3.0) == suffix
 
 
 def test_m1_report_on_a_failed_ladder(tmp_path, synth_cfg, synth_dir, capsys):

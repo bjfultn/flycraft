@@ -417,8 +417,9 @@ def _window(text: str) -> tuple[int, int]:
 def _parser() -> argparse.ArgumentParser:
   p = argparse.ArgumentParser(
     prog="flycraft-client",
-    description="Play a pysc2 minigame (MoveToBeacon or DefeatRoaches) in SC2 for a flycraft "
-                "brain, or for pysc2's scripted agent.")
+    description="Play a minigame (MoveToBeacon, DefeatRoaches or DefeatMarines) in SC2 for a "
+                "flycraft brain, or for pysc2's scripted agent. DefeatMarines is built first, "
+                "with flycraft-maps.")
   who = p.add_mutually_exclusive_group()
   who.add_argument("--brain", default=BRAIN_URL, help=f"brain websocket (default {BRAIN_URL})")
   who.add_argument("--scripted", action="store_true",
@@ -460,16 +461,16 @@ def main(argv: list[str] | None = None, make_game: Callable[[], Game] | None = N
                       ("--timeout", args.timeout)):
     if not value > 0:
       p.error(f"{flag} must be positive")
+  task = TASKS[args.map]
   if make_game is None:
     from flycraft.game import sc2_compat  # pysc2 is only on the Windows side
 
     def launch():
       return sc2_compat.SC2Game(args.map, args.screen, args.mode, args.seed, args.realtime,
-                                window=args.window)
+                                window=args.window, race=task.race)
 
     make_game = launch
 
-  task = TASKS[args.map]
   pacer = Pacer(GAME_FPS if args.mode == "watch" and not args.realtime else None)
   try:
     if args.scripted:

@@ -53,9 +53,24 @@ class FakeBrain:
     return rate * self.ms / 1000, self.ms
 
 
-def test_g0_keeps_full_scale_when_quiet(synth_cfg):
+def test_g0_doubles_then_bisects_when_quiet_at_full_scale(synth_cfg):
+  b = FakeBrain(synth_cfg, limit=5.0)
+  r = run_g0(b, QUIET)
+  assert [p.scale for p in r.probes[:4]] == [1.0, 2.0, 4.0, 8.0]
+  assert 5.0 * (1 - synth_cfg.calibration.g0_precision) < r.scale <= 5.0
+  assert b.w_scale == r.scale
+
+
+def test_g0_keeps_the_last_quiet_doubling_when_its_edge_is_close(synth_cfg):
   r = run_g0(FakeBrain(synth_cfg, limit=2.0), QUIET)
-  assert r.scale == 1.0 and len(r.probes) == 1 and not r.probes[0].runaway
+  assert [p.runaway for p in r.probes[:3]] == [False, False, True]
+  assert 2.0 * (1 - synth_cfg.calibration.g0_precision) < r.scale <= 2.0
+
+
+def test_g0_gives_up_when_no_scale_runs_away(synth_cfg):
+  b = FakeBrain(synth_cfg, limit=math.inf)
+  with pytest.raises(G0Failure, match="never runs away up to w_scale 256 after 8 doublings"):
+    run_g0(b, QUIET)
 
 
 @pytest.mark.parametrize("how", ["mean", "tail"])
@@ -115,8 +130,9 @@ def test_ladder_climbs_to_the_first_passing_rung(synth_brain):
   r = run_ladder(b, QUIET)
   assert r.passed and r.rung == "vpn"
   assert [t["passed"] for t in r.tried] == [False, True]
-  assert r.tried[0]["z_lc10a"] == 0.0
-  assert b.cfg.retina.mode == "photoreceptor+vpn" and b.w_scale == r.g0.scale == 1.0
+  # silent at every scale, so G0 finds no edge
+  assert r.tried[0]["g0_failure"] == "brain never runs away up to w_scale 256 after 8 doublings"
+  assert b.cfg.retina.mode == "photoreceptor+vpn" and b.w_scale == r.g0.scale > 1.0
   assert r.g1.z_lc10a > 3
   m = r.g1.means()
   assert m[25.0]["lc10a_R"] > m[25.0]["lc10a_L"] == 0.0
@@ -125,8 +141,8 @@ def test_ladder_climbs_to_the_first_passing_rung(synth_brain):
   json.dumps(r.g1.to_dict())
   calib = calibrate_decoder(b, r.g1)
   assert b.decoder.calib is calib
-  assert calib.turn_silent  # synth DNa02 stay silent, so the turn gain is floored at 0
-  assert b.decide(np.full((30, 72), 160, np.uint8))[0] == 0.0
+  assert not calib.turn_silent and calib.k_turn > 0  # at its edge the synth DNa02 fire too
+  assert np.isfinite(b.decide(np.full((30, 72), 160, np.uint8))[0])
 
 
 def test_failed_ladder_restores_the_config(synth_brain):

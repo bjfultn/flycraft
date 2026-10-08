@@ -78,7 +78,7 @@ class CalibrationConfig:
   g0_blank_ms: float = 2000.0
   g0_max_frac_100hz: float = 0.005
   g0_max_mean_hz: float = 20.0
-  g0_max_halvings: int = 8
+  g0_max_halvings: int = 8  # G0's most halvings, or doublings, from w_scale 1
   g0_precision: float = 0.05
   g1_azimuths_deg: tuple[float, ...] = (-60.0, 0.0, 60.0)
   g1_repeats: int = 10

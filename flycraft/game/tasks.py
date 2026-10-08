@@ -8,7 +8,9 @@
   ends first. So the fly picks its target by turning toward it. (Attack-moving a step at a time
   fires less than attacking a roach: docs/m3b/attack_probe.md.) The squad is every marine,
   so new marines are selected as they arrive (game/sc2_compat.py).
-Each task also names pysc2's scripted agent for it, the baseline.
+- DefeatMarines (M3c, a demo): DefeatRoaches with zerglings against marines, a map flycraft
+  builds from DefeatRoaches (game/mapbuild.py). The same task, played as Zerg.
+Each task also names pysc2's scripted agent for it, the baseline, and the race it plays.
 """
 
 from __future__ import annotations
@@ -47,6 +49,7 @@ class Task:
   split: bool  # each patch of target is its own object; else all of it is one
   scripted: Callable[[np.ndarray, int], tuple[float, float] | None]  # the baseline's aim
   cone_deg: float = 0.0  # attack a target this near the heading; 0: never, only step
+  race: str = "terran"  # the player's race, as pysc2 names it
 
   def targets(self, layer: np.ndarray) -> list[Blob]:
     if self.split:
@@ -73,7 +76,9 @@ class Task:
 
 TASKS = {t.map: t for t in (
   Task("MoveToBeacon", render.NEUTRAL, "move", split=False, scripted=_centroid),
-  Task("DefeatRoaches", render.ENEMY, "attack", split=True, scripted=_lowest, cone_deg=30.0))}
+  Task("DefeatRoaches", render.ENEMY, "attack", split=True, scripted=_lowest, cone_deg=30.0),
+  Task("DefeatMarines", render.ENEMY, "attack", split=True, scripted=_lowest, cone_deg=30.0,
+       race="zerg"))}
 
 
 def nearest(xy, targets: list[Blob]) -> Blob | None:

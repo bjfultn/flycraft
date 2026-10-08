@@ -1,3 +1,5 @@
+import dataclasses
+
 import numpy as np
 import pytest
 
@@ -19,6 +21,13 @@ def test_the_tasks():
   assert (BEACON.target, BEACON.order, BEACON.split, BEACON.cone_deg) == (NEUTRAL, "move", False, 0)
   assert (ROACHES.target, ROACHES.order, ROACHES.split, ROACHES.cone_deg) == (
     ENEMY, "attack", True, 30.0)
+  assert BEACON.race == ROACHES.race == "terran"
+
+
+def test_defeat_marines_is_defeat_roaches_played_as_zerg():
+  marines = TASKS["DefeatMarines"]
+  assert marines.race == "zerg"
+  assert dataclasses.replace(marines, map="DefeatRoaches", race="terran") == ROACHES
 
 
 def test_a_beacon_is_one_target_even_split_in_two():

@@ -109,3 +109,7 @@ Every twin's edge is between 1.25 and 1.375, so the one-sided G0 leaves them wel
 while the real brain sits at its own. At the edge, four of six twins still never move a DN,
 and the two that do respond to one side only. The forward output is silent in every brain,
 the real one included (95th percentile 0.006 Hz), so speed is the body's default throughout.
+
+Since this run G0 searches both ways (spec section 5, decided 2026-10-08 before pre-registration):
+a brain quiet at 1 doubles up to its edge, as `g0_upward.py` did. `twins/calibration-twin1.json`
+was made under the old one-sided rule.

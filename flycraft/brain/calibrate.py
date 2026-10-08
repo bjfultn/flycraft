@@ -66,8 +66,11 @@ def probe_g0(brain: Brain) -> G0Probe:
 
 
 def run_g0(brain: Brain, log=print) -> G0Result:
-  """Largest w_scale <= 1 that does not run away: halve, then bisect to g0_precision."""
+  """The largest w_scale that does not run away, so every brain sits at its own edge: from 1,
+  halve while it runs away or double while it does not (at most g0_max_halvings steps either
+  way), then bisect the last step to g0_precision."""
   c = brain.cfg.calibration
+  steps = c.g0_max_halvings
   probes: list[G0Probe] = []
 
   def quiet(scale: float) -> bool:
@@ -80,16 +83,23 @@ def run_g0(brain: Brain, log=print) -> G0Result:
     return not p.runaway
 
   if quiet(1.0):
-    return G0Result(1.0, tuple(probes))
-  hi, lo = 1.0, None
-  for _ in range(c.g0_max_halvings):
-    if quiet(hi / 2):
-      lo = hi / 2
-      break
-    hi /= 2
-  if lo is None:
-    raise G0Failure(f"brain still runs away at w_scale {hi:.4g} after "
-                    f"{c.g0_max_halvings} halvings")
+    lo, hi = 1.0, None
+    for _ in range(steps):
+      if not quiet(lo * 2):
+        hi = lo * 2
+        break
+      lo *= 2
+    if hi is None:
+      raise G0Failure(f"brain never runs away up to w_scale {lo:.4g} after {steps} doublings")
+  else:
+    hi, lo = 1.0, None
+    for _ in range(steps):
+      if quiet(hi / 2):
+        lo = hi / 2
+        break
+      hi /= 2
+    if lo is None:
+      raise G0Failure(f"brain still runs away at w_scale {hi:.4g} after {steps} halvings")
   while (hi - lo) / hi > c.g0_precision:
     mid = (lo + hi) / 2
     if quiet(mid):

@@ -10,7 +10,8 @@ with the same degrees and signs, so we can ask whether the real wiring is doing 
 
 Status: milestone M3. The connectome steers a marine in the MoveToBeacon minigame, with a live
 view of its neurons. Untrained, it scores 4.5 a game against 0.24 for a random walker and 20.6
-for an oracle with the same body (`docs/m3`). Learning comes in M4.
+for an oracle with the same body (`docs/m3`). It also leads a squad in DefeatRoaches and, as
+Zerg, in DefeatMarines. Learning comes in M4.
 
 ## Install
 
@@ -48,6 +49,15 @@ flycraft summarize watch.jsonl scripted.jsonl
 `--map DefeatRoaches` plays the roach minigame instead of MoveToBeacon: the fly sees every
 roach, and the squad attacks the roach it turns toward (within 30 degrees of its heading), else
 attack-moves where it steers ([M3b spec](docs/superpowers/specs/2026-10-08-flycraft-m3b-defeatroaches.md)).
+
+`--map DefeatMarines` plays the same game as Zerg: zerglings against marines. SC2 does not ship
+this map, so build it once from your own copy of DefeatRoaches; it lands in `Maps/flycraft`
+under the SC2 install ([M3c spec](docs/superpowers/specs/2026-10-08-flycraft-m3c-defeatmarines.md)):
+
+```
+flycraft-maps          # SC2 found from SC2PATH; else --sc2path "C:/Program Files (x86)/StarCraft II"
+flycraft-client --map DefeatMarines --mode watch
+```
 
 Open http://localhost:8766 to watch the brain while it plays. Watch mode shows the game at
 normal speed; train mode runs minimized and as fast as the brain allows.
