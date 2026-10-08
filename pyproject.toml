@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flycraft"
+version = "0.1.0"
+description = "A fruit-fly connectome brain plays StarCraft II"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "pyyaml>=6"]
+
+[project.optional-dependencies]
+brain = [
+  "torch>=2.3",
+  "pandas>=2.1",
+  "pyarrow>=14",
+  "google-crc32c>=1.5",
+  "matplotlib>=3.8",
+  "numpy>=1.26",
+  "websockets>=13",
+  "msgpack>=1.0",
+]
+# pysc2 0df53d3 as an archive, so installing it needs no git (the Windows side may have none).
+game = [
+  "pysc2 @ https://github.com/google-deepmind/pysc2/archive/0df53d38c153972f1e368572ba65b1442a0fd41f.zip",
+  "protobuf==3.20.3",
+  "numpy>=1.26",
+  "websockets>=13",
+  "msgpack>=1.0",
+]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+flycraft = "flycraft.cli:main"
+flycraft-client = "flycraft.game.client:main"
+
+[tool.setuptools.packages.find]
+include = ["flycraft*"]
+
+[tool.setuptools.package-data]
+"flycraft.view" = ["static/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+  "gpu: needs a CUDA device",
+  "integration: needs real data or SC2",
+]
+
+[tool.ruff]
+line-length = 100
+indent-width = 2
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

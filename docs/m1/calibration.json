@@ -1,0 +1,347 @@
+{
+  "generated": "2026-10-07T21:00:59+00:00",
+  "device": "cuda (NVIDIA GeForce RTX 5080)",
+  "wiring": {
+    "label": "REAL WIRING",
+    "fingerprint": "60cdd04e254bb6b02693abb478ab4ef3a5661334f75623e7eec499d348fc4918",
+    "stats": {
+      "seed": null
+    }
+  },
+  "connectome": {
+    "dataset": "malecns-v1.0",
+    "build_version": 1,
+    "n_neurons": 164587,
+    "n_edges": 25563197,
+    "n_synapses": 124025046,
+    "n_self_loops": 101,
+    "nt_counts": {
+      "acetylcholine": 104030,
+      "glutamate": 29616,
+      "gaba": 22108,
+      "histamine": 5918,
+      "unknown": 2012,
+      "dopamine": 395,
+      "serotonin": 375,
+      "octopamine": 133
+    },
+    "build_inhibitory_nts": [
+      "gaba",
+      "glutamate",
+      "histamine"
+    ],
+    "pos_source_counts": {
+      "soma": 139741,
+      "partners": 24602,
+      "centroid": 244
+    },
+    "mlx": {
+      "n_neurons": 166700,
+      "n_edges": 24469412,
+      "annotated_with_superclass": 166700,
+      "edges_pre_consensus_ach_gaba_glu": 24458434
+    }
+  },
+  "sign_rule": {
+    "ours_inhibitory": [
+      "gaba",
+      "glutamate",
+      "histamine"
+    ],
+    "shiu_inhibitory": [
+      "gaba",
+      "glutamate"
+    ],
+    "neurons_differ": 5918,
+    "edges_differ": 81800,
+    "by_nt": {
+      "histamine": {
+        "neurons": 5918,
+        "edges": 81800,
+        "ours": -1,
+        "shiu": 1
+      }
+    }
+  },
+  "retina": {
+    "fits": {
+      "R": {
+        "n_l1": 139,
+        "n_mi1": 873,
+        "l1_y": [
+          472.371,
+          -4.349,
+          -4.917
+        ],
+        "l1_y_r2": 0.995,
+        "l1_z": [
+          253.53,
+          -3.3,
+          1.695
+        ],
+        "l1_z_r2": 0.469,
+        "mi1_z": [
+          240.002,
+          5.689,
+          -5.214
+        ],
+        "mi1_z_r2": 0.843
+      },
+      "L": {
+        "n_l1": 159,
+        "n_mi1": 858,
+        "l1_y": [
+          440.682,
+          -3.858,
+          -5.251
+        ],
+        "l1_y_r2": 0.985,
+        "l1_z": [
+          194.244,
+          -3.009,
+          3.007
+        ],
+        "l1_z_r2": 0.659,
+        "mi1_z": [
+          214.227,
+          5.767,
+          -4.615
+        ],
+        "mi1_z_r2": 0.824
+      }
+    },
+    "map_reason": "fits pass",
+    "map": "affine",
+    "n_photoreceptors": 4102,
+    "n_unassigned": 355,
+    "n_r16": {
+      "L": 498,
+      "R": 888
+    },
+    "n_r78": {
+      "L": 1097,
+      "R": 1264
+    },
+    "n_vpn": 275,
+    "n_vpn_without_rf": 0
+  },
+  "config": {
+    "connectome": {
+      "dataset": "malecns-v1.0",
+      "data_dir": "~/.cache/flycraft",
+      "include_vnc": true,
+      "wiring": "real",
+      "scramble_seed": null,
+      "inhibitory_nts": [
+        "gaba",
+        "glutamate",
+        "histamine"
+      ]
+    },
+    "sim": {
+      "dt_ms": 0.1,
+      "device": "cuda",
+      "dtype": "float32",
+      "mode": "event",
+      "seed": 0,
+      "f_poi": 250.0
+    },
+    "eye": {
+      "polarity": "dark_on_bright"
+    },
+    "retina": {
+      "mode": "photoreceptor",
+      "map": "auto",
+      "r_max_hz": 150.0,
+      "eye_normalize": true,
+      "lamina_tonic_hz": 0.0,
+      "vpn_rate_hz": 150.0,
+      "vpn_rf_radius_deg": 15.0
+    },
+    "decoder": {
+      "turn_pos": [
+        [
+          "DNa02",
+          "R"
+        ]
+      ],
+      "turn_neg": [
+        [
+          "DNa02",
+          "L"
+        ]
+      ],
+      "fwd": [
+        [
+          "DNp09",
+          "L"
+        ],
+        [
+          "DNp09",
+          "R"
+        ]
+      ],
+      "aotu019_term": false,
+      "tau_ms": 150.0,
+      "s0": 0.5,
+      "max_turn_deg_s": 180.0,
+      "decision_frames": 8,
+      "game_fps": 22.4,
+      "decision_ms": 50.0,
+      "gain_floor_hz": 1.0
+    },
+    "calibration": {
+      "g0_blank_ms": 2000.0,
+      "g0_max_frac_100hz": 0.005,
+      "g0_max_mean_hz": 20.0,
+      "g0_max_halvings": 8,
+      "g0_precision": 0.05,
+      "g1_azimuths_deg": [
+        -60.0,
+        0.0,
+        60.0
+      ],
+      "g1_repeats": 10,
+      "g1_trial_ms": 2000.0,
+      "g1_radius_deg": 10.0,
+      "g1_n_se": 3.0,
+      "ladder": [
+        "default",
+        "flip_polarity",
+        "tonic_20",
+        "tonic_50",
+        "vpn"
+      ],
+      "sample_every_ms": 50.0,
+      "sample_warmup_ms": 500.0
+    }
+  },
+  "ladder": {
+    "rung": "vpn",
+    "tried": [
+      {
+        "rung": "default",
+        "g0_scale": 1.0,
+        "z_lc10a": 0.0,
+        "z_dn": 0.0,
+        "passed": false,
+        "g0_failure": null
+      },
+      {
+        "rung": "flip_polarity",
+        "g0_scale": 1.0,
+        "z_lc10a": 0.0,
+        "z_dn": 0.0,
+        "passed": false,
+        "g0_failure": null
+      },
+      {
+        "rung": "tonic_20",
+        "g0_scale": 1.0,
+        "z_lc10a": 0.0,
+        "z_dn": 0.0,
+        "passed": false,
+        "g0_failure": null
+      },
+      {
+        "rung": "tonic_50",
+        "g0_scale": 1.0,
+        "z_lc10a": 0.0,
+        "z_dn": 0.0,
+        "passed": false,
+        "g0_failure": null
+      },
+      {
+        "rung": "vpn",
+        "g0_scale": 0.84375,
+        "z_lc10a": 126.83272871155421,
+        "z_dn": 4.423770127196408,
+        "passed": true,
+        "g0_failure": null
+      }
+    ],
+    "g0": {
+      "scale": 0.84375,
+      "probes": [
+        {
+          "scale": 1.0,
+          "mean_hz": 6.621440609200424,
+          "frac_over_100hz": 0.030647275450970603,
+          "runaway": true
+        },
+        {
+          "scale": 0.5,
+          "mean_hz": 0.048305349229136756,
+          "frac_over_100hz": 8.738530678484489e-05,
+          "runaway": false
+        },
+        {
+          "scale": 0.75,
+          "mean_hz": 0.08541289557455839,
+          "frac_over_100hz": 8.738530678484489e-05,
+          "runaway": false
+        },
+        {
+          "scale": 0.875,
+          "mean_hz": 5.549151114162662,
+          "frac_over_100hz": 0.01827601273328756,
+          "runaway": true
+        },
+        {
+          "scale": 0.8125,
+          "mean_hz": 0.1018600586729917,
+          "frac_over_100hz": 8.738530678484489e-05,
+          "runaway": false
+        },
+        {
+          "scale": 0.84375,
+          "mean_hz": 0.1338337182448037,
+          "frac_over_100hz": 8.738530678484489e-05,
+          "runaway": false
+        }
+      ]
+    },
+    "g1": {
+      "rung": "vpn",
+      "z_lc10a": 126.83272871155421,
+      "z_dn": 4.423770127196408,
+      "passed": true,
+      "means_hz": {
+        "-60.0": {
+          "lc10a_L": 3.4844444444444447,
+          "lc10a_R": 0.0,
+          "dn_L": 18.066666666666666,
+          "dn_R": 0.0
+        },
+        "0.0": {
+          "lc10a_L": 5.773827160493828,
+          "lc10a_R": 6.456666666666666,
+          "dn_L": 0.9999999999999998,
+          "dn_R": 0.13333333333333333
+        },
+        "60.0": {
+          "lc10a_L": 0.0,
+          "lc10a_R": 2.8452380952380953,
+          "dn_L": 1.2,
+          "dn_R": 9.200000000000001
+        }
+      },
+      "n_blank_samples": 300,
+      "n_stim_samples": 900
+    }
+  },
+  "chirality": "turns toward the spot (z +4.42)",
+  "w_scale": 0.84375,
+  "decoder_calibration": {
+    "b_turn": 0.0,
+    "b_fwd": 0.0,
+    "k_turn": 4.493677216147349,
+    "k_fwd": 0.0,
+    "turn_silent": false,
+    "fwd_silent": true,
+    "p95_turn_hz": 40.056281602336114,
+    "p95_fwd_hz": 0.005871259654711501
+  },
+  "result": "PASS on rung vpn",
+  "speed_s_per_sim_s": 4.97527922199879
+}

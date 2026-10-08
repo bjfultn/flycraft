@@ -1,0 +1,4 @@
+extends: base.yaml
+connectome:
+  wiring: real
+  scramble_seed: null

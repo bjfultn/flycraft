@@ -1,0 +1,9 @@
+__pycache__/
+*.npz
+!tests/fixtures/*.npz
+runs/
+.superpowers/
+.worktrees/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

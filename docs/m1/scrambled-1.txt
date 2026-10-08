@@ -1,0 +1,7 @@
+REAL WIRING: 25,563,197 edges, 61,210 exempt (KC to MBON)
+fingerprint 60cdd04e254bb6b02693abb478ab4ef3a5661334f75623e7eec499d348fc4918
+{"seed": null}
+scrambled wiring seed 1: 6 repair passes, 0 leftover, 0 merged; cached at ~/.cache/flycraft/malecns-v1.0.scrambled-1.npz
+SCRAMBLED #1: 25,563,197 edges, 61,210 exempt (KC to MBON)
+fingerprint 4544cf71be3ed1a8361802bcc225d76bf9c44e88925dc9255f0acb4071aa0e3e
+{"seed": 1, "passes": 6, "leftover": 0, "self_loops": 0, "merged": 0}

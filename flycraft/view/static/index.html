@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fly Brain View</title>
+<script type="importmap">
+{"imports": {"three": "./three.module.min.js"}}
+</script>
+<style>
+  :root {
+    --ground: #0c0f14;
+    --panel: #12161d;
+    --rule: #222a35;
+    --text: #d9e0ea;
+    --muted: #7c8899;
+    --faint: #4a5566;
+    --hot: #ffb454;
+    --left: #4cc4ff;
+    --right: #ff6b9e;
+    --fwd: #8fdc6a;
+    --gold: #ffd75e;
+    --bad: #ff5d5d;
+    --mono: "Cascadia Mono", "Consolas", ui-monospace, "SF Mono", monospace;
+    --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--ground); color: var(--text);
+               font: 13px/1.4 var(--sans); overflow: hidden; }
+  #app { display: grid; grid-template-columns: 1fr 340px; height: 100%; }
+  #stage { position: relative; min-width: 0; }
+  #stage canvas { display: block; width: 100%; height: 100%; }
+  #labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .tag { position: absolute; transform: translate(-50%, -100%); white-space: nowrap;
+         font: 11px/1 var(--mono); color: var(--muted); padding-bottom: 6px; }
+  .tag.dn { font-size: 13px; font-weight: 600; color: var(--text); }
+  .tag i { display: block; width: 9px; height: 9px; border-radius: 50%; margin: 4px auto 0;
+           border: 2px solid currentColor; background: transparent; }
+  .tag.dn i { width: 14px; height: 14px; }
+
+  #legend { position: absolute; left: 12px; bottom: 12px; background: rgba(18, 22, 29, 0.88);
+            border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px;
+            display: grid; gap: 4px; max-height: calc(100% - 24px); overflow-y: auto; }
+  #legend h3, .panel h3 { margin: 0 0 4px; font: 600 10px/1 var(--sans); letter-spacing: 0.12em;
+                          text-transform: uppercase; color: var(--muted); }
+  #legend label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  #legend input { margin: 0; accent-color: var(--hot); }
+  #legend .sw { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+  #legend .classes { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px;
+                     margin-top: 6px; color: var(--muted); font-size: 11px; }
+  #legend .row { display: flex; align-items: center; gap: 8px; }
+  #legend input[type=range] { width: 100%; }
+  #help { position: absolute; right: 12px; bottom: 12px; color: var(--faint); font-size: 11px; }
+
+  #status { position: absolute; left: 12px; top: 12px; display: flex; gap: 8px; align-items: center;
+            font: 11px/1 var(--mono); color: var(--muted); }
+  .pill { padding: 4px 8px; border-radius: 999px; border: 1px solid var(--rule); }
+  .pill.live { color: var(--fwd); border-color: #2d4a2a; }
+  .pill.idle { color: var(--gold); border-color: #4a4224; }
+  .pill.down { color: var(--bad); border-color: #4a2626; }
+
+  .panel { background: var(--panel); border-left: 1px solid var(--rule); overflow-y: auto;
+           padding: 16px; display: flex; flex-direction: column; gap: 18px; }
+  .badge { display: inline-block; font: 700 15px/1 var(--mono); letter-spacing: 0.06em;
+           padding: 7px 10px; border-radius: 4px; border: 2px solid var(--fwd); color: var(--fwd); }
+  .badge.scrambled { border-color: var(--right); color: var(--right); }
+  .cond { display: grid; gap: 8px; }
+  .cond .sub { font: 11px/1.5 var(--mono); color: var(--muted); }
+
+  .score { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule);
+           border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+  .score div { background: var(--panel); padding: 8px 10px; }
+  .score b { display: block; font: 600 22px/1.1 var(--mono); font-variant-numeric: tabular-nums; }
+  .score span { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .score .flash { animation: flash 0.9s ease-out; }
+  @keyframes flash { from { background: #5a4a10; } to { background: var(--panel); } }
+
+  .meter { display: grid; gap: 4px; }
+  .meter .head { display: flex; justify-content: space-between; font: 11px/1 var(--mono);
+                 color: var(--muted); }
+  .meter .head b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bar { position: relative; height: 14px; background: #0d1117; border: 1px solid var(--rule);
+         border-radius: 3px; overflow: hidden; }
+  .bar .fill { position: absolute; top: 0; bottom: 0; }
+  .bar .mid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--faint); }
+  .ends { display: flex; justify-content: space-between; font: 10px/1 var(--mono); color: var(--faint); }
+  .note { font-size: 11px; color: var(--faint); }
+
+  #eye { width: 100%; aspect-ratio: 72 / 30; image-rendering: pixelated; display: block;
+         border: 1px solid var(--rule); border-radius: 3px; background: #000; }
+
+  .spark { display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 8px;
+           font: 11px/1 var(--mono); }
+  .spark canvas { width: 100%; height: 30px; display: block; }
+  .spark .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
+  .sparks { display: grid; gap: 6px; }
+
+  @media (max-width: 760px) {
+    #app { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+    html, body { overflow: auto; }
+    .panel { border-left: 0; border-top: 1px solid var(--rule); }
+  }
+  @media (prefers-reduced-motion: reduce) { .score .flash { animation: none; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <div id="labels"></div>
+    <div id="status"><span id="conn" class="pill down">connecting</span><span id="clock"></span></div>
+    <div id="legend">
+      <h3>Highlight</h3>
+      <div id="groups"></div>
+      <h3 style="margin-top:8px">Background</h3>
+      <div class="row"><input id="dim" type="range" min="0" max="0.25" step="0.005" value="0.05"
+        aria-label="Background brightness"></div>
+      <div id="classes" class="classes"></div>
+    </div>
+    <div id="help">drag to rotate · right-drag to pan · scroll to zoom · R to reset</div>
+  </div>
+  <aside class="panel">
+    <section class="cond">
+      <div><span id="wiring" class="badge">loading</span></div>
+      <div class="sub" id="cond"></div>
+    </section>
+    <section class="score">
+      <div><span>Episode</span><b id="episode">-</b></div>
+      <div><span>Step</span><b id="step">-</b></div>
+      <div id="scorebox"><span>Score</span><b id="score">-</b></div>
+    </section>
+    <section class="meter">
+      <h3>Steering</h3>
+      <div class="head"><span>turn</span><b id="dtheta">-</b></div>
+      <div class="bar"><div class="mid"></div><div id="turnfill" class="fill"></div></div>
+      <div class="ends"><span>left</span><span id="turnhz"></span><span>right</span></div>
+      <div class="head" style="margin-top:8px"><span>forward</span><b id="speed">-</b></div>
+      <div class="bar"><div id="speedfill" class="fill"></div></div>
+      <div class="note" id="fwdnote"></div>
+    </section>
+    <section>
+      <h3>What the fly sees</h3>
+      <canvas id="eye" width="72" height="30"></canvas>
+    </section>
+    <section>
+      <h3>Descending neurons</h3>
+      <div class="sparks" id="sparks"></div>
+    </section>
+  </aside>
+</div>
+<script type="module" src="./view.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+flycraft
+Copyright (c) 2026 BJ Fulton. Code released under the MIT License (see LICENSE).
+
+Data
+----
+MaleCNS v1.0, the connectome of the adult male Drosophila central nervous system,
+Janelia FlyEM (HHMI) and Google. Licensed CC-BY 4.0. https://male-cns.janelia.org
+flycraft does not redistribute it: `flycraft prep-data` downloads it from the
+FlyEM public bucket. Cite the dataset as its release page asks.
+
+Model
+-----
+The leaky integrate-and-fire model, its equations and constants follow
+Shiu, P.K., Sterne, G.R., Spiller, N. et al. "A Drosophila computational brain model
+reveals sensorimotor processing." Nature 634, 210-219 (2024).
+https://doi.org/10.1038/s41586-024-07763-9
+Code: https://github.com/philshiu/Drosophila_brain_model (no code is copied).
+
+Methods we port ideas from (no code is copied)
+----------------------------------------------
+- doomfly (nftechie/doomfly), MIT: dopamine reward onto KC to MBON synapses.
+- fruitfly-lab (webergithub/fruitfly-lab), MIT: the scrambled-wiring control and the
+  LC10a, AOTU019, DNa02 steering circuit.
+- drosophila-brain-mlx (kiminbean/drosophila-brain-mlx), MIT: MaleCNS loading
+  conventions and reference counts.
+
+Software
+--------
+- PySC2, DeepMind, Apache License 2.0. https://github.com/google-deepmind/pysc2
+- Three.js, MIT License, vendored in the brain view (from milestone M3).
+
+Not redistributed
+-----------------
+StarCraft II and its maps belong to Blizzard Entertainment. Install the game and the
+mini-game maps yourself under Blizzard's AI and Machine Learning License.

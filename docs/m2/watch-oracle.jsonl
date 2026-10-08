@@ -1,0 +1,3 @@
+{"episode": 0, "seed": 1000000, "phase": "watch", "pilot": "stub-oracle", "score": 22.0, "steps": 241, "frames": 1920, "wall_s": 85.797, "late_frames": 1, "max_wait_ms": 0.0, "aborted": null, "fps": 22.38, "counts": true}
+{"episode": 1, "seed": 1000001, "phase": "watch", "pilot": "stub-oracle", "score": 18.0, "steps": 241, "frames": 1920, "wall_s": 85.781, "late_frames": 1, "max_wait_ms": 0.0, "aborted": null, "fps": 22.38, "counts": true}
+{"episode": 2, "seed": 1000002, "phase": "watch", "pilot": "stub-oracle", "score": 20.0, "steps": 241, "frames": 1920, "wall_s": 85.718, "late_frames": 0, "max_wait_ms": 15.0, "aborted": null, "fps": 22.4, "counts": true}

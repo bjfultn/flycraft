@@ -1,0 +1,56 @@
+# Shared settings for every brain. real.yaml and scrambled.yaml extend this file.
+connectome:
+  dataset: malecns-v1.0
+  data_dir: ~/.cache/flycraft
+  include_vnc: true
+  wiring: real
+  scramble_seed: null
+  inhibitory_nts: [gaba, glutamate, histamine]
+
+sim:
+  dt_ms: 0.1
+  device: auto          # auto | cpu | cuda
+  dtype: float32        # float32 | float64
+  mode: event           # event | spmv
+  seed: 0
+  f_poi: 250.0
+
+eye:
+  polarity: dark_on_bright   # dark_on_bright | bright_on_dark
+
+retina:
+  mode: photoreceptor        # photoreceptor | photoreceptor+vpn
+  map: auto                  # auto | affine | bands
+  r_max_hz: 150.0
+  eye_normalize: true
+  lamina_tonic_hz: 0.0
+  vpn_rate_hz: 150.0
+  vpn_rf_radius_deg: 15.0
+
+decoder:
+  turn_pos: [[DNa02, R]]
+  turn_neg: [[DNa02, L]]
+  fwd: [[DNp09, L], [DNp09, R]]
+  aotu019_term: false
+  tau_ms: 150.0
+  s0: 0.5
+  max_turn_deg_s: 180.0
+  decision_frames: 8
+  game_fps: 22.4
+  decision_ms: 50.0
+  gain_floor_hz: 1.0
+
+calibration:
+  g0_blank_ms: 2000.0
+  g0_max_frac_100hz: 0.005
+  g0_max_mean_hz: 20.0
+  g0_max_halvings: 8
+  g0_precision: 0.05
+  g1_azimuths_deg: [-60.0, 0.0, 60.0]
+  g1_repeats: 10
+  g1_trial_ms: 2000.0
+  g1_radius_deg: 10.0
+  g1_n_se: 3.0
+  ladder: [default, flip_polarity, tonic_20, tonic_50, vpn]
+  sample_every_ms: 50.0
+  sample_warmup_ms: 500.0

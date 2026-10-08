@@ -1,0 +1,4 @@
+extends: base.yaml
+connectome:
+  wiring: scrambled
+  scramble_seed: 1        # one twin per seed; the experiment sets 1..6

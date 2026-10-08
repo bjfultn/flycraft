@@ -1,0 +1,482 @@
+{"episode": 0, "step": 0, "marine_xy": [38.0, 13.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 1, "marine_xy": [38.0, 13.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 2, "marine_xy": [41.0, 11.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 3, "marine_xy": [44.0, 9.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 4, "marine_xy": [47.0, 7.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 5, "marine_xy": [50.0, 5.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 6, "marine_xy": [53.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 7, "marine_xy": [56.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 8, "marine_xy": [59.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 9, "marine_xy": [62.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 10, "marine_xy": [65.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 11, "marine_xy": [68.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 12, "marine_xy": [71.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 13, "marine_xy": [74.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 14, "marine_xy": [77.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 15, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 16, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 17, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 18, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 19, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 20, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 21, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 22, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 23, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 24, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 25, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 26, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 27, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 28, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 29, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 30, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 31, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 32, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 33, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 34, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 35, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 36, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 37, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 38, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 39, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 40, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 41, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 42, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 43, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 44, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 45, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 46, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 47, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 48, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 49, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 50, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 51, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 52, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 53, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 54, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 55, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 56, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 57, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 58, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 59, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 60, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 61, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 62, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 63, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 64, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 65, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 66, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 67, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 68, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 69, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 70, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 71, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 72, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 73, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 74, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 75, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 76, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 77, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 78, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 79, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 80, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 81, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 82, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 83, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 84, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 85, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 86, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 87, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 88, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 89, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 90, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 91, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 92, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 93, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 94, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 95, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 96, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 97, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 98, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 99, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 100, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 101, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 102, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 103, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 104, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 105, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 106, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 107, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 108, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 109, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 110, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 111, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 112, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 113, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 114, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 115, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 116, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 117, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 118, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 119, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 120, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 121, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 122, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 123, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 124, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 125, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 126, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 127, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 128, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 129, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 130, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 131, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 132, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 133, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 134, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 135, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 136, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 137, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 138, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 139, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 140, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 141, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 142, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 143, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 144, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 145, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 146, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 147, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 148, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 149, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 150, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 151, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 152, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 153, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 154, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 155, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 156, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 157, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 158, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 159, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 160, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 161, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 162, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 163, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 164, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 165, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 166, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 167, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 168, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 169, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 170, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 171, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 172, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 173, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 174, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 175, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 176, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 177, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 178, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 179, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 180, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 181, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 182, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 183, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 184, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 185, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 186, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 187, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 188, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 189, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 190, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 191, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 192, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 193, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 194, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 195, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 196, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 197, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 198, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 199, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 200, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 201, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 202, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 203, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 204, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 205, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 206, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 207, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 208, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 209, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 210, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 211, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 212, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 213, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 214, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 215, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 216, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 217, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 218, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 219, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 220, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 221, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 222, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 223, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 224, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 225, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 226, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 227, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 228, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 229, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 230, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 231, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 232, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 233, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 234, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 235, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 236, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 237, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 238, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 239, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 0, "step": 240, "marine_xy": [79.0, 4.0], "beacon_xy": [21.0, 29.0], "reward": 0.0, "score": 0.0, "dtheta": 0.0, "speed": 0.5, "turn_raw": 0.0, "fwd_raw": 0.0}
+{"episode": 1, "step": 0, "marine_xy": [7.0, 39.0], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 8.695786343849733, "speed": 0.5, "turn_raw": 5.41832459066879, "fwd_raw": 0.0}
+{"episode": 1, "step": 1, "marine_xy": [7.0, 39.0], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 23.015246712522597, "speed": 0.5, "turn_raw": 14.34074760944071, "fwd_raw": 0.0}
+{"episode": 1, "step": 2, "marine_xy": [9.0, 37.0], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 16.491144890103012, "speed": 0.5, "turn_raw": 10.27559467920055, "fwd_raw": 0.0}
+{"episode": 1, "step": 3, "marine_xy": [12.0, 36.0], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 11.816421660967832, "speed": 0.5, "turn_raw": 7.3627853224126705, "fwd_raw": 0.0}
+{"episode": 1, "step": 4, "marine_xy": [15.0, 36.0], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 8.466836099025844, "speed": 0.5, "turn_raw": 5.275666216541842, "fwd_raw": 0.0}
+{"episode": 1, "step": 5, "marine_xy": [18.0, 36.0], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 6.0667531664484935, "speed": 0.5, "turn_raw": 3.7801800282886133, "fwd_raw": 0.0}
+{"episode": 1, "step": 6, "marine_xy": [20.0, 37.5], "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -44.72456339119572, "speed": 0.5, "turn_raw": -27.86777320038862, "fwd_raw": 0.0}
+{"episode": 1, "step": 7, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -41.45403123688066, "speed": 0.5, "turn_raw": -25.829912092079343, "fwd_raw": 0.0}
+{"episode": 1, "step": 8, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -38.961270607658456, "speed": 0.5, "turn_raw": -24.276678642925148, "fwd_raw": 0.0}
+{"episode": 1, "step": 9, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -27.916970290125743, "speed": 0.5, "turn_raw": -17.395000364393983, "fwd_raw": 0.0}
+{"episode": 1, "step": 10, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -20.003383309233453, "speed": 0.5, "turn_raw": -12.464062408530836, "fwd_raw": 0.0}
+{"episode": 1, "step": 11, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -23.854101504555345, "speed": 0.5, "turn_raw": -14.86343611257833, "fwd_raw": 0.0}
+{"episode": 1, "step": 12, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -17.092210613619343, "speed": 0.5, "turn_raw": -10.650117357375603, "fwd_raw": 0.0}
+{"episode": 1, "step": 13, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.247104071579978, "speed": 0.5, "turn_raw": -7.631142547845051, "fwd_raw": 0.0}
+{"episode": 1, "step": 14, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.775433531142845, "speed": 0.5, "turn_raw": -5.4679525709828525, "fwd_raw": 0.0}
+{"episode": 1, "step": 15, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.287872888922997, "speed": 0.5, "turn_raw": -3.9179592218416883, "fwd_raw": 0.0}
+{"episode": 1, "step": 16, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.5054578018214215, "speed": 0.5, "turn_raw": -2.807340456000906, "fwd_raw": 0.0}
+{"episode": 1, "step": 17, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.228301583474026, "speed": 0.5, "turn_raw": -2.0115473361651603, "fwd_raw": 0.0}
+{"episode": 1, "step": 18, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.313179164534097, "speed": 0.5, "turn_raw": -1.4413366490636454, "fwd_raw": 0.0}
+{"episode": 1, "step": 19, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.657465298355609, "speed": 0.5, "turn_raw": -1.0327628381316138, "fwd_raw": 0.0}
+{"episode": 1, "step": 20, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.797955959483398, "speed": 0.5, "turn_raw": -6.728181672219628, "fwd_raw": 0.0}
+{"episode": 1, "step": 21, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.737073535166744, "speed": 0.5, "turn_raw": -4.820952831374108, "fwd_raw": 0.0}
+{"episode": 1, "step": 22, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.543855440158842, "speed": 0.5, "turn_raw": -3.454363650478931, "fwd_raw": 0.0}
+{"episode": 1, "step": 23, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.544311640716309, "speed": 0.5, "turn_raw": -8.439429618516268, "fwd_raw": 0.0}
+{"episode": 1, "step": 24, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.149338122538293, "speed": 0.5, "turn_raw": -11.308811091393014, "fwd_raw": 0.0}
+{"episode": 1, "step": 25, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 5.393443193421501, "speed": 0.5, "turn_raw": 3.360642123407249, "fwd_raw": 0.0}
+{"episode": 1, "step": 26, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 3.8645709198876164, "speed": 0.5, "turn_raw": 2.408005305054494, "fwd_raw": 0.0}
+{"episode": 1, "step": 27, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 2.7690860660324463, "speed": 0.5, "turn_raw": 1.725411197099345, "fwd_raw": 0.0}
+{"episode": 1, "step": 28, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.811040425065436, "speed": 0.5, "turn_raw": -3.6208460037396897, "fwd_raw": 0.0}
+{"episode": 1, "step": 29, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.163792411569432, "speed": 0.5, "turn_raw": -2.594449532445483, "fwd_raw": 0.0}
+{"episode": 1, "step": 30, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.260181757771232, "speed": 0.5, "turn_raw": -7.639291224212801, "fwd_raw": 0.0}
+{"episode": 1, "step": 31, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.894947135594386, "speed": 0.5, "turn_raw": -5.542421224686292, "fwd_raw": 0.0}
+{"episode": 1, "step": 32, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.373508128552056, "speed": 0.5, "turn_raw": -3.9713183438764794, "fwd_raw": 0.0}
+{"episode": 1, "step": 33, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.566818132304132, "speed": 0.5, "turn_raw": -2.8455739376435614, "fwd_raw": 0.0}
+{"episode": 1, "step": 34, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.272268181492044, "speed": 0.5, "turn_raw": -2.038942822874372, "fwd_raw": 0.0}
+{"episode": 1, "step": 35, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.3446826086334185, "speed": 0.5, "turn_raw": -1.4609663730592037, "fwd_raw": 0.0}
+{"episode": 1, "step": 36, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.018453455078568, "speed": 0.5, "turn_raw": -11.227257154325539, "fwd_raw": 0.0}
+{"episode": 1, "step": 37, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.910786068680348, "speed": 0.5, "turn_raw": -8.04468128293788, "fwd_raw": 0.0}
+{"episode": 1, "step": 38, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -26.020325090609333, "speed": 0.5, "turn_raw": -16.213205076658788, "fwd_raw": 0.0}
+{"episode": 1, "step": 39, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.64437763873047, "speed": 0.5, "turn_raw": -11.617269082180007, "fwd_raw": 0.0}
+{"episode": 1, "step": 40, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.359280344312273, "speed": 0.5, "turn_raw": -8.324137040742851, "fwd_raw": 0.0}
+{"episode": 1, "step": 41, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.572342653432797, "speed": 0.5, "turn_raw": -5.964504823199336, "fwd_raw": 0.0}
+{"episode": 1, "step": 42, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.858883226725626, "speed": 0.5, "turn_raw": -4.273754457890734, "fwd_raw": 0.0}
+{"episode": 1, "step": 43, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.9146045875183235, "speed": 0.5, "turn_raw": -3.06227888278304, "fwd_raw": 0.0}
+{"episode": 1, "step": 44, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.5214680660464843, "speed": 0.5, "turn_raw": -2.1942187012229852, "fwd_raw": 0.0}
+{"episode": 1, "step": 45, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.872493789228422, "speed": 0.5, "turn_raw": -6.774626023526419, "fwd_raw": 0.0}
+{"episode": 1, "step": 46, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.790482224001274, "speed": 0.5, "turn_raw": -4.854231663284714, "fwd_raw": 0.0}
+{"episode": 1, "step": 47, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -25.556806919237943, "speed": 0.5, "turn_raw": -15.924387963765973, "fwd_raw": 0.0}
+{"episode": 1, "step": 48, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.312252355922954, "speed": 0.5, "turn_raw": -11.410322577762777, "fwd_raw": 0.0}
+{"episode": 1, "step": 49, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -30.156140935554834, "speed": 0.5, "turn_raw": -18.790222474400533, "fwd_raw": 0.0}
+{"episode": 1, "step": 50, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -39.11384346188447, "speed": 0.5, "turn_raw": -24.37174643958347, "fwd_raw": 0.0}
+{"episode": 1, "step": 51, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -28.026293517322287, "speed": 0.5, "turn_raw": -17.463119417326933, "fwd_raw": 0.0}
+{"episode": 1, "step": 52, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -57.97849150161838, "speed": 0.5, "turn_raw": -36.12626550504964, "fwd_raw": 0.0}
+{"episode": 1, "step": 53, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -41.54340450074618, "speed": 0.5, "turn_raw": -25.88560036847005, "fwd_raw": 0.0}
+{"episode": 1, "step": 54, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -20.866076341776036, "speed": 0.5, "turn_raw": -13.001604464831487, "fwd_raw": 0.0}
+{"episode": 1, "step": 55, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -33.829923354146864, "speed": 0.5, "turn_raw": -21.079347900475724, "fwd_raw": 0.0}
+{"episode": 1, "step": 56, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -24.240199317557845, "speed": 0.5, "turn_raw": -15.104012777168819, "fwd_raw": 0.0}
+{"episode": 1, "step": 57, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -27.863228187656933, "speed": 0.5, "turn_raw": -17.361513783210103, "fwd_raw": 0.0}
+{"episode": 1, "step": 58, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -40.74813326678012, "speed": 0.5, "turn_raw": -25.390068680723672, "fwd_raw": 0.0}
+{"episode": 1, "step": 59, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -29.197313333081564, "speed": 0.5, "turn_raw": -18.192779187357566, "fwd_raw": 0.0}
+{"episode": 1, "step": 60, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -20.920789187786625, "speed": 0.5, "turn_raw": -13.03569591409695, "fwd_raw": 0.0}
+{"episode": 1, "step": 61, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -14.990400494962804, "speed": 0.5, "turn_raw": -9.340484277569335, "fwd_raw": 0.0}
+{"episode": 1, "step": 62, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.741091312681743, "speed": 0.5, "turn_raw": -6.69274944080067, "fwd_raw": 0.0}
+{"episode": 1, "step": 63, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.696328235268639, "speed": 0.5, "turn_raw": -4.795564528158929, "fwd_raw": 0.0}
+{"episode": 1, "step": 64, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.5146601570231315, "speed": 0.5, "turn_raw": -3.4361721363029143, "fwd_raw": 0.0}
+{"episode": 1, "step": 65, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.951426669680867, "speed": 0.5, "turn_raw": -2.4621249241822794, "fwd_raw": 0.0}
+{"episode": 1, "step": 66, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.8313209302626725, "speed": 0.5, "turn_raw": -1.764189598720731, "fwd_raw": 0.0}
+{"episode": 1, "step": 67, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.0287300968161253, "speed": 0.5, "turn_raw": -1.2640970852720204, "fwd_raw": 0.0}
+{"episode": 1, "step": 68, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.4536486350721578, "speed": 0.5, "turn_raw": -0.9057651412024735, "fwd_raw": 0.0}
+{"episode": 1, "step": 69, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.925609917531748, "speed": 0.5, "turn_raw": -5.561527134010644, "fwd_raw": 0.0}
+{"episode": 1, "step": 70, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.395478971879474, "speed": 0.5, "turn_raw": -3.9850083261243614, "fwd_raw": 0.0}
+{"episode": 1, "step": 71, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.582560929467937, "speed": 0.5, "turn_raw": -2.855383238565368, "fwd_raw": 0.0}
+{"episode": 1, "step": 72, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.2835483885759227, "speed": 0.5, "turn_raw": -2.0459714941196863, "fwd_raw": 0.0}
+{"episode": 1, "step": 73, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 6.216413638308431, "speed": 0.5, "turn_raw": 3.8734331261528823, "fwd_raw": 0.0}
+{"episode": 1, "step": 74, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 4.4542550113259445, "speed": 0.5, "turn_raw": 2.7754361143022708, "fwd_raw": 0.0}
+{"episode": 1, "step": 75, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.2598722100063915, "speed": 0.5, "turn_raw": -3.9005120628235086, "fwd_raw": 0.0}
+{"episode": 1, "step": 76, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.485394438660351, "speed": 0.5, "turn_raw": -2.7948390202838205, "fwd_raw": 0.0}
+{"episode": 1, "step": 77, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.2139255555737063, "speed": 0.5, "turn_raw": -2.002589666046743, "fwd_raw": 0.0}
+{"episode": 1, "step": 78, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.3028782904218352, "speed": 0.5, "turn_raw": -1.4349181979540082, "fwd_raw": 0.0}
+{"episode": 1, "step": 79, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.6500843995278955, "speed": 0.5, "turn_raw": -1.0281638169461722, "fwd_raw": 0.0}
+{"episode": 1, "step": 80, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.1823371373510942, "speed": 0.5, "turn_raw": -0.7367115672409948, "fwd_raw": 0.0}
+{"episode": 1, "step": 81, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.8471815785662467, "speed": 0.5, "turn_raw": -0.5278769047900633, "fwd_raw": 0.0}
+{"episode": 1, "step": 82, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.6070321267840479, "speed": 0.5, "turn_raw": -0.37824033041086164, "fwd_raw": 0.0}
+{"episode": 1, "step": 83, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.43495752536497106, "speed": 0.5, "turn_raw": -0.2710210396611594, "fwd_raw": 0.0}
+{"episode": 1, "step": 84, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.3116606856936967, "speed": 0.5, "turn_raw": -0.19419506074148257, "fwd_raw": 0.0}
+{"episode": 1, "step": 85, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.02407902808481, "speed": 0.5, "turn_raw": -5.622883011677566, "fwd_raw": 0.0}
+{"episode": 1, "step": 86, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.466035172715095, "speed": 0.5, "turn_raw": -4.0289717335604465, "fwd_raw": 0.0}
+{"episode": 1, "step": 87, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.633116656521793, "speed": 0.5, "turn_raw": -2.8868843965128357, "fwd_raw": 0.0}
+{"episode": 1, "step": 88, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.3197731499388317, "speed": 0.5, "turn_raw": -2.068543060108377, "fwd_raw": 0.0}
+{"episode": 1, "step": 89, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.3787214059333626, "speed": 0.5, "turn_raw": -1.482175869837781, "fwd_raw": 0.0}
+{"episode": 1, "step": 90, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -11.929457795238337, "speed": 0.5, "turn_raw": -7.433217879255007, "fwd_raw": 0.0}
+{"episode": 1, "step": 91, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.547830028456882, "speed": 0.5, "turn_raw": -5.326133348803145, "fwd_raw": 0.0}
+{"episode": 1, "step": 92, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.124787852852238, "speed": 0.5, "turn_raw": -3.8163413087087057, "fwd_raw": 0.0}
+{"episode": 1, "step": 93, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.388602267190666, "speed": 0.5, "turn_raw": -2.734528039525956, "fwd_raw": 0.0}
+{"episode": 1, "step": 94, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.14457093409725, "speed": 0.5, "turn_raw": -1.9593749599623198, "fwd_raw": 0.0}
+{"episode": 1, "step": 95, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.2531835326009615, "speed": 0.5, "turn_raw": -1.4039535079672756, "fwd_raw": 0.0}
+{"episode": 1, "step": 96, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.6144765495778566, "speed": 0.5, "turn_raw": -1.0059766470484668, "fwd_raw": 0.0}
+{"episode": 1, "step": 97, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.156822997959678, "speed": 0.5, "turn_raw": -0.7208137653162686, "fwd_raw": 0.0}
+{"episode": 1, "step": 98, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.920597755155304, "speed": 0.5, "turn_raw": -5.558404067092617, "fwd_raw": 0.0}
+{"episode": 1, "step": 99, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.391887600603073, "speed": 0.5, "turn_raw": -3.9827705508925777, "fwd_raw": 0.0}
+{"episode": 1, "step": 100, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.579987599500501, "speed": 0.5, "turn_raw": -2.8537798025457692, "fwd_raw": 0.0}
+{"episode": 1, "step": 101, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.281704517081816, "speed": 0.5, "turn_raw": -2.0448225820071415, "fwd_raw": 0.0}
+{"episode": 1, "step": 102, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -11.802929429442232, "speed": 0.5, "turn_raw": -7.354378343794818, "fwd_raw": 0.0}
+{"episode": 1, "step": 103, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.457168492688242, "speed": 0.5, "turn_raw": -5.269642353134827, "fwd_raw": 0.0}
+{"episode": 1, "step": 104, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.0598260238093, "speed": 0.5, "turn_raw": -3.775863741546867, "fwd_raw": 0.0}
+{"episode": 1, "step": 105, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.342055082689258, "speed": 0.5, "turn_raw": -2.7055245952786446, "fwd_raw": 0.0}
+{"episode": 1, "step": 106, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.111218418982937, "speed": 0.5, "turn_raw": -1.9385930840446401, "fwd_raw": 0.0}
+{"episode": 1, "step": 107, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.353414878966495, "speed": 0.5, "turn_raw": -6.451189141253089, "fwd_raw": 0.0}
+{"episode": 1, "step": 108, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.418545932140079, "speed": 0.5, "turn_raw": -4.622479010141502, "fwd_raw": 0.0}
+{"episode": 1, "step": 109, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.315620439308215, "speed": 0.5, "turn_raw": -3.312150943236542, "fwd_raw": 0.0}
+{"episode": 1, "step": 110, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.8088084798903594, "speed": 0.5, "turn_raw": -2.3732598561755065, "fwd_raw": 0.0}
+{"episode": 1, "step": 111, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.7291305318204184, "speed": 0.5, "turn_raw": -1.7005149950776088, "fwd_raw": 0.0}
+{"episode": 1, "step": 112, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.9555074766922385, "speed": 0.5, "turn_raw": -1.218472238073347, "fwd_raw": 0.0}
+{"episode": 1, "step": 113, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.401182335111142, "speed": 0.5, "turn_raw": -0.8730735096444789, "fwd_raw": 0.0}
+{"episode": 1, "step": 114, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.003991014930035, "speed": 0.5, "turn_raw": -0.6255845060928201, "fwd_raw": 0.0}
+{"episode": 1, "step": 115, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.7193909977321313, "speed": 0.5, "turn_raw": -0.44825088602534785, "fwd_raw": 0.0}
+{"episode": 1, "step": 116, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.5154661744199931, "speed": 0.5, "turn_raw": -0.3211857948296067, "fwd_raw": 0.0}
+{"episode": 1, "step": 117, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.411973113153609, "speed": 0.5, "turn_raw": -6.4876766431000705, "fwd_raw": 0.0}
+{"episode": 1, "step": 118, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -15.152436171547667, "speed": 0.5, "turn_raw": -9.441448337205687, "fwd_raw": 0.0}
+{"episode": 1, "step": 119, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.857194948384805, "speed": 0.5, "turn_raw": -6.765093350772755, "fwd_raw": 0.0}
+{"episode": 1, "step": 120, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.779520125521338, "speed": 0.5, "turn_raw": -4.84740120478326, "fwd_raw": 0.0}
+{"episode": 1, "step": 121, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.574269751175008, "speed": 0.5, "turn_raw": -3.4733147381403358, "fwd_raw": 0.0}
+{"episode": 1, "step": 122, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.994138810301283, "speed": 0.5, "turn_raw": -2.4887387613549676, "fwd_raw": 0.0}
+{"episode": 1, "step": 123, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.861925516358831, "speed": 0.5, "turn_raw": -1.7832592463494747, "fwd_raw": 0.0}
+{"episode": 1, "step": 124, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -11.68665116561847, "speed": 0.5, "turn_raw": -7.281925623439957, "fwd_raw": 0.0}
+{"episode": 1, "step": 125, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.373851475919354, "speed": 0.5, "turn_raw": -5.217727710464321, "fwd_raw": 0.0}
+{"episode": 1, "step": 126, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.000126772590791, "speed": 0.5, "turn_raw": -3.7386652745961997, "fwd_raw": 0.0}
+{"episode": 1, "step": 127, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 14.049304758532024, "speed": 0.5, "turn_raw": 8.754089675719102, "fwd_raw": 0.0}
+{"episode": 1, "step": 128, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 10.066766751281587, "speed": 0.5, "turn_raw": 6.272579348223525, "fwd_raw": 0.0}
+{"episode": 1, "step": 129, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 7.213153573536485, "speed": 0.5, "turn_raw": 4.494499501060714, "fwd_raw": 0.0}
+{"episode": 1, "step": 130, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 5.168450383416141, "speed": 0.5, "turn_raw": 3.220449617868295, "fwd_raw": 0.0}
+{"episode": 1, "step": 131, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 3.7033565268647934, "speed": 0.5, "turn_raw": 2.307552985328042, "fwd_raw": 0.0}
+{"episode": 1, "step": 132, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 2.653570905716443, "speed": 0.5, "turn_raw": 1.653433964795572, "fwd_raw": 0.0}
+{"episode": 1, "step": 133, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.0532740746994484, "speed": 0.5, "turn_raw": -4.39487895084961, "fwd_raw": 0.0}
+{"episode": 1, "step": 134, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.053891716580556, "speed": 0.5, "turn_raw": -3.149068374465449, "fwd_raw": 0.0}
+{"episode": 1, "step": 135, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.6212716551795054, "speed": 0.5, "turn_raw": -2.256406089442214, "fwd_raw": 0.0}
+{"episode": 1, "step": 136, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.594754525029502, "speed": 0.5, "turn_raw": -1.6167856124547186, "fwd_raw": 0.0}
+{"episode": 1, "step": 137, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.8592228604366712, "speed": 0.5, "turn_raw": -1.1584775138090335, "fwd_raw": 0.0}
+{"episode": 1, "step": 138, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -22.027704195456966, "speed": 0.5, "turn_raw": -13.725412124762874, "fwd_raw": 0.0}
+{"episode": 1, "step": 139, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -25.047873197042623, "speed": 0.5, "turn_raw": -15.607272524983165, "fwd_raw": 0.0}
+{"episode": 1, "step": 140, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -25.634390594734665, "speed": 0.5, "turn_raw": -15.972730174597277, "fwd_raw": 0.0}
+{"episode": 1, "step": 141, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -26.868742410112233, "speed": 0.5, "turn_raw": -16.74185196880135, "fwd_raw": 0.0}
+{"episode": 1, "step": 142, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.252295212587388, "speed": 0.5, "turn_raw": -11.996061132637678, "fwd_raw": 0.0}
+{"episode": 1, "step": 143, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.79487232022882, "speed": 0.5, "turn_raw": -8.595553405092225, "fwd_raw": 0.0}
+{"episode": 1, "step": 144, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.884457942811705, "speed": 0.5, "turn_raw": -6.158983146457767, "fwd_raw": 0.0}
+{"episode": 1, "step": 145, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.082523604074415, "speed": 0.5, "turn_raw": -4.41310426573329, "fwd_raw": 0.0}
+{"episode": 1, "step": 146, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -15.382007659607707, "speed": 0.5, "turn_raw": -9.584493806572803, "fwd_raw": 0.0}
+{"episode": 1, "step": 147, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -20.761016081244883, "speed": 0.5, "turn_raw": -12.93614165668181, "fwd_raw": 0.0}
+{"episode": 1, "step": 148, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -14.875918061538002, "speed": 0.5, "turn_raw": -9.269150535030464, "fwd_raw": 0.0}
+{"episode": 1, "step": 149, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -29.4091972688724, "speed": 0.5, "turn_raw": -18.324803583342774, "fwd_raw": 0.0}
+{"episode": 1, "step": 150, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -30.606364909715964, "speed": 0.5, "turn_raw": -19.07075600340464, "fwd_raw": 0.0}
+{"episode": 1, "step": 151, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -21.930418760658554, "speed": 0.5, "turn_raw": -13.664793792752572, "fwd_raw": 0.0}
+{"episode": 1, "step": 152, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -15.713831696006787, "speed": 0.5, "turn_raw": -9.791252605041642, "fwd_raw": 0.0}
+{"episode": 1, "step": 153, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -11.25945241927576, "speed": 0.5, "turn_raw": -7.015739061249558, "fwd_raw": 0.0}
+{"episode": 1, "step": 154, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.067750198326934, "speed": 0.5, "turn_raw": -5.026996704200903, "fwd_raw": 0.0}
+{"episode": 1, "step": 155, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.818728243522028, "speed": 0.5, "turn_raw": -8.610417976357148, "fwd_raw": 0.0}
+{"episode": 1, "step": 156, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -26.970855872857012, "speed": 0.5, "turn_raw": -16.805478633987263, "fwd_raw": 0.0}
+{"episode": 1, "step": 157, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.325462705875132, "speed": 0.5, "turn_raw": -12.041651630430781, "fwd_raw": 0.0}
+{"episode": 1, "step": 158, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.847299120085681, "speed": 0.5, "turn_raw": -8.628220424225626, "fwd_raw": 0.0}
+{"episode": 1, "step": 159, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.266996651677566, "speed": 0.5, "turn_raw": -12.005221565724543, "fwd_raw": 0.0}
+{"episode": 1, "step": 160, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.805406361647421, "speed": 0.5, "turn_raw": -8.602117142217379, "fwd_raw": 0.0}
+{"episode": 1, "step": 161, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.892005913315018, "speed": 0.5, "turn_raw": -6.163686269622316, "fwd_raw": 0.0}
+{"episode": 1, "step": 162, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.087931961271326, "speed": 0.5, "turn_raw": -4.416474200738175, "fwd_raw": 0.0}
+{"episode": 1, "step": 163, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.078725177467624, "speed": 0.5, "turn_raw": -3.1645420471702734, "fwd_raw": 0.0}
+{"episode": 1, "step": 164, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.639065607455, "speed": 0.5, "turn_raw": -2.2674934604247925, "fwd_raw": 0.0}
+{"episode": 1, "step": 165, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -10.449593400022454, "speed": 0.5, "turn_raw": -6.51111775784108, "fwd_raw": 0.0}
+{"episode": 1, "step": 166, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -17.746630582954655, "speed": 0.5, "turn_raw": -11.05788494414274, "fwd_raw": 0.0}
+{"episode": 1, "step": 167, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.716016469873464, "speed": 0.5, "turn_raw": -7.923320791200818, "fwd_raw": 0.0}
+{"episode": 1, "step": 168, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.3370061012674825, "speed": 0.5, "turn_raw": -0.8330854450552945, "fwd_raw": 0.0}
+{"episode": 1, "step": 169, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -11.334108416120854, "speed": 0.5, "turn_raw": -7.06225704220625, "fwd_raw": 0.0}
+{"episode": 1, "step": 170, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -17.776526750893332, "speed": 0.5, "turn_raw": -11.076513178037134, "fwd_raw": 0.0}
+{"episode": 1, "step": 171, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.737438010267702, "speed": 0.5, "turn_raw": -7.936668504046844, "fwd_raw": 0.0}
+{"episode": 1, "step": 172, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -1.008057964469089, "speed": 0.5, "turn_raw": -0.628118613052802, "fwd_raw": 0.0}
+{"episode": 1, "step": 173, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -0.7223050944153885, "speed": 0.5, "turn_raw": -0.4500666530065187, "fwd_raw": 0.0}
+{"episode": 1, "step": 174, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": 7.355965911361588, "speed": 0.5, "turn_raw": 4.583485542263985, "fwd_raw": 0.0}
+{"episode": 1, "step": 175, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.1287178632349772, "speed": 0.5, "turn_raw": -1.9494969477511042, "fwd_raw": 0.0}
+{"episode": 1, "step": 176, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -2.2418243109593994, "speed": 0.5, "turn_raw": -1.3968756029317104, "fwd_raw": 0.0}
+{"episode": 1, "step": 177, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.81211563790337, "speed": 0.5, "turn_raw": -6.113906821657338, "fwd_raw": 0.0}
+{"episode": 1, "step": 178, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -25.745942008321414, "speed": 0.5, "turn_raw": -16.042237605375917, "fwd_raw": 0.0}
+{"episode": 1, "step": 179, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -27.577221696553924, "speed": 0.5, "turn_raw": -17.18330379246782, "fwd_raw": 0.0}
+{"episode": 1, "step": 180, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.75994280421584, "speed": 0.5, "turn_raw": -12.312375186404607, "fwd_raw": 0.0}
+{"episode": 1, "step": 181, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -14.158617714367974, "speed": 0.5, "turn_raw": -8.822202328590748, "fwd_raw": 0.0}
+{"episode": 1, "step": 182, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.280061771803403, "speed": 0.5, "turn_raw": -11.390264698391542, "fwd_raw": 0.0}
+{"episode": 1, "step": 183, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -23.613612756333872, "speed": 0.5, "turn_raw": -14.713588123363511, "fwd_raw": 0.0}
+{"episode": 1, "step": 184, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -25.483360882111697, "speed": 0.5, "turn_raw": -15.878623905943904, "fwd_raw": 0.0}
+{"episode": 1, "step": 185, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.259625970684443, "speed": 0.5, "turn_raw": -11.377531197434358, "fwd_raw": 0.0}
+{"episode": 1, "step": 186, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.083593727361803, "speed": 0.5, "turn_raw": -8.152357339991864, "fwd_raw": 0.0}
+{"episode": 1, "step": 187, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.430829118148086, "speed": 0.5, "turn_raw": -12.107305201030854, "fwd_raw": 0.0}
+{"episode": 1, "step": 188, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.922797453562085, "speed": 0.5, "turn_raw": -8.67526326321155, "fwd_raw": 0.0}
+{"episode": 1, "step": 189, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.97612030625432, "speed": 0.5, "turn_raw": -6.216097755561657, "fwd_raw": 0.0}
+{"episode": 1, "step": 190, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.148202557482242, "speed": 0.5, "turn_raw": -4.4540286714474115, "fwd_raw": 0.0}
+{"episode": 1, "step": 191, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.095796635638166, "speed": 0.5, "turn_raw": -8.15996094424075, "fwd_raw": 0.0}
+{"episode": 1, "step": 192, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.383548326341694, "speed": 0.5, "turn_raw": -5.846867509607796, "fwd_raw": 0.0}
+{"episode": 1, "step": 193, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.723606180106142, "speed": 0.5, "turn_raw": -4.189463639410607, "fwd_raw": 0.0}
+{"episode": 1, "step": 194, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -23.56832743938978, "speed": 0.5, "turn_raw": -14.6853709459063, "fwd_raw": 0.0}
+{"episode": 1, "step": 195, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -16.88744454817826, "speed": 0.5, "turn_raw": -10.522528090132552, "fwd_raw": 0.0}
+{"episode": 1, "step": 196, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.100382774348432, "speed": 0.5, "turn_raw": -7.539720842972234, "fwd_raw": 0.0}
+{"episode": 1, "step": 197, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.686183928223628, "speed": 0.5, "turn_raw": -11.643318485586244, "fwd_raw": 0.0}
+{"episode": 1, "step": 198, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.389235859713033, "speed": 0.5, "turn_raw": -8.342802253905187, "fwd_raw": 0.0}
+{"episode": 1, "step": 199, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.593806718141817, "speed": 0.5, "turn_raw": -5.977879032848685, "fwd_raw": 0.0}
+{"episode": 1, "step": 200, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.874262901141821, "speed": 0.5, "turn_raw": -4.283337497858669, "fwd_raw": 0.0}
+{"episode": 1, "step": 201, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.925624605783957, "speed": 0.5, "turn_raw": -3.069145430970546, "fwd_raw": 0.0}
+{"episode": 1, "step": 202, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.571989713816894, "speed": 0.5, "turn_raw": -8.456675762588022, "fwd_raw": 0.0}
+{"episode": 1, "step": 203, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.724755576735264, "speed": 0.5, "turn_raw": -6.05947296726483, "fwd_raw": 0.0}
+{"episode": 1, "step": 204, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.968091858407928, "speed": 0.5, "turn_raw": -4.341802106620744, "fwd_raw": 0.0}
+{"episode": 1, "step": 205, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.992855991503614, "speed": 0.5, "turn_raw": -3.1110371537090193, "fwd_raw": 0.0}
+{"episode": 1, "step": 206, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -3.577537647098303, "speed": 0.5, "turn_raw": -2.229155528990889, "fwd_raw": 0.0}
+{"episode": 1, "step": 207, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.244482714487656, "speed": 0.5, "turn_raw": -7.629509186233736, "fwd_raw": 0.0}
+{"episode": 1, "step": 208, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -17.903003374084495, "speed": 0.5, "turn_raw": -11.155320472798476, "fwd_raw": 0.0}
+{"episode": 1, "step": 209, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.82806247083981, "speed": 0.5, "turn_raw": -7.993136398244962, "fwd_raw": 0.0}
+{"episode": 1, "step": 210, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.191708414353348, "speed": 0.5, "turn_raw": -5.727332499029556, "fwd_raw": 0.0}
+{"episode": 1, "step": 211, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -26.20743528856672, "speed": 0.5, "turn_raw": -16.329793013237342, "fwd_raw": 0.0}
+{"episode": 1, "step": 212, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.778447954094595, "speed": 0.5, "turn_raw": -11.700807989173729, "fwd_raw": 0.0}
+{"episode": 1, "step": 213, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.455345923089173, "speed": 0.5, "turn_raw": -8.383995283254967, "fwd_raw": 0.0}
+{"episode": 1, "step": 214, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.641176648494836, "speed": 0.5, "turn_raw": -6.007395128155186, "fwd_raw": 0.0}
+{"episode": 1, "step": 215, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -6.908204939419461, "speed": 0.5, "turn_raw": -4.304486704311659, "fwd_raw": 0.0}
+{"episode": 1, "step": 216, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -4.949945138954581, "speed": 0.5, "turn_raw": -3.0842994995879023, "fwd_raw": 0.0}
+{"episode": 1, "step": 217, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.138851185132495, "speed": 0.5, "turn_raw": -7.563690421785846, "fwd_raw": 0.0}
+{"episode": 1, "step": 218, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -16.876338217464287, "speed": 0.5, "turn_raw": -10.515607760855813, "fwd_raw": 0.0}
+{"episode": 1, "step": 219, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.092424740646285, "speed": 0.5, "turn_raw": -7.534762210365971, "fwd_raw": 0.0}
+{"episode": 1, "step": 220, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -24.627862865646456, "speed": 0.5, "turn_raw": -15.345565047711903, "fwd_raw": 0.0}
+{"episode": 1, "step": 221, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -36.42640852108502, "speed": 0.5, "turn_raw": -22.69721187194716, "fwd_raw": 0.0}
+{"episode": 1, "step": 222, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -26.10066223710946, "speed": 0.5, "turn_raw": -16.26326296897737, "fwd_raw": 0.0}
+{"episode": 1, "step": 223, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -18.70194171959997, "speed": 0.5, "turn_raw": -11.6531371293676, "fwd_raw": 0.0}
+{"episode": 1, "step": 224, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.400526810619672, "speed": 0.5, "turn_raw": -8.349837619601903, "fwd_raw": 0.0}
+{"episode": 1, "step": 225, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.193025762513585, "speed": 0.5, "turn_raw": -11.95913047379767, "fwd_raw": 0.0}
+{"episode": 1, "step": 226, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -22.606131609394204, "speed": 0.5, "turn_raw": -14.08582892399458, "fwd_raw": 0.0}
+{"episode": 1, "step": 227, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -16.198001109082895, "speed": 0.5, "turn_raw": -10.092937459428088, "fwd_raw": 0.0}
+{"episode": 1, "step": 228, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.527278218662577, "speed": 0.5, "turn_raw": -12.167402415060861, "fwd_raw": 0.0}
+{"episode": 1, "step": 229, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -24.26476399931913, "speed": 0.5, "turn_raw": -15.119318974214845, "fwd_raw": 0.0}
+{"episode": 1, "step": 230, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -17.386463149195936, "speed": 0.5, "turn_raw": -10.833465439577386, "fwd_raw": 0.0}
+{"episode": 1, "step": 231, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -12.457945226536332, "speed": 0.5, "turn_raw": -7.762517189476283, "fwd_raw": 0.0}
+{"episode": 1, "step": 232, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -8.926507820226616, "speed": 0.5, "turn_raw": -5.562086615127043, "fwd_raw": 0.0}
+{"episode": 1, "step": 233, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -27.089897057628015, "speed": 0.5, "turn_raw": -16.8796529240678, "fwd_raw": 0.0}
+{"episode": 1, "step": 234, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -19.410759442011354, "speed": 0.5, "turn_raw": -12.094799831713066, "fwd_raw": 0.0}
+{"episode": 1, "step": 235, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -13.908416902217033, "speed": 0.5, "turn_raw": -8.666302774545061, "fwd_raw": 0.0}
+{"episode": 1, "step": 236, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -9.965816190952276, "speed": 0.5, "turn_raw": -6.209677284874077, "fwd_raw": 0.0}
+{"episode": 1, "step": 237, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -7.1408193362405665, "speed": 0.5, "turn_raw": -4.449428203171139, "fwd_raw": 0.0}
+{"episode": 1, "step": 238, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -5.11662063756714, "speed": 0.5, "turn_raw": -3.188154621722216, "fwd_raw": 0.0}
+{"episode": 1, "step": 239, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -21.05066597645593, "speed": 0.5, "turn_raw": -13.116621844194315, "fwd_raw": 0.0}
+{"episode": 1, "step": 240, "marine_xy": null, "beacon_xy": [26.0, 34.0], "reward": 0.0, "score": 0.0, "dtheta": -22.90988172743475, "speed": 0.5, "turn_raw": -14.275094928116413, "fwd_raw": 0.0}
