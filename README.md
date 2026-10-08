@@ -45,6 +45,10 @@ flycraft-client --scripted --mode train --episodes 50 > scripted.jsonl
 flycraft summarize watch.jsonl scripted.jsonl
 ```
 
+`--map DefeatRoaches` plays the roach minigame instead of MoveToBeacon: the fly sees every
+roach, and the squad attacks the roach it turns toward (within 30 degrees of its heading), else
+attack-moves where it steers ([M3b spec](docs/superpowers/specs/2026-10-08-flycraft-m3b-defeatroaches.md)).
+
 Open http://localhost:8766 to watch the brain while it plays. Watch mode shows the game at
 normal speed; train mode runs minimized and as fast as the brain allows.
 

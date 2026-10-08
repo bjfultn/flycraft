@@ -1,0 +1,70 @@
+=== twin 2
+SCRAMBLED #2 w_scale 1: mean 0.03 Hz, 0.000% over 100 Hz
+SCRAMBLED #2 w_scale 2: mean 30.02 Hz, 12.318% over 100 Hz (runaway)
+SCRAMBLED #2 w_scale 1.5: mean 17.41 Hz, 4.667% over 100 Hz (runaway)
+SCRAMBLED #2 w_scale 1.25: mean 0.08 Hz, 0.000% over 100 Hz
+SCRAMBLED #2 w_scale 1.375: mean 7.25 Hz, 0.177% over 100 Hz
+SCRAMBLED #2 w_scale 1.438: mean 14.59 Hz, 2.829% over 100 Hz (runaway)
+edge: w_scale 1.375
+G1 vpn: z LC10a +139.46, z DNa02 +0.00 -> pass
+  spot -60: lc10a_L 3.36, lc10a_R 0.00, dn_L 0.00, dn_R 0.00
+  spot +0: lc10a_L 5.83, lc10a_R 6.52, dn_L 0.00, dn_R 0.00
+  spot +60: lc10a_L 0.03, lc10a_R 3.09, dn_L 0.00, dn_R 0.00
+decoder: {'b_turn': 0.0, 'b_fwd': 0.0, 'k_turn': 0.0, 'k_fwd': 0.0, 'turn_silent': True, 'fwd_silent': True, 'p95_turn_hz': 0.0, 'p95_fwd_hz': 0.201408746003927}
+=== twin 3
+scrambled wiring seed 3: 6 repair passes, 0 leftover, 0 merged; cached at ~/.cache/flycraft/malecns-v1.0.scrambled-3.npz
+SCRAMBLED #3 w_scale 1: mean 0.04 Hz, 0.000% over 100 Hz
+SCRAMBLED #3 w_scale 2: mean 30.51 Hz, 12.574% over 100 Hz (runaway)
+SCRAMBLED #3 w_scale 1.5: mean 18.71 Hz, 5.516% over 100 Hz (runaway)
+SCRAMBLED #3 w_scale 1.25: mean 7.76 Hz, 0.436% over 100 Hz
+SCRAMBLED #3 w_scale 1.375: mean 14.88 Hz, 3.326% over 100 Hz (runaway)
+SCRAMBLED #3 w_scale 1.312: mean 13.10 Hz, 2.540% over 100 Hz (runaway)
+edge: w_scale 1.25
+G1 vpn: z LC10a +143.68, z DNa02 +0.00 -> pass
+  spot -60: lc10a_L 3.36, lc10a_R 0.00, dn_L 0.00, dn_R 0.00
+  spot +0: lc10a_L 5.85, lc10a_R 6.68, dn_L 0.00, dn_R 0.00
+  spot +60: lc10a_L 0.00, lc10a_R 2.94, dn_L 0.00, dn_R 0.00
+decoder: {'b_turn': 0.0, 'b_fwd': 0.0, 'k_turn': 0.0, 'k_fwd': 0.0, 'turn_silent': True, 'fwd_silent': True, 'p95_turn_hz': 0.0, 'p95_fwd_hz': 0.0}
+=== twin 4
+scrambled wiring seed 4: 6 repair passes, 0 leftover, 0 merged; cached at ~/.cache/flycraft/malecns-v1.0.scrambled-4.npz
+SCRAMBLED #4 w_scale 1: mean 0.03 Hz, 0.000% over 100 Hz
+SCRAMBLED #4 w_scale 2: mean 29.56 Hz, 12.031% over 100 Hz (runaway)
+SCRAMBLED #4 w_scale 1.5: mean 17.82 Hz, 5.051% over 100 Hz (runaway)
+SCRAMBLED #4 w_scale 1.25: mean 0.13 Hz, 0.000% over 100 Hz
+SCRAMBLED #4 w_scale 1.375: mean 14.04 Hz, 2.873% over 100 Hz (runaway)
+SCRAMBLED #4 w_scale 1.312: mean 11.20 Hz, 1.466% over 100 Hz (runaway)
+edge: w_scale 1.25
+G1 vpn: z LC10a +141.59, z DNa02 +0.00 -> pass
+  spot -60: lc10a_L 3.37, lc10a_R 0.00, dn_L 0.00, dn_R 0.00
+  spot +0: lc10a_L 5.83, lc10a_R 6.53, dn_L 0.00, dn_R 0.00
+  spot +60: lc10a_L 0.00, lc10a_R 2.94, dn_L 0.00, dn_R 0.00
+decoder: {'b_turn': 0.0, 'b_fwd': 0.0, 'k_turn': 0.0, 'k_fwd': 0.0, 'turn_silent': True, 'fwd_silent': True, 'p95_turn_hz': 0.0, 'p95_fwd_hz': 0.0}
+=== twin 5
+scrambled wiring seed 5: 7 repair passes, 0 leftover, 0 merged; cached at ~/.cache/flycraft/malecns-v1.0.scrambled-5.npz
+SCRAMBLED #5 w_scale 1: mean 0.03 Hz, 0.000% over 100 Hz
+SCRAMBLED #5 w_scale 2: mean 29.34 Hz, 11.925% over 100 Hz (runaway)
+SCRAMBLED #5 w_scale 1.5: mean 17.55 Hz, 4.943% over 100 Hz (runaway)
+SCRAMBLED #5 w_scale 1.25: mean 0.07 Hz, 0.000% over 100 Hz
+SCRAMBLED #5 w_scale 1.375: mean 8.28 Hz, 0.318% over 100 Hz
+SCRAMBLED #5 w_scale 1.438: mean 12.58 Hz, 1.504% over 100 Hz (runaway)
+edge: w_scale 1.375
+G1 vpn: z LC10a +143.18, z DNa02 +16.48 -> pass
+  spot -60: lc10a_L 3.36, lc10a_R 0.02, dn_L 0.00, dn_R 0.00
+  spot +0: lc10a_L 5.83, lc10a_R 6.69, dn_L 0.00, dn_R 0.00
+  spot +60: lc10a_L 0.00, lc10a_R 3.07, dn_L 0.00, dn_R 18.40
+decoder: {'b_turn': 0.0, 'b_fwd': 0.0, 'k_turn': 7.138455294928127, 'k_fwd': 0.0, 'turn_silent': False, 'fwd_silent': True, 'p95_turn_hz': 25.215539295719903, 'p95_fwd_hz': 0.0}
+=== twin 6
+scrambled wiring seed 6: 6 repair passes, 0 leftover, 0 merged; cached at ~/.cache/flycraft/malecns-v1.0.scrambled-6.npz
+SCRAMBLED #6 w_scale 1: mean 0.04 Hz, 0.000% over 100 Hz
+SCRAMBLED #6 w_scale 2: mean 28.79 Hz, 11.539% over 100 Hz (runaway)
+SCRAMBLED #6 w_scale 1.5: mean 16.73 Hz, 4.532% over 100 Hz (runaway)
+SCRAMBLED #6 w_scale 1.25: mean 0.10 Hz, 0.000% over 100 Hz
+SCRAMBLED #6 w_scale 1.375: mean 13.33 Hz, 2.738% over 100 Hz (runaway)
+SCRAMBLED #6 w_scale 1.312: mean 4.91 Hz, 0.052% over 100 Hz
+edge: w_scale 1.312
+G1 vpn: z LC10a +143.68, z DNa02 +0.00 -> pass
+  spot -60: lc10a_L 3.36, lc10a_R 0.00, dn_L 0.00, dn_R 0.00
+  spot +0: lc10a_L 5.83, lc10a_R 6.55, dn_L 2.67, dn_R 0.00
+  spot +60: lc10a_L 0.00, lc10a_R 2.94, dn_L 0.00, dn_R 0.00
+decoder: {'b_turn': 0.0, 'b_fwd': 0.0, 'k_turn': 30.239611616209448, 'k_fwd': 0.0, 'turn_silent': False, 'fwd_silent': True, 'p95_turn_hz': 5.9524574020492365, 'p95_fwd_hz': 0.0}
+ALLDONE

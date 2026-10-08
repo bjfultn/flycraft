@@ -1,0 +1,4 @@
+{"episode": 0, "seed": 2000000, "phase": "watch", "pilot": "fly-real", "score": 5.0, "steps": 241, "frames": 1920, "wall_s": 108.125, "late_frames": 239, "max_wait_ms": 437.0, "aborted": null, "fps": 17.76, "counts": true}
+{"episode": 1, "seed": 2000001, "phase": "watch", "pilot": "fly-real", "score": 5.0, "steps": 241, "frames": 1920, "wall_s": 107.609, "late_frames": 238, "max_wait_ms": 469.0, "aborted": null, "fps": 17.84, "counts": true}
+{"episode": 2, "seed": 2000002, "phase": "watch", "pilot": "fly-real", "score": 5.0, "steps": 241, "frames": 1920, "wall_s": 108.781, "late_frames": 239, "max_wait_ms": 453.0, "aborted": null, "fps": 17.65, "counts": true}
+{"episode": 3, "seed": 2000003, "phase": "watch", "pilot": "fly-real", "score": 7.0, "steps": 241, "frames": 1920, "wall_s": 107.484, "late_frames": 239, "max_wait_ms": 468.0, "aborted": null, "fps": 17.86, "counts": true}

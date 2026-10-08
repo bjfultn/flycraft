@@ -18,7 +18,7 @@ from flycraft.game.body import NOOP, SELECT, Action  # noqa: E402
 from flycraft.game.client import WINDOW, GameError, SetupError  # noqa: E402
 
 F = actions.FUNCTIONS
-ALL = [F.no_op.id, F.select_army.id, F.Move_screen.id, F.Stop_quick.id]
+ALL = [F.no_op.id, F.select_army.id, F.Move_screen.id, F.Attack_screen.id, F.Stop_quick.id]
 
 
 def call(fc):
@@ -29,6 +29,8 @@ def call(fc):
   (Action("move", (10.4, 20.6)), ALL, (F.Move_screen.id, [[0], [10, 21]])),
   (Action("move", (10.0, 20.0)), [F.no_op.id, F.select_army.id], (F.select_army.id, [[0]])),
   (Action("move", (10.0, 20.0)), [F.no_op.id], (F.no_op.id, [])),
+  (Action("attack", (10.4, 20.6)), ALL, (F.Attack_screen.id, [[0], [10, 21]])),
+  (Action("attack", (10.0, 20.0)), [F.no_op.id, F.select_army.id], (F.select_army.id, [[0]])),
   (SELECT, ALL, (F.select_army.id, [[0]])),
   (SELECT, [F.no_op.id], (F.no_op.id, [])),
   (Action("stop"), ALL, (F.Stop_quick.id, [[0]])),
@@ -39,11 +41,16 @@ def test_to_call(action, available, expected):
   assert call(sc2_compat.to_call(action, np.array(available))) == expected
 
 
-def timestep(last=False, reward=0, available=ALL):
+def timestep(last=False, reward=0, available=ALL, army=1, selected=1):
   screen = np.zeros((len(features.SCREEN_FEATURES), 84, 84), np.int32)
   screen[sc2_compat.PLAYER_RELATIVE, 40, 41] = features.PlayerRelative.SELF
+  player = np.zeros(len(features.Player), np.int32)
+  player[features.Player.army_count] = army
+  units = np.zeros((selected, 7), np.int32)  # pysc2: one unit in single_select, more in multi
+  single, multi = (units, units[:0]) if selected == 1 else (units[:0], units)
   obs = {"feature_screen": screen, "score_cumulative": np.array([7, 0]),
-         "game_loop": np.array([96]), "available_actions": np.array(available)}
+         "game_loop": np.array([96]), "available_actions": np.array(available),
+         "player": player, "single_select": single, "multi_select": multi}
   step_type = 2 if last else 1
   return types.SimpleNamespace(observation=obs, reward=reward, last=lambda: step_type == 2)
 
@@ -55,6 +62,12 @@ def test_to_frame():
   assert (frame.reward, frame.score, frame.last, frame.loop, frame.can_move) == (
     1.0, 7.0, True, 96, True)
   assert sc2_compat.to_frame(timestep(available=[F.no_op.id, F.select_army.id])).can_move is False
+
+
+@pytest.mark.parametrize("army, selected, can_move", [
+  (1, 1, True), (9, 9, True), (14, 9, False), (5, 9, True), (0, 0, True), (1, 0, False)])
+def test_orders_wait_until_the_whole_army_is_selected(army, selected, can_move):
+  assert sc2_compat.to_frame(timestep(army=army, selected=selected)).can_move is can_move
 
 
 class Info:

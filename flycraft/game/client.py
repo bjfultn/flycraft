@@ -44,6 +44,7 @@ from websockets.sync.client import connect
 from flycraft import protocol
 from flycraft.game import render
 from flycraft.game.body import NOOP, SELECT, Action, Body, BodyParams
+from flycraft.game.tasks import TASKS, Task, nearest
 
 CLIENT_VERSION = "flycraft-client 0.1.0"
 BRAIN_URL = "ws://127.0.0.1:8765"
@@ -184,11 +185,14 @@ class Link:
 
 
 class ScriptedPilot:
-  """pysc2's scripted MoveToBeacon agent, on the fly's decision cadence: the ceiling baseline."""
+  """pysc2's scripted agent for the task, on the fly's decision cadence: the ceiling baseline."""
 
   name = "scripted"
   max_wait_ms = 0.0
   steps = 0
+
+  def __init__(self, task: Task = TASKS["MoveToBeacon"]):
+    self.task = task
 
   def start(self, episode: int, seed: int, phase: str) -> None:
     self.steps = 0
@@ -199,8 +203,8 @@ class ScriptedPilot:
       return NOOP
     if not frame.can_move:
       return SELECT
-    beacon = render.find(frame.player_relative, render.NEUTRAL)
-    return NOOP if beacon is None else Action("move", beacon.xy)
+    xy = self.task.aim(frame.player_relative)
+    return NOOP if xy is None else Action(self.task.order, xy)
 
   def drain(self) -> str | None:
     return None
@@ -210,10 +214,14 @@ class ScriptedPilot:
 
 
 class BrainPilot:
-  """Flies the body from the brain's acts, one decision behind."""
+  """Flies the body from the brain's acts, one decision behind. The obs's beacon_xy is the
+  target nearest the marine, for the brain's trace. With `face` set (degrees, a demo setting),
+  each episode's first sight of the marine and a target turns the fly to within `face` of the
+  nearest target, before the brain sees anything."""
 
-  def __init__(self, link: Link, body: Body):
-    self.link, self.body = link, body
+  def __init__(self, link: Link, body: Body, task: Task = TASKS["MoveToBeacon"],
+               face: float | None = None):
+    self.link, self.body, self.task, self.face = link, body, task, face
     self.name = link.ready["brain_id"]
     self.polarity = link.ready["polarity"]
     self.max_wait_ms = 0.0
@@ -223,7 +231,8 @@ class BrainPilot:
   def start(self, episode: int, seed: int, phase: str) -> None:
     self.body.reset(seed)
     self.link.send("episode_start", episode=episode, seed=seed, phase=phase)
-    self.episode, self.steps, self.score = episode, 0, 0.0
+    self.episode, self.seed, self.steps, self.score = episode, seed, 0, 0.0
+    self._faced = self.face is None
     self.max_wait_ms = 0.0
     self._open, self._waiting = True, False
 
@@ -231,13 +240,17 @@ class BrainPilot:
     act = self._collect() if self._waiting else None  # act k-1
     if act is not None:
       self.body.turn(act["dtheta"])
-    marine = render.find(frame.player_relative, render.SELF)
-    beacon = render.find(frame.player_relative, render.NEUTRAL)
+    marine = render.find(frame.player_relative, render.SELF)  # the squad's middle
+    targets = self.task.targets(frame.player_relative)
     marine_xy = self.body.locate(marine.xy if marine else None)  # it may be under the beacon
-    img = render.render_eye(marine_xy, beacon, self.body.heading, self.polarity)
+    near = nearest(marine_xy, targets)
+    if not self._faced and marine_xy is not None and near is not None:
+      self.body.face(marine_xy, near.xy, self.face, self.seed)
+      self._faced = True
+    img = render.render_eye(marine_xy, targets, self.body.heading, self.polarity)
     self.link.send("obs", step=self.steps, eye=img.tobytes(), reward=reward, score=frame.score,
                    last=frame.last, marine_xy=marine.xy if marine else None,
-                   beacon_xy=beacon.xy if beacon else None)
+                   beacon_xy=near.xy if near else None)
     self.steps += 1
     self.score = frame.score
     self._waiting = True
@@ -246,7 +259,9 @@ class BrainPilot:
       return NOOP
     if act is None:
       return SELECT  # decision 0 has no act yet; select the marine (spec 7.1)
-    return self.body.motor(marine_xy, frame.can_move, act["speed"])
+    strike = self.task.strike(frame.player_relative, targets, marine_xy, self.body.heading)
+    own = np.asarray(frame.player_relative) == render.SELF
+    return self.body.motor(marine_xy, frame.can_move, act["speed"], strike, own)
 
   def drain(self) -> str | None:
     """Collect the act for the obs in flight, if any; return "runaway" if the brain ended the
@@ -402,7 +417,8 @@ def _window(text: str) -> tuple[int, int]:
 def _parser() -> argparse.ArgumentParser:
   p = argparse.ArgumentParser(
     prog="flycraft-client",
-    description="Play MoveToBeacon in SC2 for a flycraft brain, or for pysc2's scripted agent.")
+    description="Play a pysc2 minigame (MoveToBeacon or DefeatRoaches) in SC2 for a flycraft "
+                "brain, or for pysc2's scripted agent.")
   who = p.add_mutually_exclusive_group()
   who.add_argument("--brain", default=BRAIN_URL, help=f"brain websocket (default {BRAIN_URL})")
   who.add_argument("--scripted", action="store_true",
@@ -413,7 +429,7 @@ def _parser() -> argparse.ArgumentParser:
   p.add_argument("--episodes", type=int, default=1)
   p.add_argument("--seed", type=int, default=0,
                  help="run seed; episode e uses seed * 1000000 + e (default 0)")
-  p.add_argument("--map", default="MoveToBeacon")
+  p.add_argument("--map", choices=sorted(TASKS), default="MoveToBeacon")
   p.add_argument("--screen", type=int, default=84)
   p.add_argument("--step-px", type=float, default=BodyParams.step_px,
                  help=f"move order length at full speed, screen px (default {BodyParams.step_px})")
@@ -421,6 +437,9 @@ def _parser() -> argparse.ArgumentParser:
                  help="watch mode only: let SC2 pace the game instead of the client")
   p.add_argument("--timeout", type=float, default=30.0,
                  help="seconds to wait for each brain message (default 30)")
+  p.add_argument("--face", type=float, metavar="DEG",
+                 help="demo setting: start each episode with the fly facing the target nearest "
+                      "it, within DEG degrees (default: a random heading)")
   p.add_argument("--window", type=_window, default=WINDOW,
                  help=f"SC2 window size (default {WINDOW[0]}x{WINDOW[1]})")
   return p
@@ -435,6 +454,8 @@ def main(argv: list[str] | None = None, make_game: Callable[[], Game] | None = N
     p.error("--realtime is for watch mode")
   if not 0 <= args.seed <= MAX_SEED:
     p.error(f"--seed must be from 0 to {MAX_SEED}")
+  if args.face is not None and (args.scripted or not 0 <= args.face <= 180):
+    p.error("--face must be from 0 to 180 degrees, and is for a brain")
   for flag, value in (("--screen", args.screen), ("--step-px", args.step_px),
                       ("--timeout", args.timeout)):
     if not value > 0:
@@ -448,10 +469,11 @@ def main(argv: list[str] | None = None, make_game: Callable[[], Game] | None = N
 
     make_game = launch
 
+  task = TASKS[args.map]
   pacer = Pacer(GAME_FPS if args.mode == "watch" and not args.realtime else None)
   try:
     if args.scripted:
-      return play(make_game, ScriptedPilot(), args.episodes, args.seed, args.mode,
+      return play(make_game, ScriptedPilot(task), args.episodes, args.seed, args.mode,
                   BodyParams.decision_frames, pacer)
     try:
       link = Link(args.brain, args.mode, args.map, args.screen, args.timeout)
@@ -459,10 +481,11 @@ def main(argv: list[str] | None = None, make_game: Callable[[], Game] | None = N
       _log(str(e))
       return 1
     frames = link.ready["decision_frames"]
-    body = Body(BodyParams(decision_frames=frames, step_px=args.step_px, screen=args.screen))
+    body = Body(BodyParams(decision_frames=frames, step_px=args.step_px, screen=args.screen,
+                           order=task.order))
     try:
-      return play(make_game, BrainPilot(link, body), args.episodes, args.seed, args.mode,
-                  frames, pacer)
+      return play(make_game, BrainPilot(link, body, task, args.face), args.episodes, args.seed,
+                  args.mode, frames, pacer)
     finally:
       link.close()
   except SetupError as e:

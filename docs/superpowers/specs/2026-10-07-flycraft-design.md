@@ -732,7 +732,7 @@ After each run, a copy is pulled off the PC for analysis.
 | M1 | Data build, LIF with golden test, wiring and scramble, retina geometry, decoder, G0 and G1 run offline on the WSL GPU | M1 report: counts, sign-rule check, retina map, G0 scale, G1 rung, brain-chain chirality. The repo goes public here (MIT, `github.com/bjfultn/flycraft`). |
 | M2 | Windows client, body, eye render, protocol, watch pacing; oracle and random stub brains; baselines recorded | Oracle body plays smoothly in watch mode and scores near the scripted agent. |
 | M3 | Real brain in the loop, plus the brain view | BJ watches the fly play MoveToBeacon with neurons lighting up: the first real demo. |
-| M3b | DefeatRoaches demo: `attack` and `target` outputs, a moving-target eye input, untrained weights. A demo, not an experiment: no pre-registration, its own short spec | BJ watches a marine squad turn on the roaches and attack, driven by the LC10a pursuit chain. A reflex, not tactics. |
+| M3b | DefeatRoaches demo: every roach in the eye; the squad attacks the roach within 30 degrees of the heading, else attack-moves along it; untrained weights. A demo, not an experiment: no pre-registration, its own short spec ([2026-10-08-flycraft-m3b-defeatroaches.md](2026-10-08-flycraft-m3b-defeatroaches.md)) | BJ watches a marine squad turn on the roaches and attack, driven by the LC10a pursuit chain. A reflex, not tactics. |
 | M4 | Plasticity, G2, yield guard, supervisor, experiment runner, analysis; pilot, pre-registration, main experiment | Results table and README write-up, published either way. |
 | M5 | Fused CUDA/Triton kernel, at or below 1.5 s per simulated second | Only if the M4 projection exceeds 80 h. |
 | M6 | Skirmish: BJ plays the fly over LAN through PySC2 `play_vs_agent`, on a small map | BJ plays a match against the fly. |
@@ -744,7 +744,7 @@ After each run, a copy is pulled off the PC for analysis.
 
 **Later minigames** (a separate spec after Phase 1 results):
 - **CollectMineralShards.** Two marines: one body per marine, each with its own eye image.
-- **DefeatRoaches.** Moved up to M3b as a demo (BJ, 2026-10-07); the experiment version still waits for this spec. Adds `attack` and `target` outputs. An attack DN group, chosen by a criterion pre-registered in that spec, triggers `Attack_screen` on the object nearest the center of the frontal visual field.
+- **DefeatRoaches.** Moved up to M3b as a demo (BJ, 2026-10-07), which attacks the roach nearest the heading inside a fixed 30 degree cone, with no attack output; the experiment version still waits for this spec. Adds `attack` and `target` outputs. An attack DN group, chosen by a criterion pre-registered in that spec, triggers `Attack_screen` on the object nearest the center of the frontal visual field.
 - **Protocol.** The `act` message gets new fields under a protocol version bump.
 
 ## 16. Risks

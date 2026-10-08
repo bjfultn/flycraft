@@ -5,7 +5,7 @@ import pytest
 
 from flycraft import eye
 from flycraft.game import render
-from flycraft.game.render import NEUTRAL, SELF, Blob
+from flycraft.game.render import ENEMY, NEUTRAL, SELF, Blob
 
 
 def _layer(*squares):
@@ -69,3 +69,33 @@ def test_closer_beacon_looks_bigger():
   far = render.render_eye((10.0, 40.0), Blob((70.0, 40.0), 28), 0.0, "dark_on_bright")
   near = render.render_eye((60.0, 40.0), Blob((70.0, 40.0), 28), 0.0, "dark_on_bright")
   assert (near < 80).sum() > (far < 80).sum()
+
+
+def test_blobs_label_each_patch_in_scan_order():
+  layer = _layer((60, 10, 3, ENEMY), (10, 30, 2, ENEMY), (40, 40, 3, SELF), (70, 70, 1, ENEMY))
+  found = render.blobs(layer, ENEMY)
+  assert found == [Blob((61.0, 11.0), 9), Blob((10.5, 30.5), 4), Blob((70.0, 70.0), 1)]
+  assert render.blobs(layer, NEUTRAL) == []
+
+
+def test_blobs_join_units_that_touch_even_at_a_corner():
+  layer = _layer((10, 10, 2, ENEMY), (12, 12, 2, ENEMY), (30, 10, 2, ENEMY), (33, 10, 2, ENEMY))
+  assert [b.n_px for b in render.blobs(layer, ENEMY)] == [8, 4, 4]
+
+
+def test_blobs_reach_the_screen_edges():
+  layer = _layer((0, 0, 2, ENEMY), (82, 82, 2, ENEMY))
+  assert render.blobs(layer, ENEMY) == [Blob((0.5, 0.5), 4), Blob((82.5, 82.5), 4)]
+
+
+def test_render_eye_draws_a_disk_per_target():
+  left, right = Blob((40.0, 30.0), 28), Blob((40.0, 50.0), 12)  # heading screen-right
+  img = render.render_eye((40.0, 40.0), [left, right], 0.0, "dark_on_bright")
+  r_left, r_right = (render.angular_radius(b.radius_px, 10.0) for b in (left, right))
+  np.testing.assert_array_equal(
+    img, eye.disks([(-90.0, r_left), (90.0, r_right)], "dark_on_bright"))
+  one = render.render_eye((40.0, 40.0), [right], 0.0, "dark_on_bright")
+  np.testing.assert_array_equal(one, render.render_eye((40.0, 40.0), right, 0.0,
+                                                       "dark_on_bright"))
+  np.testing.assert_array_equal(render.render_eye((40.0, 40.0), [], 0.0, "dark_on_bright"),
+                                eye.blank("dark_on_bright"))

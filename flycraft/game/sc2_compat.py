@@ -53,11 +53,20 @@ def to_call(action: Action, available) -> actions.FunctionCall:
   avail = {int(a) for a in available}
   if action.kind == "move" and F.Move_screen.id in avail:
     return F.Move_screen("now", (round(action.xy[0]), round(action.xy[1])))
+  if action.kind == "attack" and F.Attack_screen.id in avail:
+    return F.Attack_screen("now", (round(action.xy[0]), round(action.xy[1])))
   if action.kind == "stop" and F.Stop_quick.id in avail:
     return F.Stop_quick("now")
   if action.kind != "noop" and F.select_army.id in avail:
     return F.select_army("select")
   return F.no_op()
+
+
+def all_selected(obs) -> bool:
+  """Whether every army unit is selected, so an order reaches the whole squad. DefeatRoaches
+  sends new marines when a wave falls; they arrive unselected."""
+  selected = max(len(obs["single_select"]), len(obs["multi_select"]))
+  return selected >= int(obs["player"][features.Player.army_count])
 
 
 def to_frame(ts) -> Frame:
@@ -68,7 +77,8 @@ def to_frame(ts) -> Frame:
     score=float(obs["score_cumulative"][0]),
     last=bool(ts.last()),
     loop=int(obs["game_loop"][0]),
-    can_move=F.Move_screen.id in {int(a) for a in obs["available_actions"]})
+    can_move=F.Move_screen.id in {int(a) for a in obs["available_actions"]}
+    and all_selected(obs))
 
 
 def launch_kwargs(kwargs: dict, minimized: bool, startupinfo_cls=None) -> dict:

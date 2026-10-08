@@ -23,6 +23,9 @@ Open http://localhost:8766 next to the SC2 window to watch the neurons.
 - `experiments/chirality.py`: the same question with the heading inferred from movement, plus a
   check that the body turned the way the brain said (392 of 430 times).
 - `experiments/hidden_marine.py`: the probe behind the hidden-marine fix.
+- `watch-demo-1008.jsonl`, `trace-demo-1008.jsonl`: a later four-episode watch demo of the same
+  brain, after the fix.
+- `experiments/g0_upward.py` and `twins/`: the scrambled twins' calibration probe (below).
 
 ## Result
 
@@ -79,3 +82,30 @@ screen layer 5 to 7 px from the beacon's centre, before it scores (inside about 
 client stopped ordering a marine it could not see, so the fly stalled at the beacon's edge.
 `hidden_marine.py` measured it. The fix (881df50): the body dead-reckons the hidden marine one
 stride along its last order and keeps walking it.
+
+## The scrambled twins at G0
+
+G0 (spec section 5) bisects w_scale down from 1 until the grey scene stops running away. The
+real wiring runs away at 1 (6.6 Hz mean, 3% of neurons over 100 Hz) and calibrates to 0.8438.
+Every scrambled twin is nearly silent at 1 (0.03 to 0.04 Hz), so G0 leaves it there. Twin 1 at
+w_scale 1 passed G1 on LC10a alone (LC10a is driven directly), its DNs never fired, and its
+decoder came out silent: 14 MoveToBeacon train episodes, all 0. A fly that never turns.
+
+`g0_upward.py` looks the other way: it doubles up from 1 to find each brain's edge of runaway,
+then runs G1 and the decoder calibration there. Logs: `twins/g0_upward-twin1.log`,
+`twins/g0_upward-twins2-6.log`.
+
+| Brain | Edge (w_scale) | z LC10a | z DNa02 | DN rates at the G1 spots | Decoder |
+|---|---|---|---|---|---|
+| real | 0.8438 (G0) | +127 | +4.4 | left 18.1 Hz at -60, right 9.2 Hz at +60 | turns, k 4.5 |
+| twin 1 | 1.375 | +110 | 0 | none | silent |
+| twin 2 | 1.375 | +139 | 0 | none | silent |
+| twin 3 | 1.25 | +144 | 0 | none | silent |
+| twin 4 | 1.25 | +142 | 0 | none | silent |
+| twin 5 | 1.375 | +143 | +16.5 | right 18.4 Hz at +60 only | turns one way, k 7.1 |
+| twin 6 | 1.312 | +144 | 0 | left 2.7 Hz at 0 only | turns one way, k 30.2 |
+
+Every twin's edge is between 1.25 and 1.375, so the one-sided G0 leaves them well below it
+while the real brain sits at its own. At the edge, four of six twins still never move a DN,
+and the two that do respond to one side only. The forward output is silent in every brain,
+the real one included (95th percentile 0.006 Hz), so speed is the body's default throughout.

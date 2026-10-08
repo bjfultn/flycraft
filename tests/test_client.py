@@ -16,7 +16,7 @@ from flycraft.brain.control import Command, Controller, Identity
 from flycraft.brain.stubs import Oracle, RandomWalker, object_azimuth
 from flycraft.config import DecoderConfig
 from flycraft.game import render
-from flycraft.game.body import NOOP, SELECT, STOP, Action, Body
+from flycraft.game.body import NOOP, SELECT, STOP, Action, Body, BodyParams
 from flycraft.game.client import (
   BrainPilot,
   Frame,
@@ -31,6 +31,7 @@ from flycraft.game.client import (
   play,
   play_episode,
 )
+from flycraft.game.tasks import TASKS
 from tests.fake_sc2 import FakeGame
 from tests.serving import serving
 
@@ -222,6 +223,16 @@ def test_a_slow_decision_makes_late_frames_in_watch_mode():
 
 def frame(layer, can_move=True, last=False):
   return Frame(layer, 0.0, 0.0, last, 0, can_move)
+
+
+def test_scripted_pilot_for_defeat_roaches():
+  layer = np.zeros((84, 84), np.uint8)
+  layer[10:13, 20:23] = render.ENEMY
+  layer[30:33, 60:63] = render.ENEMY
+  pilot = ScriptedPilot(TASKS["DefeatRoaches"])
+  assert pilot.decide(frame(layer, can_move=False), 0.0) == SELECT
+  assert pilot.decide(frame(layer), 0.0) == Action("attack", (60.0, 32.0))  # pysc2's: lowest
+  assert pilot.decide(frame(np.zeros((84, 84), np.uint8)), 0.0) == NOOP
 
 
 def test_scripted_pilot():
@@ -517,6 +528,113 @@ def test_the_oracle_beats_the_random_walker():
   assert oracle >= 4 and oracle > walker + 3
 
 
+def test_the_fly_sees_every_roach_and_traces_the_nearest():
+  brain = Brain(lambda episode, k: Command(0.0, 1.0))
+  layer = np.zeros((84, 84), np.uint8)
+  layer[39:42, 39:42] = render.SELF
+  layer[9:12, 9:12] = render.ENEMY  # far, up and left
+  layer[49:52, 59:62] = render.ENEMY  # near, down and right
+  trace = io.StringIO()
+  with serving(brain, trace=trace) as (url, _):
+    link = Link(url, "train", "DefeatRoaches", 84, 5.0)
+    try:
+      pilot = BrainPilot(link, Body(BodyParams(order="attack")), TASKS["DefeatRoaches"])
+      pilot.start(0, 0, "train")
+      pilot.body.heading = 0.0
+      acts = [pilot.decide(frame(layer), 0.0) for _ in range(2)]
+      pilot.decide(frame(layer, last=True), 0.0)
+    finally:
+      link.close()
+  assert acts == [SELECT, Action("attack", (60.0, 50.0))]  # the near roach is 26.6 deg right
+  dark = (brain.eyes[0] < 160).any(axis=0)  # columns with something in view
+  assert dark[eye.az_to_col(-135.0).round().astype(int)]  # up-left: behind, to the left
+  assert dark[eye.az_to_col(math.degrees(math.atan2(10, 20))).round().astype(int)]
+  assert json.loads(trace.getvalue().splitlines()[0])["beacon_xy"] == [60.0, 50.0]
+
+
+def test_the_squad_strikes_the_roach_the_fly_turns_to():
+  brain = Brain(lambda episode, k: Command(26.0 if k == 0 else 0.0, 1.0))  # turn right once
+  layer = np.zeros((84, 84), np.uint8)
+  layer[39:42, 39:42] = render.SELF
+  layer[49:52, 59:62] = render.ENEMY  # 26.6 deg right of heading 0, inside the cone
+  with serving(brain) as (url, _):
+    link = Link(url, "train", "DefeatRoaches", 84, 5.0)
+    try:
+      pilot = BrainPilot(link, Body(BodyParams(order="attack")), TASKS["DefeatRoaches"])
+      pilot.start(0, 0, "train")
+      pilot.body.heading = -10.0  # 36.6 deg off: outside the cone until the fly turns
+      task = TASKS["DefeatRoaches"]
+      assert task.strike(layer, task.targets(layer), (40.0, 40.0), -10.0) is None
+      acts = [pilot.decide(frame(layer), 0.0) for _ in range(3)]
+      pilot.decide(frame(layer, last=True), 0.0)
+    finally:
+      link.close()
+  strike = Action("attack", (60.0, 50.0))
+  assert acts == [SELECT, strike, strike]  # turned 26 deg: 10.6 deg off, so it attacks
+
+
+def test_the_squad_never_attacks_its_own_marines():
+  brain = Brain(lambda episode, k: Command(0.0, 0.5))  # a 3 px step, inside the squad
+  layer = np.zeros((84, 84), np.uint8)
+  layer[36:45, 36:45] = render.SELF
+  layer[9:12, 9:12] = render.ENEMY  # behind and to the left, outside the cone
+  with serving(brain) as (url, _):
+    link = Link(url, "train", "DefeatRoaches", 84, 5.0)
+    try:
+      pilot = BrainPilot(link, Body(BodyParams(order="attack")), TASKS["DefeatRoaches"])
+      pilot.start(0, 0, "train")
+      pilot.body.heading = 0.0
+      acts = [pilot.decide(frame(layer), 0.0) for _ in range(2)]
+      pilot.decide(frame(layer, last=True), 0.0)
+    finally:
+      link.close()
+  assert acts == [SELECT, Action("attack", (46.0, 40.0))]  # past the squad's edge at x = 44
+
+
+@pytest.mark.parametrize("face", [None, 0.0])
+def test_a_fly_set_to_face_starts_facing_the_nearest_target(face):
+  brain = Brain(lambda episode, k: Command(0.0, 0.0))
+  layer = np.zeros((84, 84), np.uint8)
+  layer[39:42, 69:72] = render.SELF  # the squad at (70, 40)
+  layer[9:12, 69:72] = render.ENEMY  # a roach straight up the screen, at (70, 10)
+  layer[39:42, 9:12] = render.ENEMY  # one further off, at (10, 40)
+  with serving(brain) as (url, _):
+    link = Link(url, "train", "DefeatRoaches", 84, 5.0)
+    try:
+      pilot = BrainPilot(link, Body(BodyParams(order="attack")), TASKS["DefeatRoaches"], face)
+      headings = []
+      for episode in range(2):
+        pilot.start(episode, 1_000_000 + episode, "train")
+        start = pilot.body.heading
+        pilot.decide(frame(layer), 0.0)
+        headings.append((start, pilot.body.heading))
+        pilot.decide(frame(layer, last=True), 0.0)
+        pilot.finish(None)
+    finally:
+      link.close()
+  if face is None:
+    assert all(after == start for start, after in headings)  # the seeded random heading
+  else:
+    assert all(after == pytest.approx(-90.0) for _, after in headings)  # set every episode
+
+
+def test_main_plays_defeat_roaches_with_attack_orders(capsys):
+  games = []
+
+  def make():
+    games.append(FakeGame(frames=480, target=render.ENEMY, targets=3, beacon_r=2.0))
+    return games[-1]
+
+  with serving(Oracle(DecoderConfig(), POLARITY)) as (url, _):
+    code = main(["--brain", url, "--mode", "train", "--map", "DefeatRoaches"], make_game=make)
+  kinds = [a.kind for a, _ in games[0].received]  # fake_sc2 fails an attack on the marine
+  assert code == 0 and kinds.count("attack") > 10 * kinds.count("move")
+  capsys.readouterr()
+  assert main(["--scripted", "--mode", "train", "--map", "DefeatRoaches"], make_game=make) == 0
+  recs = [json.loads(line) for line in capsys.readouterr().out.splitlines()]
+  assert "attack" in {a.kind for a, _ in games[1].received} and recs[0]["score"] >= 3
+
+
 # Records and the command line
 
 def test_record_fields():
@@ -584,7 +702,9 @@ def test_main_sizes_the_sc2_window(monkeypatch):
 @pytest.mark.parametrize("argv", [
   ["--episodes", "0"], ["--realtime", "--mode", "train"], ["--scripted", "--brain", "ws://x"],
   ["--seed", "-1"], ["--seed", "4294967296"], ["--screen", "0"], ["--step-px", "0"],
-  ["--timeout", "0"], ["--timeout", "nan"], ["--window", "12x"], ["--window", "0x960"]])
+  ["--timeout", "0"], ["--timeout", "nan"], ["--window", "12x"], ["--window", "0x960"],
+  ["--map", "Nowhere"], ["--face", "-1"], ["--face", "181"], ["--face", "nan"],
+  ["--scripted", "--face", "60"]])
 def test_main_rejects_bad_arguments(argv):
   with pytest.raises(SystemExit) as e:
     main(argv, make_game=lambda: FakeGame())

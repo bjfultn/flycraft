@@ -2,8 +2,10 @@
 
 The body keeps a heading in the screen frame (x right, y down, so a positive turn is
 clockwise on screen). Each decision it turns by the brain's dtheta, clipped to the turn-rate
-limit, and orders the marine one step ahead along the new heading. It also keeps where the
-marine is: SC2 draws the beacon over the marine and scores only well inside it, so near the
+limit, and orders the marine one step ahead along the new heading, or attacks the target the
+task strikes (game/tasks.py). SC2 takes an attack aimed at one of the player's own units as an
+order to shoot it, so an attack step goes past the squad, onto clear ground. It also keeps where
+the marine is: SC2 draws the beacon over the marine and scores only well inside it, so near the
 beacon the marine can vanish from the screen layer though it has not scored. Actions are plain
 tuples; game/sc2_compat.py turns them into pysc2 calls, so this module needs no pysc2.
 """
@@ -20,7 +22,7 @@ from flycraft.eye import wrap_deg
 
 
 class Action(NamedTuple):
-  kind: str  # "select", "move", "stop" or "noop"
+  kind: str  # "select", "move", "attack", "stop" or "noop"
   xy: tuple[float, float] | None = None
 
 
@@ -38,6 +40,8 @@ class BodyParams:
   step_px: float = 6.0  # L: marine travel in 1.5 decisions (M2: 3.6 px median, 3.95 mean)
   screen: int = 84
   stop_below: float = 0.05
+  order: str = "move"  # the order a step ahead takes: "move", or "attack" to fight on the way
+  clear_px: float = 2.0  # an attack step lands at least this far from the squad's own pixels
 
   @property
   def max_turn_deg(self) -> float:
@@ -62,6 +66,13 @@ class Body:
     self.heading = float(np.random.default_rng(seed).uniform(-180.0, 180.0))
     self.where = self._sent = None
 
+  def face(self, marine_xy, target_xy, within: float, seed: int) -> None:
+    """Head within `within` degrees of target_xy, the offset fixed by the episode seed. A demo
+    setting: the brain makes no turn on its own, so a fly started facing away never finds the
+    target."""
+    bearing = math.degrees(math.atan2(target_xy[1] - marine_xy[1], target_xy[0] - marine_xy[0]))
+    self.heading = wrap_deg(bearing + np.random.default_rng((seed, 1)).uniform(-within, within))
+
   def locate(self, seen) -> tuple[float, float] | None:
     """Where the marine is: where it is seen, else one stride on from where it was toward the
     last move target; None until it has been seen."""
@@ -81,12 +92,17 @@ class Body:
     self.heading = wrap_deg(self.heading + d)
     return d
 
-  def motor(self, marine_xy, can_move: bool, speed: float) -> Action:
-    """The order for this decision: select, stop, or a move one step ahead."""
+  def motor(self, marine_xy, can_move: bool, speed: float, strike=None, own=None) -> Action:
+    """The order for this decision: select, an attack on strike (at any speed), stop, or the
+    task's order one step ahead. own (a bool mask of the player's pixels) moves an attack step
+    past the squad; with no clear ground ahead on screen, the step is a move."""
     if marine_xy is None:
       return NOOP
     if not can_move:
       return SELECT
+    if strike is not None:
+      self._sent = (float(strike[0]), float(strike[1]))
+      return Action("attack", self._sent)
     if speed < self.params.stop_below:
       return STOP
     step = self.params.step_px * speed
@@ -94,5 +110,22 @@ class Body:
     hi = self.params.screen - 1
     x = float(np.clip(marine_xy[0] + step * np.cos(th), 0, hi))
     y = float(np.clip(marine_xy[1] + step * np.sin(th), 0, hi))
+    kind = self.params.order
+    if kind == "attack" and own is not None and np.any(own):
+      past = self._past(own, marine_xy, step, th)
+      kind, (x, y) = ("move", (x, y)) if past is None else ("attack", past)
     self._sent = (x, y)
-    return Action("move", (x, y))
+    return Action(kind, (x, y))
+
+  def _past(self, own, xy, step: float, th: float) -> tuple[float, float] | None:
+    """The first screen pixel along the heading, from step on, at least clear_px from every
+    own pixel; None if the screen ends first. Pixels, since the order is sent rounded."""
+    ys, xs = np.nonzero(own)
+    hi = self.params.screen - 1
+    t = np.arange(step, 2.0 * self.params.screen, 0.5)
+    px, py = np.round(xy[0] + t * np.cos(th)), np.round(xy[1] + t * np.sin(th))
+    on = (px >= 0) & (px <= hi) & (py >= 0) & (py <= hi)
+    d2 = (px[:, None] - xs[None, :]) ** 2 + (py[:, None] - ys[None, :]) ** 2
+    ok = on & (d2.min(axis=1) >= self.params.clear_px ** 2)
+    i = int(np.argmax(ok))
+    return (float(px[i]), float(py[i])) if ok[i] else None

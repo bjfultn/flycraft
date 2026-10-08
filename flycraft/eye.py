@@ -66,16 +66,33 @@ def _angle_deg(az1, el1, az2, el2):
   return np.degrees(np.arccos(np.clip(cos_d, -1.0, 1.0)))
 
 
+def _cover(az_deg: float, radius_deg: float, el_deg: float = 0.0) -> np.ndarray:
+  """The fraction of each pixel's 4x4 supersamples inside the disk, (EYE_ROWS, EYE_COLS)."""
+  off = (np.arange(_SUB) + 0.5) / _SUB * BIN_DEG
+  az = (AZ0 + BIN_DEG * np.arange(EYE_COLS))[:, None] + off[None, :]  # (cols, sub)
+  el = (EL0 - BIN_DEG * np.arange(EYE_ROWS))[:, None] - off[None, :]  # (rows, sub)
+  d = _angle_deg(az[None, None, :, :], el[:, :, None, None], az_deg, el_deg)
+  return (d <= radius_deg).mean(axis=(1, 3))
+
+
+def _paint(cover: np.ndarray, polarity: str) -> np.ndarray:
+  bg, obj = POLARITY[polarity]
+  return np.rint(bg + (obj - bg) * cover).astype(np.uint8)
+
+
 def disk(az_deg: float, radius_deg: float, polarity: str, el_deg: float = 0.0) -> np.ndarray:
   """Background with one disk of angular radius radius_deg centred at (az_deg, el_deg).
 
   Membership is by great-circle distance, so the disk wraps across the +-180 seam. Edge
   pixels take the covered fraction of 4x4 supersamples.
   """
-  bg, obj = POLARITY[polarity]
-  off = (np.arange(_SUB) + 0.5) / _SUB * BIN_DEG
-  az = (AZ0 + BIN_DEG * np.arange(EYE_COLS))[:, None] + off[None, :]  # (cols, sub)
-  el = (EL0 - BIN_DEG * np.arange(EYE_ROWS))[:, None] - off[None, :]  # (rows, sub)
-  d = _angle_deg(az[None, None, :, :], el[:, :, None, None], az_deg, el_deg)
-  cover = (d <= radius_deg).mean(axis=(1, 3))  # (rows, cols)
-  return np.rint(bg + (obj - bg) * cover).astype(np.uint8)
+  return _paint(_cover(az_deg, radius_deg, el_deg), polarity)
+
+
+def disks(spots, polarity: str) -> np.ndarray:
+  """Background with a disk per (az_deg, radius_deg) spot on the horizon. Where disks overlap
+  a pixel takes the largest cover, so one spot draws exactly disk() and none draws blank()."""
+  cover = np.zeros((EYE_ROWS, EYE_COLS))
+  for az, r in spots:
+    cover = np.maximum(cover, _cover(az, r))
+  return _paint(cover, polarity)

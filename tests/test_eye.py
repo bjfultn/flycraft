@@ -9,6 +9,7 @@ from flycraft.eye import (
   azimuth,
   blank,
   disk,
+  disks,
   el_to_row,
   grey,
   pixel_az,
@@ -78,3 +79,16 @@ def test_disk_wraps_across_the_seam():
 def test_bright_on_dark_disk():
   img = disk(0.0, 10.0, "bright_on_dark")
   assert img.max() == 255 and img.min() == 95
+
+
+@pytest.mark.parametrize("polarity", sorted(POLARITY))
+def test_disks_of_one_spot_is_disk_and_of_none_is_blank(polarity):
+  np.testing.assert_array_equal(disks([(37.5, 12.0)], polarity), disk(37.5, 12.0, polarity))
+  np.testing.assert_array_equal(disks([], polarity), blank(polarity))
+
+
+def test_overlapping_disks_take_the_larger_cover():
+  both = disks([(-20.0, 15.0), (10.0, 15.0)], "dark_on_bright")
+  left, right = disk(-20.0, 15.0, "dark_on_bright"), disk(10.0, 15.0, "dark_on_bright")
+  np.testing.assert_array_equal(both, np.minimum(left, right))  # dark object: smaller is more
+  assert (both < 160).sum() > (left < 160).sum()

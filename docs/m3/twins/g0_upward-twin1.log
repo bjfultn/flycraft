@@ -1,0 +1,16 @@
+SCRAMBLED #1 w_scale 1: mean 0.03 Hz, 0.000% over 100 Hz
+SCRAMBLED #1 w_scale 1.5: mean 16.97 Hz, 4.254% over 100 Hz (runaway)
+SCRAMBLED #1 w_scale 2: mean 29.75 Hz, 12.219% over 100 Hz (runaway)
+SCRAMBLED #1 w_scale 3: mean 46.23 Hz, 21.821% over 100 Hz (runaway)
+SCRAMBLED #1 w_scale 4: mean 57.98 Hz, 27.967% over 100 Hz (runaway)
+SCRAMBLED #1 w_scale 6: mean 74.59 Hz, 34.808% over 100 Hz (runaway)
+SCRAMBLED #1 w_scale 8: mean 85.79 Hz, 38.187% over 100 Hz (runaway)
+SCRAMBLED #1 w_scale 1.25: mean 0.07 Hz, 0.000% over 100 Hz
+SCRAMBLED #1 w_scale 1.375: mean 0.10 Hz, 0.000% over 100 Hz
+SCRAMBLED #1 w_scale 1.438: mean 14.55 Hz, 2.771% over 100 Hz (runaway)
+edge: w_scale 1.375
+G1 vpn: z LC10a +109.90, z DNa02 +0.00 -> pass
+  spot -60: lc10a_L 3.44, lc10a_R 0.00, dn_L 0.00, dn_R 0.00
+  spot +0: lc10a_L 5.84, lc10a_R 6.48, dn_L 0.00, dn_R 0.00
+  spot +60: lc10a_L 0.00, lc10a_R 2.88, dn_L 0.00, dn_R 0.00
+decoder: {'b_turn': 0.0, 'b_fwd': 0.0, 'k_turn': 0.0, 'k_fwd': 0.0, 'turn_silent': True, 'fwd_silent': True, 'p95_turn_hz': 0.0, 'p95_fwd_hz': 0.0}
