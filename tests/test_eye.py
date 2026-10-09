@@ -92,3 +92,11 @@ def test_overlapping_disks_take_the_larger_cover():
   left, right = disk(-20.0, 15.0, "dark_on_bright"), disk(10.0, 15.0, "dark_on_bright")
   np.testing.assert_array_equal(both, np.minimum(left, right))  # dark object: smaller is more
   assert (both < 160).sum() > (left < 160).sum()
+
+
+def test_disks_take_an_elevation():
+  np.testing.assert_array_equal(disks([(20.0, 10.0, 35.0)], "dark_on_bright"),
+                                disk(20.0, 10.0, "dark_on_bright", el_deg=35.0))
+  both = disks([(20.0, 10.0, 35.0), (-30.0, 8.0)], "dark_on_bright")
+  np.testing.assert_array_equal(both, np.minimum(disk(20.0, 10.0, "dark_on_bright", 35.0),
+                                                 disk(-30.0, 8.0, "dark_on_bright")))

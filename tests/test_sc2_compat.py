@@ -11,8 +11,10 @@ pytest.importorskip("pysc2")
 
 from absl import flags  # noqa: E402
 from pysc2 import maps  # noqa: E402
-from pysc2.env import sc2_env  # noqa: E402
+from pysc2.env import lan_sc2_env, sc2_env  # noqa: E402
 from pysc2.lib import actions, features, protocol, sc_process  # noqa: E402
+from s2clientprotocol import common_pb2 as common_pb  # noqa: E402
+from s2clientprotocol import sc2api_pb2 as sc_pb  # noqa: E402
 
 from flycraft.game import sc2_compat  # noqa: E402
 from flycraft.game.body import NOOP, SELECT, Action  # noqa: E402
@@ -42,11 +44,12 @@ def test_to_call(action, available, expected):
   assert call(sc2_compat.to_call(action, np.array(available))) == expected
 
 
-def timestep(last=False, reward=0, available=ALL, army=1, selected=1):
+def timestep(last=False, reward=0, available=ALL, army=1, selected=1, player_id=1):
   screen = np.zeros((len(features.SCREEN_FEATURES), 84, 84), np.int32)
   screen[sc2_compat.PLAYER_RELATIVE, 40, 41] = features.PlayerRelative.SELF
   player = np.zeros(len(features.Player), np.int32)
   player[features.Player.army_count] = army
+  player[features.Player.player_id] = player_id
   units = np.zeros((selected, 7), np.int32)  # pysc2: one unit in single_select, more in multi
   single, multi = (units, units[:0]) if selected == 1 else (units[:0], units)
   obs = {"feature_screen": screen, "score_cumulative": np.array([7, 0]),
@@ -63,6 +66,14 @@ def test_to_frame():
   assert (frame.reward, frame.score, frame.last, frame.loop, frame.can_move) == (
     1.0, 7.0, True, 96, True)
   assert sc2_compat.to_frame(timestep(available=[F.no_op.id, F.select_army.id])).can_move is False
+
+
+@pytest.mark.parametrize("match, last, reward, outcome", [
+  (True, True, -1, -1), (True, True, 1, 1), (True, True, 0, 0), (True, False, 0, None),
+  (False, True, 1, None)])
+def test_a_matchs_last_reward_is_its_outcome(match, last, reward, outcome):
+  frame = sc2_compat.to_frame(timestep(last=last, reward=reward), match=match)
+  assert frame.outcome == outcome
 
 
 @pytest.mark.parametrize("army, selected, can_move", [
@@ -320,3 +331,89 @@ def test_importing_pysc2_prints_nothing_to_stdout():
                        capture_output=True, text=True, env=env, check=True,
                        cwd=Path(__file__).resolve().parents[1])
   assert out.stdout == ""
+
+
+def test_skirmish_is_a_two_player_map_scored_by_outcome():
+  skirmish = maps.get("Skirmish")
+  assert skirmish.path == "flycraft/Skirmish.SC2Map"
+  assert (skirmish.players, skirmish.score_index, skirmish.game_steps_per_episode) == (2, -1, 0)
+
+
+class FakeLanEnv(FakeEnv):
+  """LanSC2Env's surface: the player number comes with the first observation."""
+  player = 2
+
+  def reset(self):
+    self._maybe_fail("reset")
+    return (timestep(available=[F.no_op.id, F.select_army.id], player_id=self.player),)
+
+
+@pytest.fixture
+def lan(monkeypatch):
+  FakeEnv.made = []
+  monkeypatch.setattr(sc_process, "StarcraftProcess", sc_process.StarcraftProcess)
+  monkeypatch.setattr(sc2_compat, "_LanEnv", FakeLanEnv)
+  monkeypatch.setattr(FakeLanEnv, "_sc2_procs", [types.SimpleNamespace(pid=78)], raising=False)
+  return FakeLanEnv
+
+
+def test_pysc2s_lan_env_is_mended(monkeypatch):
+  """pysc2 4.0's LanSC2Env calls SC2Env's interface helper by an argument name the helper no
+  longer has, and its reset reads the players' races, which only SC2Env's launch records."""
+  info = sc_pb.ResponseGameInfo(map_name="Skirmish")
+  info.player_info.add(player_id=1, type=sc_pb.Participant, race_requested=common_pb.Terran)
+  info.player_info.add(player_id=2, type=sc_pb.Participant, race_requested=common_pb.Zerg)
+  seen = {}
+
+  def launch(self, host, config_port, race, name, interface, agent_interface_format):
+    seen["interface"] = interface
+    self._map_name, self._game_info = "Skirmish", [info]
+    self._features, self._controllers, self._sc2_procs = [None], [], []
+
+  monkeypatch.setattr(lan_sc2_env.LanSC2Env, "_launch_remote", launch)
+  env = sc2_compat._LanEnv(host="127.0.0.1", config_port=14380, race=sc2_env.Race.zerg,
+                           name="fly", agent_interface_format=sc2_compat._interface(84),
+                           step_mul=1, realtime=True)
+  assert seen["interface"].feature_layer.resolution.x == 84
+  assert env._requested_races == {1: common_pb.Terran, 2: common_pb.Zerg}
+  monkeypatch.setattr(env, "_observe", lambda target_game_loop: ("first", target_game_loop))
+  assert env.reset() == ("first", 0)
+  env.close()
+
+
+def test_the_fly_joins_a_match_in_real_time_minimized(lan, monkeypatch):
+  seen = []
+  monkeypatch.setattr(sc2_compat.sys, "platform", "win32")
+  monkeypatch.setattr(sc2_compat, "minimize_windows", lambda pid: seen.append(pid) or 1)
+  game = sc2_compat.SC2LanGame(14380, 84, window=(800, 600), log=lambda text: None)
+  (made,) = lan.made
+  kw = made.kwargs
+  assert (kw["host"], kw["config_port"], kw["race"], kw["name"], kw["step_mul"],
+          kw["realtime"]) == ("127.0.0.1", 14380, sc2_env.Race.zerg, "fly", 1, True)
+  assert kw["agent_interface_format"].feature_dimensions.screen == (84, 84)
+  assert (sc2_compat._Process.minimized, sc2_compat._Process.window_size) == (True, (800, 600))
+  assert seen == [78]
+  assert game.reset().outcome is None
+  game.step(Action("attack", (30.0, 31.0)), 1)
+  assert made.steps == [((F.select_army.id, [[0]]), 1)]
+  game.close()
+  assert made.closed
+
+
+def test_the_fly_must_be_player_2(lan, monkeypatch):
+  monkeypatch.setattr(lan, "player", 1)
+  game = sc2_compat.SC2LanGame(14380, 84, log=lambda text: None)
+  with pytest.raises(SetupError, match="as player 1, not 2"):
+    game.reset()
+
+
+@pytest.mark.parametrize("error, expected", [
+  (ConnectionRefusedError("refused"), GameError),
+  (protocol.ConnectionError("Websocket timed out"), GameError),
+  (ValueError("Unknown game version: 9.9"), SetupError)])
+def test_a_join_that_fails_says_which_port(lan, monkeypatch, error, expected):
+  monkeypatch.setattr(sc2_compat, "_LanEnv",
+                      lambda **kw: FakeLanEnv(fail=("init", error), **kw))
+  with pytest.raises(expected) as e:
+    sc2_compat.SC2LanGame(14380, 84, log=lambda text: None)
+  assert "join the match" in str(e.value)

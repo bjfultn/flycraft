@@ -142,13 +142,15 @@ class GameServer:
     try:
       cmd = await asyncio.to_thread(self.controller.step, eye, float(obs["reward"]))
       act = protocol.make("act", step=obs["step"], dtheta=cmd.dtheta, speed=cmd.speed,
-                          turn_raw=cmd.turn_raw, fwd_raw=cmd.fwd_raw)
+                          turn_raw=cmd.turn_raw, fwd_raw=cmd.fwd_raw, pitch=cmd.pitch,
+                          pitch_raw=cmd.pitch_raw)
     except (Runaway, protocol.ProtocolError) as e:
       self.log(f"runaway brain: {e}")
       self._trace({**record, "aborted": "runaway", "why": str(e)})
       self._end_episode("runaway")
       return protocol.make("abort", reason="runaway")
-    self._trace({**record, **{k: act[k] for k in ("dtheta", "speed", "turn_raw", "fwd_raw")}})
+    self._trace({**record, **{k: act[k] for k in ("dtheta", "speed", "turn_raw", "fwd_raw",
+                                                   "pitch", "pitch_raw")}})
     return act
 
   def _trace(self, record: dict) -> None:

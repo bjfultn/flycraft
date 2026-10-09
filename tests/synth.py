@@ -94,7 +94,11 @@ def make_tiny_connectome(out_dir: Path, seed: int = 0, mi1_noise_um: float = 0.0
     aotu = b.add("AOTU019", "cb_intrinsic", s, (sx * 120, 80, 150), None)
     dna02 = b.add("DNa02", "descending", s, (sx * 60, 200, 200), None)
     dnp09 = b.add("DNp09", "descending", s, (sx * 70, 210, 200), None)
+    dnbe007 = b.add("DNbe007", "descending", s, (sx * 55, 205, 205), None)
+    dnge043 = b.add("DNge043", "descending", s, (sx * 65, 215, 205), None)
     b.edge(aotu, dna02, 60)
+    b.edge(aotu, dnbe007, 15)
+    b.edge(aotu, dnge043, 15)
     for q, (lo1, lo2) in enumerate(((1, 1), (1, 3), (3, 1), (3, 3))):
       lc = b.add("LC10a", "visual_projection", s, (sx * 200, 90 + q, 160), None)
       for h1 in range(lo1, lo1 + 3):

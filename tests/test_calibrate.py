@@ -12,8 +12,11 @@ from flycraft.brain.calibrate import (
   G0Failure,
   G0Result,
   G1Result,
+  Responses,
   calibrate_decoder,
+  contrast_z,
   run_g0,
+  run_g2,
   run_ladder,
   rung_config,
   z_score,
@@ -188,3 +191,97 @@ def test_g0_failure_on_a_rung_moves_to_the_next(synth_brain, monkeypatch):
   assert r.tried == [{"rung": "default", "g0_scale": None, "z_lc10a": None, "z_dn": None,
                       "passed": False, "g0_failure": "runaway at every scale after 8 halvings"}]
   assert b.cfg == before
+
+
+def test_contrast_z():
+  # (2 - 0) - (1 - 1) = 2 over sqrt(4 groups * var 2 / 2 trials) = 2
+  assert contrast_z([1, 3], [-1, 1], [0, 2], [0, 2]) == pytest.approx(1.0)
+  assert contrast_z([1, 3], [0, 2], [1, 3], [0, 2]) == 0.0
+  assert contrast_z([1, 1], [0, 0], [0, 0], [0, 0]) == math.inf
+  assert contrast_z([0, 0], [1, 1], [0, 0], [0, 0]) == -math.inf
+  assert contrast_z([0, 0], [0, 0], [0, 0], [0, 0]) == 0.0
+
+
+@pytest.fixture(scope="module")
+def vpn_brain(synth_brain):
+  """The synth brain calibrated on the vpn rung, as M1 leaves it."""
+  b = synth_brain({"calibration.ladder": ["vpn"], "calibration.g1_repeats": 4})
+  r = run_ladder(b, QUIET)
+  assert r.passed
+  calibrate_decoder(b, r.g1)
+  return b
+
+
+def steering_edges(conn, b):
+  """The synth LC10a -> AOTU019 edges: cutting them blinds the steering chain."""
+  w = load_wiring(b.cfg, conn, log=QUIET)
+  lc, aotu = conn.select("^LC10a$"), conn.select("^AOTU019$")
+  return np.flatnonzero(np.isin(w.pre, lc) & np.isin(w.post, aotu))
+
+
+def test_g2_passes_when_the_edges_carry_the_steering(conn, vpn_brain):
+  b = vpn_brain
+  edges = steering_edges(conn, b)
+  assert edges.size == 8  # 4 LC10a per side
+  w0, cfg0 = b.edge_weights(edges), b.cfg
+  b.cfg = with_overrides(cfg0, {"calibration.g2_factor": 0.0})
+  try:
+    r = run_g2(b, edges, {"aotu": conn.select("^AOTU019$")}, QUIET)
+  finally:
+    b.cfg = cfg0
+  assert r.passed and r.z_turn < -3  # the right-minus-left turn response collapses
+  assert r.n_edges == 8 and r.factor == 0.0
+  assert r.after.pop_hz["25"]["aotu"] == 0.0 < r.before.pop_hz["25"]["aotu"]
+  assert set(r.by_condition) == {"blank", "-25", "0", "25"}
+  assert r.before.raw["25"].shape == (4, 2)
+  np.testing.assert_array_equal(b.edge_weights(edges), w0)  # restored
+  json.dumps(r.to_dict())
+
+
+def fake_responses(turn_hi, turn_lo, fwd):
+  """Responses with fixed per-trial (turn, fwd); a small spread so the z's are finite."""
+  jitter = np.array([-0.1, 0.0, 0.1])
+
+  def rows(turn):
+    return np.stack([turn + jitter, fwd + jitter], axis=1)
+
+  raw = {"blank": rows(0.0), "-25": rows(turn_lo), "0": rows(0.0), "25": rows(turn_hi)}
+  return Responses(raw, {cond: {} for cond in raw})
+
+
+@pytest.mark.parametrize("after, passed, which", [
+  ((5.0, -5.0, 1.0), False, None),  # unchanged
+  ((2.0, -2.0, 1.0), True, "turn"),  # steering contrast halves
+  ((5.0, -5.0, 3.0), True, "fwd"),  # only the forward signal moves
+  ((5.2, -4.8, 1.0), False, None),  # a shift common to both sides is not a turn response
+])
+def test_g2_gates_on_the_turn_contrast_or_the_forward_signal(vpn_brain, monkeypatch, after,
+                                                             passed, which):
+  seq = iter([fake_responses(5.0, -5.0, 1.0), fake_responses(*after)])
+  monkeypatch.setattr(calibrate_mod, "measure_responses", lambda brain, pops: next(seq))
+  r = run_g2(vpn_brain, np.array([0]), None, QUIET)
+  assert r.passed is passed
+  z = {"turn": abs(r.z_turn), "fwd": abs(r.z_fwd)}
+  if which:
+    assert z[which] > 3
+  else:
+    assert max(z.values()) <= 3
+
+
+def test_g2_restores_the_weights_when_the_second_run_fails(conn, vpn_brain, monkeypatch):
+  b = vpn_brain
+  edges = steering_edges(conn, b)
+  w0 = b.edge_weights(edges)
+  seen = []
+
+  def measure(brain, pops):
+    seen.append(brain.edge_weights(edges))
+    if len(seen) == 2:
+      raise RuntimeError("boom")
+    return fake_responses(5.0, -5.0, 1.0)
+
+  monkeypatch.setattr(calibrate_mod, "measure_responses", measure)
+  with pytest.raises(RuntimeError, match="boom"):
+    run_g2(b, edges, None, QUIET)
+  np.testing.assert_array_equal(seen[1], w0 * 0.5)  # the second run saw the scaled weights
+  np.testing.assert_array_equal(b.edge_weights(edges), w0)

@@ -173,3 +173,30 @@ def test_gpu_matches_cpu_float64():
   t, i = run(lif, int(fx["n_steps"]), kicks)
   np.testing.assert_array_equal(t, t_cpu)
   np.testing.assert_array_equal(i, i_cpu)
+
+
+@pytest.mark.parametrize("mode", ["event", "spmv"])
+def test_set_edge_weights_matches_a_network_built_with_them(mode):
+  rng = np.random.default_rng(4)
+  n = 200
+  mask = rng.random((n, n)) < 0.05
+  np.fill_diagonal(mask, False)
+  pre, post = np.nonzero(mask)
+  w = np.where(rng.random(n) < 0.7, 1, -1)[pre] * rng.integers(1, 40, pre.size) * P.w_syn
+  edges = rng.choice(pre.size, pre.size // 4, replace=False)
+  w2 = w.copy()
+  w2[edges] *= 0.5
+  kicks = {s: torch.tensor(rng.choice(n, 5, replace=False)) for s in range(0, 2000, 3)}
+  edited = LIF(n, pre, post, w, P, dtype=torch.float64, mode=mode)
+  edited.set_weight_scale(1.5)
+  np.testing.assert_array_equal(edited.edge_weights(edges).numpy(), w[edges])
+  edited.set_edge_weights(edges, w[edges] * 0.5)
+  np.testing.assert_array_equal(edited.edge_weights(edges).numpy(), w2[edges])
+  built = LIF(n, pre, post, w2, P, dtype=torch.float64, mode=mode)
+  built.set_weight_scale(1.5)
+  a, b = run(edited, 2000, kicks), run(built, 2000, kicks)
+  np.testing.assert_array_equal(a[0], b[0])
+  np.testing.assert_array_equal(a[1], b[1])
+  assert a[0].size > 100
+  edited.set_weight_scale(1.0)  # a later global scale keeps the edit
+  np.testing.assert_array_equal(edited.val[edited.slot_of_edge].numpy(), w2)

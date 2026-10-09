@@ -16,7 +16,8 @@ GOOD = {
   "episode_start": dict(episode=0, seed=7_000_000, phase="train"),
   "obs": dict(step=3, eye=EYE, reward=1.0, score=4.0, last=False, marine_xy=[41.5, 40.0],
               beacon_xy=None),
-  "act": dict(step=3, dtheta=-12.5, speed=1.0, turn_raw=0.0, fwd_raw=0.0),
+  "act": dict(step=3, dtheta=-12.5, speed=1.0, turn_raw=0.0, fwd_raw=0.0, pitch=0.0,
+              pitch_raw=0.0),
   "episode_end": dict(episode=0, score=21.0, steps=241, aborted=None),
   "abort": dict(reason="shutdown"),
   "error": dict(message="busy"),
@@ -31,7 +32,7 @@ def test_every_type_has_a_case():
 def test_round_trip(kind):
   msg = make(kind, **GOOD[kind])
   back = decode(encode(msg))
-  assert back == {"type": kind, "v": 1, **GOOD[kind]}
+  assert back == {"type": kind, "v": 2, **GOOD[kind]}
 
 
 def test_eye_stays_bytes_and_tuples_become_lists():
@@ -46,8 +47,8 @@ def test_numpy_scalars_encode():
 
 
 def test_version_mismatch_is_its_own_error():
-  data = msgpack.packb({"type": "hello", "v": 2, **GOOD["hello"]}, use_bin_type=True)
-  with pytest.raises(VersionMismatch, match="version 2"):
+  data = msgpack.packb({"type": "hello", "v": 3, **GOOD["hello"]}, use_bin_type=True)
+  with pytest.raises(VersionMismatch, match="version 3"):
     decode(data)
   with pytest.raises(VersionMismatch):
     decode(msgpack.packb({"type": "hello", **GOOD["hello"]}, use_bin_type=True))
@@ -57,7 +58,7 @@ def test_version_mismatch_is_its_own_error():
   ("text", "binary frame"),
   (b"\xc1", "undecodable"),
   (msgpack.packb([1, 2]), "is a map"),
-  (msgpack.packb({"type": "nope", "v": 1}), "unknown message type"),
+  (msgpack.packb({"type": "nope", "v": 2}), "unknown message type"),
 ])
 def test_bad_frames(data, match):
   with pytest.raises(ProtocolError, match=match):
@@ -71,12 +72,21 @@ def test_missing_and_extra_fields():
     make("act", **GOOD["act"], marine_xy=[1, 2])
 
 
+def test_missing_pitch_is_rejected():
+  with pytest.raises(ProtocolError, match="missing \\['pitch'\\]"):
+    make("act", **{k: v for k, v in GOOD["act"].items() if k != "pitch"})
+
+
 @pytest.mark.parametrize("kind, field, value", [
   ("act", "dtheta", math.nan),
   ("act", "dtheta", math.inf),
   ("act", "speed", 1.5),
   ("act", "speed", -0.1),
   ("act", "step", True),
+  ("act", "pitch", 1.5),
+  ("act", "pitch", -1.5),
+  ("act", "pitch", math.nan),
+  ("act", "pitch_raw", math.inf),
   ("obs", "eye", EYE[:-1]),
   ("obs", "eye", list(EYE)),
   ("obs", "reward", math.nan),

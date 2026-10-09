@@ -23,9 +23,13 @@ def test_default_groups_resolve(conn):
   assert list(conn.type[g.turn_pos]) == ["DNa02"] and list(conn.side[g.turn_pos]) == ["R"]
   assert list(conn.type[g.turn_neg]) == ["DNa02"] and list(conn.side[g.turn_neg]) == ["L"]
   assert sorted(conn.side[g.fwd]) == ["L", "R"]
+  assert list(conn.type[g.pitch_pos]) == ["DNbe007", "DNbe007"]
+  assert list(conn.side[g.pitch_pos]) == ["L", "R"]
+  assert list(conn.type[g.pitch_neg]) == ["DNge043", "DNge043"]
+  assert list(conn.side[g.pitch_neg]) == ["L", "R"]
   assert g.aotu_pos.size == g.aotu_neg.size == 0
   assert g.mdn.size == 4
-  assert g.watch.size == 8 and (np.diff(g.watch) > 0).all()
+  assert g.watch.size == 12 and (np.diff(g.watch) > 0).all()
 
 
 def test_missing_types_fail_loudly_and_name_them(conn):
@@ -112,3 +116,25 @@ def test_right_dna02_turns_right_and_command_clips(conn):
   dtheta, speed = d.command()
   assert dtheta == pytest.approx(-180.0 * T_GAME)
   assert speed == 1.0
+
+
+def test_pitch_is_the_bias_subtracted_scaled_group_difference(conn):
+  g = resolve_groups(conn, CFG)
+  d = Decoder(g, CFG)
+  d.observe(_spikes(d, {g.pitch_pos[0]: 25, g.pitch_pos[1]: 25, g.pitch_neg[0]: 20,
+                       g.pitch_neg[1]: 20}))
+  pitch, raw = d.pitch()
+  assert raw == pytest.approx(5.0, abs=0.6)
+  assert pitch == pytest.approx((raw - CFG.pitch_bias_hz) / CFG.pitch_scale_hz)
+
+
+def test_pitch_clips_at_plus_and_minus_one(conn):
+  g = resolve_groups(conn, CFG)
+  d = Decoder(g, CFG)
+  d.observe(_spikes(d, {g.pitch_pos[0]: 100, g.pitch_pos[1]: 100}))
+  pitch, _ = d.pitch()
+  assert pitch == 1.0
+  d.reset()
+  d.observe(_spikes(d, {g.pitch_neg[0]: 100, g.pitch_neg[1]: 100}))
+  pitch, _ = d.pitch()
+  assert pitch == -1.0

@@ -63,3 +63,23 @@ def test_stub_identities():
     assert stub.identity.brain_id == f"stub-{name}"
     assert stub.identity.decision_frames == DEC.decision_frames
     assert stub.identity.plasticity is False
+
+
+# The compass fly (M6, docs/m6/README.md, "The compass fly")
+
+def test_oracle_pitch_matches_the_objects_elevation_sign():
+  oracle = Oracle(DEC, "dark_on_bright")
+  up = oracle.step(eye.disk(0.0, 5.0, "dark_on_bright", el_deg=30.0), 0.0)
+  assert up.pitch > 0.0
+  down = oracle.step(eye.disk(0.0, 5.0, "dark_on_bright", el_deg=-30.0), 0.0)
+  assert down.pitch < 0.0
+  assert oracle.step(eye.blank("dark_on_bright"), 0.0).pitch == 0.0
+
+
+def test_random_walker_pitch_is_in_range_and_varies():
+  walker = RandomWalker(DEC, "dark_on_bright")
+  walker.start_episode(0, 11, "train")
+  img = eye.blank("dark_on_bright")
+  run = [walker.step(img, 0.0) for _ in range(50)]
+  assert all(-1.0 <= c.pitch <= 1.0 for c in run)
+  assert np.ptp([c.pitch for c in run]) > 1.0  # it really does vary both ways

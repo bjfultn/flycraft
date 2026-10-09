@@ -84,6 +84,16 @@ def test_device_and_data_dir_do_not_matter(synth_cfg, wiring, write):
   assert load_calibration(write(rec), synth_cfg, wiring).rung == "default"
 
 
+def test_the_pitch_readout_does_not_matter(synth_cfg, wiring, write):
+  """M1 calibrations made before the compass fly have no pitch keys, and M1 never sets them."""
+  rec = m1_record(synth_cfg, wiring)
+  for k in ("pitch_pos", "pitch_neg", "pitch_bias_hz", "pitch_scale_hz"):
+    del rec["config"]["decoder"][k]
+  assert load_calibration(write(rec), synth_cfg, wiring).rung == "default"
+  rec["config"]["decoder"]["pitch_bias_hz"] = 0.0
+  assert load_calibration(write(rec), synth_cfg, wiring).rung == "default"
+
+
 def test_refuses_a_calibration_for_other_wiring(synth_cfg, wiring, write):
   rec = m1_record(synth_cfg, wiring)
   rec["wiring"] = {"label": "SCRAMBLED #1", "fingerprint": "f" * 64}

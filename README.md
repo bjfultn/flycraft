@@ -62,6 +62,22 @@ flycraft-client --map DefeatMarines --mode watch
 Open http://localhost:8766 to watch the brain while it plays. Watch mode shows the game at
 normal speed; train mode runs minimized and as fast as the brain allows.
 
+### Play the fly
+
+`Skirmish` puts your 4 marines against the fly's 9 zerglings, in real time, first to 3
+rounds ([M6 spec](docs/superpowers/specs/2026-10-08-flycraft-m6-skirmish.md)). `flycraft-maps`
+builds it with DefeatMarines. Start the brain, then your side, then the fly, each in its own
+terminal:
+
+```
+flycraft brain --calibration docs/m1/calibration.json   # where the GPU is
+flycraft-match --name You                              # SC2 opens and waits for the fly
+flycraft-client --map Skirmish --join 14380            # the fly joins, its SC2 minimized
+```
+
+Your marines start selected: right-click a zergling to shoot it. The match ends by itself,
+and `flycraft-match` prints the result.
+
 `--set KEY=VALUE` overrides any config value. Exit codes: 0 success, 1 an error you can act
 on (the message says what), 2 a bad config, 3 `m1-report` ran but no rung passed G1.
 

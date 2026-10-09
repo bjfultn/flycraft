@@ -1,0 +1,8 @@
+REAL WIRING, rung vpn, w_scale 0.84375, on cuda: 41 of 97 MBONs in PAM compartments, 32,626 of 61,210 plastic edges
+G2 blank: z turn +0.00, z fwd +0.00
+G2 -60: z turn +0.54, z fwd -0.79
+G2 0: z turn -2.03, z fwd +0.00
+G2 60: z turn -0.31, z fwd -1.00
+G2: 32,626 edges at x0.5: z turn response -0.58, z forward -1.15 -> fail
+wrote runs/g2/g2.json
+exit 3

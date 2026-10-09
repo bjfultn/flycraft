@@ -1,9 +1,10 @@
-"""The `flycraft` command: prep-data, wiring, m1-report, brain and summarize (spec section 12).
+"""The `flycraft` command: prep-data, wiring, m1-report, g2, brain and summarize (spec section 12).
 
 Errors a user can act on (no cache, a bad download, a missing cell type, a port in use, an
 unreadable record, a calibration for other wiring, an unopenable --trace file) print one line
-and exit 1; a bad config exits 2; `m1-report` exits 3 if no rung passed G1. Ctrl+C exits 130
-with one line, not a traceback. Anything else is a bug and keeps its traceback.
+and exit 1; a bad config exits 2; `m1-report` exits 3 if no rung passed G1, and `g2` exits 3 if
+G2 failed. Ctrl+C exits 130 with one line, not a traceback. Anything else is a bug and keeps
+its traceback.
 """
 
 from __future__ import annotations
@@ -58,6 +59,13 @@ def _parser() -> argparse.ArgumentParser:
   m1.add_argument("--out", default="runs/m1", help="output directory (default runs/m1)")
   m1.add_argument("--device", choices=("auto", "cpu", "cuda"),
                   help="shorthand for --set sim.device=...")
+  g2 = add("g2", "Gate G2: halve the PAM-compartment KC to MBON weights and rerun the G1 "
+           "stimuli on the calibrated brain.")
+  g2.add_argument("--calibration", default=DEFAULT_CALIBRATION,
+                  help=f"the M1 calibration for this wiring (default {DEFAULT_CALIBRATION})")
+  g2.add_argument("--out", default="runs/g2", help="output directory (default runs/g2)")
+  g2.add_argument("--device", choices=("auto", "cpu", "cuda"),
+                  help="shorthand for --set sim.device=...")
   br = add("brain", "Serve a brain to the game client on 127.0.0.1: the connectome brain, "
            "with its view, or a stub.")
   br.add_argument("--stub", choices=sorted(STUBS),
@@ -97,6 +105,12 @@ def _m1_report(cfg, out: Path) -> int:
   from flycraft.m1report import run_m1  # imports torch
 
   return run_m1(cfg, out)
+
+
+def _g2(cfg, args) -> int:
+  from flycraft.g2report import run_g2_report  # imports torch
+
+  return run_g2_report(cfg, args.calibration, Path(args.out))
 
 
 def _log_brain(text: str) -> None:
@@ -181,6 +195,7 @@ def summarize(rows: list[dict]) -> list[dict]:
     out.append({
       "pilot": pilot, "phase": phase, "n": len(kept), "discarded": len(group) - len(kept),
       "runaways": sum(r["aborted"] == "runaway" for r in kept),
+      "stalls": sum(r["aborted"] == "stalled" for r in kept),
       "mean": statistics.fmean(scores) if scores else None,
       "sd": statistics.stdev(scores) if len(scores) > 1 else None,
       "min": min(scores, default=None), "max": max(scores, default=None),
@@ -194,11 +209,11 @@ def _summarize(paths: list[Path]) -> int:
     return "-" if v is None else format(v, fmt)
 
   print(f"{'pilot':<18}{'phase':<7}{'n':>4}{'mean':>7}{'sd':>6}{'min':>5}{'max':>5}"
-        f"{'runaway':>8}{'discard':>8}{'fps':>8}{'late':>7}")
+        f"{'runaway':>8}{'stall':>6}{'discard':>8}{'fps':>8}{'late':>7}")
   for s in summarize(_read_records(paths)):
     print(f"{s['pilot']:<18}{s['phase']:<7}{s['n']:>4}{num(s['mean'], '.2f'):>7}"
           f"{num(s['sd'], '.2f'):>6}{num(s['min'], '.0f'):>5}{num(s['max'], '.0f'):>5}"
-          f"{s['runaways']:>8}{s['discarded']:>8}{num(s['fps'], '.1f'):>8}"
+          f"{s['runaways']:>8}{s['stalls']:>6}{s['discarded']:>8}{num(s['fps'], '.1f'):>8}"
           f"{num(s['late'], '.1%'):>7}")
   return 0
 
@@ -226,6 +241,8 @@ def main(argv: list[str] | None = None) -> int:
       return _wiring(cfg)
     if args.cmd == "brain":
       return _brain(cfg, args)
+    if args.cmd == "g2":
+      return _g2(cfg, args)
     return _m1_report(cfg, Path(args.out))
   except KeyboardInterrupt:
     print(f"flycraft {args.cmd}: interrupted", file=sys.stderr)

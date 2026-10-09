@@ -90,9 +90,10 @@ def disk(az_deg: float, radius_deg: float, polarity: str, el_deg: float = 0.0) -
 
 
 def disks(spots, polarity: str) -> np.ndarray:
-  """Background with a disk per (az_deg, radius_deg) spot on the horizon. Where disks overlap
-  a pixel takes the largest cover, so one spot draws exactly disk() and none draws blank()."""
+  """Background with a disk per spot: (az_deg, radius_deg) on the horizon, or (az_deg,
+  radius_deg, el_deg). Where disks overlap a pixel takes the largest cover, so one spot draws
+  exactly disk() and none draws blank()."""
   cover = np.zeros((EYE_ROWS, EYE_COLS))
-  for az, r in spots:
-    cover = np.maximum(cover, _cover(az, r))
+  for spot in spots:
+    cover = np.maximum(cover, _cover(*spot))
   return _paint(cover, polarity)

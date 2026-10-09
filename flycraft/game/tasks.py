@@ -10,6 +10,8 @@
   so new marines are selected as they arrive (game/sc2_compat.py).
 - DefeatMarines (M3c, a demo): DefeatRoaches with zerglings against marines, a map flycraft
   builds from DefeatRoaches (game/mapbuild.py). The same task, played as Zerg.
+- Skirmish (M6, a demo): the DefeatMarines task, played against a person's marines in a match
+  that flycraft-match hosts (game/match.py), so the client joins it (--join).
 Each task also names pysc2's scripted agent for it, the baseline, and the race it plays.
 """
 
@@ -50,6 +52,7 @@ class Task:
   scripted: Callable[[np.ndarray, int], tuple[float, float] | None]  # the baseline's aim
   cone_deg: float = 0.0  # attack a target this near the heading; 0: never, only step
   race: str = "terran"  # the player's race, as pysc2 names it
+  versus: bool = False  # a match against a person, joined over LAN, not a minigame
 
   def targets(self, layer: np.ndarray) -> list[Blob]:
     if self.split:
@@ -77,8 +80,11 @@ class Task:
 TASKS = {t.map: t for t in (
   Task("MoveToBeacon", render.NEUTRAL, "move", split=False, scripted=_centroid),
   Task("DefeatRoaches", render.ENEMY, "attack", split=True, scripted=_lowest, cone_deg=30.0),
-  Task("DefeatMarines", render.ENEMY, "attack", split=True, scripted=_lowest, cone_deg=30.0,
-       race="zerg"))}
+  # Zerglings only attack-move: they surround and fight what they meet, and doubled the
+  # oracle's score over targeting one marine (docs/m6/README.md, Zergling orders).
+  Task("DefeatMarines", render.ENEMY, "attack", split=True, scripted=_lowest, race="zerg"),
+  Task("Skirmish", render.ENEMY, "attack", split=True, scripted=_lowest, race="zerg",
+       versus=True))}
 
 
 def nearest(xy, targets: list[Blob]) -> Blob | None:

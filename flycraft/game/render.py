@@ -1,9 +1,12 @@
 """What the fly sees (spec section 7.2): the eye image, rendered from the screen layers.
 
 Positions are (x, y) screen pixels, x right and y down; the player_relative layer is indexed
-[y, x]. Each target (the beacon, or each roach) is drawn as a disk at its egocentric azimuth
-with angular radius atan(r / d), so an approaching target looms. Nothing here knows about
-neurons.
+[y, x]. The walking fly (render_eye) sees each target (the beacon, or each roach) as a disk at
+its egocentric azimuth with angular radius atan(r / d), so an approaching target looms. The
+flying fly (map_eye) looks down on the map instead, so a target's distance is how far it is
+from the horizon. The compass fly (compass_eye) also looks down on the map, but north up and
+independent of heading: east and north are a target's screen-pixel offset from the squad,
+scaled straight into azimuth and elevation. Nothing here knows about neurons.
 """
 
 from __future__ import annotations
@@ -21,6 +24,9 @@ NEUTRAL = 3
 ENEMY = 4
 MIN_RADIUS_DEG = 2.0
 MAX_RADIUS_DEG = 60.0
+MAP_DOT_DEG = 10.0  # a target's least radius in the map view: the calibration's disk
+MAP_HEIGHT_PX = 10.0  # the flying fly's height over the map: a target this far off is 45 deg up
+COMPASS_DEG_PER_PX = 60.0 / 84  # a screen width, 84 px, spans 60 degrees (as in fly1)
 
 
 @dataclass(frozen=True)
@@ -102,4 +108,41 @@ def render_eye(marine_xy, targets: Blob | Sequence[Blob] | None, heading_deg: fl
   for t in targets:
     az, d = egocentric(marine_xy, t.xy, heading_deg)
     spots.append((az, angular_radius(t.radius_px, d)))
+  return eye.disks(spots, polarity)
+
+
+def map_eye(marine_xy, targets: Sequence[Blob], heading_deg: float, polarity: str,
+            height_px: float = MAP_HEIGHT_PX) -> np.ndarray:
+  """The flying fly's eye (M6, docs/m6/README.md, "The flying fly"): the map as a fly height_px
+  over it sees it. Each target is at its azimuth from the heading, as the walking fly sees it,
+  and atan(height_px / d) from the horizon, so a far target is near the horizon and a close one
+  high up. That is the ground's view drawn above the horizon instead of below it, since this
+  brain hardly answers anything below it (docs/m6/README.md, "All the way round, and up and
+  down"). Each target is a disk at least MAP_DOT_DEG in radius, bigger when close enough to
+  look it. The background alone when the squad or every target is off screen."""
+  if marine_xy is None or not targets:
+    return eye.blank(polarity)
+  spots = []
+  for t in targets:
+    az, d = egocentric(marine_xy, t.xy, heading_deg)
+    r = max(MAP_DOT_DEG, angular_radius(t.radius_px, math.hypot(d, height_px)))
+    spots.append((az, r, math.degrees(math.atan2(height_px, d))))
+  return eye.disks(spots, polarity)
+
+
+def compass_eye(marine_xy, targets: Sequence[Blob], polarity: str) -> np.ndarray:
+  """The compass fly's eye (M6, docs/m6/README.md, "The compass fly"): north up, the squad at
+  the centre, independent of heading. Each target is at its screen-pixel offset (dx, dy) from
+  the squad, east and north scaled straight into azimuth and elevation by COMPASS_DEG_PER_PX
+  (a screen width, 84 px, spans 60 degrees). Each target is a disk at least MAP_DOT_DEG in
+  radius, bigger when close enough to look it. The background alone when the squad or every
+  target is off screen."""
+  if marine_xy is None or not targets:
+    return eye.blank(polarity)
+  spots = []
+  for t in targets:
+    dx, dy = t.xy[0] - marine_xy[0], t.xy[1] - marine_xy[1]
+    az, el = dx * COMPASS_DEG_PER_PX, -dy * COMPASS_DEG_PER_PX
+    r = max(MAP_DOT_DEG, t.radius_px * COMPASS_DEG_PER_PX)
+    spots.append((az, r, el))
   return eye.disks(spots, polarity)

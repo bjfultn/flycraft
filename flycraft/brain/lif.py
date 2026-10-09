@@ -90,6 +90,20 @@ class LIF:
         warnings.filterwarnings("ignore", message="Sparse CSR tensor support is in beta")
         self.W = coo.to_sparse_csr()
 
+  def edge_weights(self, edges) -> torch.Tensor:
+    """Unscaled weights (mV) of these edges, indexed as the edges given to the constructor."""
+    return self.base[self.slot_of_edge[torch.as_tensor(np.asarray(edges))].to(self.dev)]
+
+  def set_edge_weights(self, edges, weight_mV) -> None:
+    """Overwrite these edges' unscaled weights in place; the global scale still applies."""
+    slots = self.slot_of_edge[torch.as_tensor(np.asarray(edges))].to(self.dev)
+    w = torch.as_tensor(weight_mV, dtype=self.dtype, device=self.dev)
+    self.base[slots] = w
+    if self.mode == "spmv":
+      self.set_weight_scale(self.scale)  # rebuilds the matrix
+    else:
+      self.val[slots] = self.base[slots] * self.scale
+
   def set_rfc_zero(self, idx) -> None:
     """Neurons in idx get no refractory period (Shiu: Poisson input targets)."""
     self.rfc.fill_(self.rfc_steps)

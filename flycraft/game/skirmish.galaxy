@@ -1,0 +1,231 @@
+//==================================================================================================
+// flycraft Skirmish (spec M6 section 3), MIT licensed, part of flycraft.
+//
+// A person (player 1, 4 marines) against the fly (player 2, 9 zerglings), in rounds. A round
+// ends when one squad is dead, or as a draw after 120 seconds of game time. First to 3 round
+// wins takes the match; after 7 rounds the side with more wins takes it, or it is a tie.
+// GameOver then ends the game for both players, so both clients see the result.
+//
+// The arena's regions are the DefeatRoaches map's: 1 the playable area, 4 and 5 the starts.
+//==================================================================================================
+include "TriggerLibs/NativeLib"
+
+const int gv_person = 1;
+const int gv_fly = 2;
+const int gv_toWin = 3;
+const int gv_maxRounds = 7;
+const fixed gv_roundSeconds = 120.0;
+const fixed gv_pauseSeconds = 3.0;  // about 2 s at Faster
+const int gv_marineCount = 4;
+const int gv_zerglingCount = 9;
+
+unitgroup gv_squad1;
+unitgroup gv_squad2;
+int[3] gv_wins;
+int gv_round;
+bool gv_live;
+timer gv_clock;
+int gv_scoreLine;
+
+trigger gt_Start;
+trigger gt_Died;
+trigger gt_Clock;
+
+void gf_Say (string lv_text) {
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, StringToText(lv_text));
+}
+
+string gf_Score () {
+    return "Marines " + IntToString(gv_wins[gv_person]) + ", fly " + IntToString(gv_wins[gv_fly]);
+}
+
+// Units in a block of the given columns, centered on the point, all added to the group.
+void gf_Spawn (string lv_type, int lv_player, int lv_count, int lv_columns, point lv_at,
+            unitgroup lv_into) {
+    int lv_i;
+    fixed lv_x;
+    fixed lv_y;
+
+    lv_i = 0;
+    while (lv_i < lv_count) {
+        lv_x = IntToFixed(ModI(lv_i, lv_columns)) - IntToFixed(lv_columns - 1) / 2.0;
+        lv_y = IntToFixed(lv_i / lv_columns) - IntToFixed((lv_count - 1) / lv_columns) / 2.0;
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_type, 0, lv_player,
+                                                PointWithOffset(lv_at, lv_x, lv_y));
+        UnitGroupAdd(lv_into, UnitLastCreated());
+        lv_i += 1;
+    }
+}
+
+void gf_Clear (unitgroup lv_group) {
+    UnitGroupLoopBegin(lv_group);
+    for ( ; !UnitGroupLoopDone() ; UnitGroupLoopStep() ) {
+        UnitRemove(UnitGroupLoopCurrent());
+    }
+    UnitGroupLoopEnd();
+}
+
+// Fresh squads at the two starts, sides at random, frozen for a moment, then the round runs.
+void gf_StartRound () {
+    point lv_a;
+    point lv_b;
+
+    gf_Clear(gv_squad1);
+    gf_Clear(gv_squad2);
+    gv_squad1 = UnitGroupEmpty();
+    gv_squad2 = UnitGroupEmpty();
+    if (RandomInt(1, 2) == 1) {
+        lv_a = RegionRandomPoint(RegionFromId(4));
+        lv_b = RegionRandomPoint(RegionFromId(5));
+    }
+    else {
+        lv_a = RegionRandomPoint(RegionFromId(5));
+        lv_b = RegionRandomPoint(RegionFromId(4));
+    }
+    gf_Spawn("Marine", gv_person, gv_marineCount, 2, lv_a, gv_squad1);
+    gf_Spawn("Zergling", gv_fly, gv_zerglingCount, 3, lv_b, gv_squad2);
+    UnitPauseAll(true);
+    UnitGroupSelect(gv_squad1, gv_person, true);
+    UnitGroupSelect(gv_squad2, gv_fly, true);
+    gv_round += 1;
+    gf_Say("Round " + IntToString(gv_round) + " (" + gf_Score() + ")");
+    Wait(gv_pauseSeconds, c_timeGame);
+    UIClearMessages(PlayerGroupAll(), c_messageAreaDirective);
+    TimerStart(gv_clock, gv_roundSeconds, false, c_timeGame);
+    UnitPauseAll(false);
+    gv_live = true;
+}
+
+void gf_EndMatch () {
+    int lv_p1;
+    int lv_p2;
+
+    if (gv_wins[gv_person] > gv_wins[gv_fly]) {
+        gf_Say("The marines win the match: " + gf_Score());
+        lv_p1 = c_gameOverVictory;
+        lv_p2 = c_gameOverDefeat;
+    }
+    else {
+        if (gv_wins[gv_fly] > gv_wins[gv_person]) {
+            gf_Say("The fly wins the match: " + gf_Score());
+            lv_p1 = c_gameOverDefeat;
+            lv_p2 = c_gameOverVictory;
+        }
+        else {
+            gf_Say("The match is a tie: " + gf_Score());
+            lv_p1 = c_gameOverTie;
+            lv_p2 = c_gameOverTie;
+        }
+    }
+    Wait(gv_pauseSeconds, c_timeGame);
+    GameOver(gv_person, lv_p1, true, true);
+    GameOver(gv_fly, lv_p2, true, true);
+}
+
+// lv_winner is the player who took the round, or 0 for a draw.
+void gf_EndRound (int lv_winner) {
+    gv_live = false;
+    UnitPauseAll(true);
+    if (lv_winner == gv_person) {
+        gf_Say("The marines take round " + IntToString(gv_round));
+    }
+    else {
+        if (lv_winner == gv_fly) {
+            gf_Say("The fly takes round " + IntToString(gv_round));
+        }
+        else {
+            gf_Say("Round " + IntToString(gv_round) + " is a draw");
+        }
+    }
+    if (lv_winner != 0) {
+        gv_wins[lv_winner] += 1;
+        PlayerModifyPropertyInt(lv_winner, c_playerPropCurriculumScore, c_playerPropOperSetTo,
+                                gv_wins[lv_winner]);
+    }
+    ObjectiveSetName(gv_scoreLine, StringToText(gf_Score()));
+    Wait(gv_pauseSeconds, c_timeGame);
+    if (gv_wins[gv_person] >= gv_toWin || gv_wins[gv_fly] >= gv_toWin
+        || gv_round >= gv_maxRounds) {
+        gf_EndMatch();
+        return;
+    }
+    gf_StartRound();
+}
+
+//--------------------------------------------------------------------------------------------------
+bool gt_Start_Func (bool testConds, bool runActions) {
+    int lv_p;
+
+    if (!runActions) {
+        return true;
+    }
+    RegionPlayableMapSet(RegionFromId(1));
+    lv_p = gv_person;
+    while (lv_p <= gv_fly) {
+        CameraApplyInfo(lv_p, CameraInfoDefault(), 0.0, -1, 10.0, false);
+        CameraPan(lv_p, PointWithOffsetPolar(RegionGetCenter(RegionFromId(1)), 3.0, 270.0), 0.0,
+                  -1, 10.0, false);
+        CameraLockInput(lv_p, true);
+        VisRevealArea(lv_p, RegionFromId(1), 0.0, false);
+        PlayerModifyPropertyInt(lv_p, c_playerPropCurriculumScore, c_playerPropOperSetTo, 0);
+        lv_p += 1;
+    }
+    ObjectiveCreate(StringToText(gf_Score()), StringToText(""), c_objectiveStateActive, true);
+    gv_scoreLine = ObjectiveLastCreated();
+    TimerWindowCreate(gv_clock, StringToText("Round time"), true, false);
+    gf_StartRound();
+    return true;
+}
+
+// A death that leaves a squad empty ends the round.
+bool gt_Died_Func (bool testConds, bool runActions) {
+    int lv_left1;
+    int lv_left2;
+
+    if (!runActions || !gv_live) {
+        return true;
+    }
+    lv_left1 = UnitGroupCount(gv_squad1, c_unitCountAlive);
+    lv_left2 = UnitGroupCount(gv_squad2, c_unitCountAlive);
+    if (lv_left1 > 0 && lv_left2 > 0) {
+        return true;
+    }
+    if (lv_left1 == 0 && lv_left2 == 0) {
+        gf_EndRound(0);
+    }
+    else {
+        if (lv_left1 == 0) {
+            gf_EndRound(gv_fly);
+        }
+        else {
+            gf_EndRound(gv_person);
+        }
+    }
+    return true;
+}
+
+bool gt_Clock_Func (bool testConds, bool runActions) {
+    if (!runActions || !gv_live) {
+        return true;
+    }
+    gf_EndRound(0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void InitMap () {
+    libNtve_InitLib();
+    gv_squad1 = UnitGroupEmpty();
+    gv_squad2 = UnitGroupEmpty();
+    gv_clock = TimerCreate();
+    gv_round = 0;
+    gv_live = false;
+
+    gt_Start = TriggerCreate("gt_Start_Func");
+    TriggerAddEventMapInit(gt_Start);
+    gt_Died = TriggerCreate("gt_Died_Func");
+    TriggerAddEventUnitDied(gt_Died, null);
+    gt_Clock = TriggerCreate("gt_Clock_Func");
+    TriggerAddEventTimer(gt_Clock, gv_clock);
+}

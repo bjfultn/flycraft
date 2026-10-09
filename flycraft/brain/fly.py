@@ -37,8 +37,9 @@ FRAME_MS = 10.0  # brain time per view frame (spec section 11)
 RUNAWAY_HZ = 50.0
 RUNAWAY_WINDOW_MS = 1000.0
 # Config keys a calibration does not depend on: where the data lives, which device runs the
-# sim, and how M1 searched (the result is what counts).
-UNCHECKED = ("connectome.data_dir", "sim.device", "calibration.")
+# sim, how M1 searched (the result is what counts), and the compass fly's pitch readout, which
+# is set from the grid sweep (docs/m6/README.md, "The compass fly"), not by M1.
+UNCHECKED = ("connectome.data_dir", "sim.device", "calibration.", "decoder.pitch_")
 
 
 class CalibrationError(ValueError):
@@ -196,11 +197,13 @@ class Fly(Controller):
       if view is not None and view.has_clients:
         turn, fwd = dec.signals()
         dtheta, speed = dec.command()
+        pitch, pitch_raw = dec.pitch()
         view.publish({
           "t": self.t_ms, "episode": self.episode, "step": self.step_no, "score": self.score,
           "reward": reward if k == 0 else 0.0, "turn": turn, "fwd": fwd, "dtheta": dtheta,
-          "speed": speed, "rates": dec.rates(), "pop_hz": pop}, counts, eye)
+          "speed": speed, "pitch": pitch, "rates": dec.rates(), "pop_hz": pop}, counts, eye)
     self.step_no += 1
     dtheta, speed = dec.command()
     turn, fwd = dec.signals()
-    return Command(dtheta, speed, turn, fwd)
+    pitch, pitch_raw = dec.pitch()
+    return Command(dtheta, speed, turn, fwd, pitch, pitch_raw)

@@ -1,0 +1,28 @@
+REAL WIRING, rung vpn, w_scale 0.84375, on cuda: 50 PFL cells, 7,613 edges out; LC10a L 135, LC10a R 140, MeTu 1008, TuBu 156, ER 282, EPG 50, Delta7 42, PEN 42, PFN 456, hDelta 189, FC2 92, PFL1 14, PFL2 12, PFL3 L 12, PFL3 R 12, DNa02 L 1, DNa02 R 1
+base -60: PFL3 L 2.01, PFL3 R 2.08, EPG 53.00, DNa02 L 22.53, DNa02 R 0.00
+base 0: PFL3 L 1.65, PFL3 R 1.38, EPG 46.56, DNa02 L 0.80, DNa02 R 0.07
+base 60: PFL3 L 1.33, PFL3 R 1.21, EPG 47.27, DNa02 L 0.80, DNa02 R 9.33
+pfl_out0 -60: PFL3 L 1.20, PFL3 R 1.14, EPG 53.20, DNa02 L 16.13, DNa02 R 0.00
+pfl_out0 0: PFL3 L 1.49, PFL3 R 1.33, EPG 38.98, DNa02 L 1.00, DNa02 R 0.07
+pfl_out0 60: PFL3 L 2.21, PFL3 R 1.97, EPG 51.29, DNa02 L 1.53, DNa02 R 9.13
+pfl3_L -60: PFL3 L 113.50, PFL3 R 1.19, EPG 53.25, DNa02 L 0.00, DNa02 R 78.07
+pfl3_L 0: PFL3 L 112.84, PFL3 R 0.78, EPG 50.59, DNa02 L 0.00, DNa02 R 64.93
+pfl3_L 60: PFL3 L 113.69, PFL3 R 0.79, EPG 52.96, DNa02 L 0.00, DNa02 R 101.80
+pfl3_R -60: PFL3 L 0.93, PFL3 R 112.88, EPG 53.48, DNa02 L 117.13, DNa02 R 0.00
+pfl3_R 0: PFL3 L 0.98, PFL3 R 113.81, EPG 53.34, DNa02 L 80.67, DNa02 R 0.00
+pfl3_R 60: PFL3 L 1.11, PFL3 R 112.88, EPG 53.56, DNa02 L 95.00, DNa02 R 0.00
+pfl3_L_low -60: PFL3 L 20.29, PFL3 R 1.17, EPG 49.04, DNa02 L 7.13, DNa02 R 1.93
+pfl3_L_low 0: PFL3 L 20.67, PFL3 R 1.44, EPG 43.78, DNa02 L 0.13, DNa02 R 2.53
+pfl3_L_low 60: PFL3 L 21.63, PFL3 R 2.21, EPG 52.99, DNa02 L 0.00, DNa02 R 31.53
+pfl3_R_low -60: PFL3 L 2.57, PFL3 R 21.00, EPG 52.90, DNa02 L 48.47, DNa02 R 0.00
+pfl3_R_low 0: PFL3 L 1.77, PFL3 R 21.03, EPG 46.28, DNa02 L 5.73, DNa02 R 0.00
+pfl3_R_low 60: PFL3 L 0.90, PFL3 R 19.68, EPG 46.83, DNa02 L 6.80, DNa02 R 2.87
+B1 (PFL3 >= 1 Hz at base): 1.61 Hz, pass
+pfl_out0: turn +1.76 Hz, z 0.69
+pfl3_L: turn +86.51 Hz, z 34.46
+pfl3_R: turn -92.69 Hz, z -40.86
+pfl3_L_low: turn +14.49 Hz, z 5.83
+pfl3_R_low: turn -14.47 Hz, z -6.73
+drive took: PFL3 L +111.7 Hz, PFL3 R +111.6 Hz (needs >= 10)
+B2 (one-sided PFL3 drive steers both ways): pass
+wrote runs/cx_scan/cx_scan.json in 3377.3 s

@@ -8,7 +8,10 @@
 - SC2Game is the client's Game: one SC2 process for the whole run. pysc2 reads absl flags,
   which only absl's app.run parses; the client has its own argparse, so SC2Game takes the
   flags' defaults.
-- DefeatMarines is registered with pysc2 here, under Maps/flycraft; flycraft-maps builds it.
+- SC2LanGame is the fly's side of a Skirmish match (spec M6), which flycraft-match hosts,
+  through pysc2's LanSC2Env, mended here for pysc2 4.0.
+- DefeatMarines and Skirmish are registered with pysc2 here, under Maps/flycraft;
+  flycraft-maps builds them.
 """
 
 from __future__ import annotations
@@ -25,9 +28,10 @@ os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 import numpy as np
 from absl import flags
 from pysc2 import maps, run_configs
-from pysc2.env import sc2_env
+from pysc2.env import lan_sc2_env, sc2_env
 from pysc2.lib import actions, features, remote_controller, sc_process
 from pysc2.lib import protocol as sc2_protocol
+from s2clientprotocol import sc2api_pb2 as sc_pb
 
 from flycraft.game.body import Action
 from flycraft.game.client import WINDOW, Frame, GameError, SetupError
@@ -44,6 +48,8 @@ SC2_ERRORS = (sc_process.SC2LaunchError, sc2_protocol.ConnectionError, sc2_proto
 # game loop"), so in play it is SC2 failing too.
 PLAY_ERRORS = (*SC2_ERRORS, ValueError)
 BUILT = "flycraft"  # the Maps directory of the maps flycraft-maps builds
+LAN_HOST = "127.0.0.1"  # a match is played on one PC
+FLY = 2  # the fly's player number in a match; the person is 1
 
 
 class DefeatMarines(maps.lib.Map):
@@ -53,6 +59,17 @@ class DefeatMarines(maps.lib.Map):
   filename = "DefeatMarines"
   players = 1
   score_index = 0
+  game_steps_per_episode = 0
+  step_mul = 8
+
+
+class Skirmish(maps.lib.Map):
+  """A person's 4 marines against the fly's 9 zerglings, in rounds (spec M6). Played over
+  LAN, where pysc2 scores a game by its outcome, not the map's score."""
+  directory = BUILT
+  filename = "Skirmish"
+  players = 2
+  score_index = -1
   game_steps_per_episode = 0
   step_mul = 8
 
@@ -83,7 +100,9 @@ def all_selected(obs) -> bool:
   return selected >= int(obs["player"][features.Player.army_count])
 
 
-def to_frame(ts) -> Frame:
+def to_frame(ts, match: bool = False) -> Frame:
+  """The Frame for a TimeStep. In a match, the last step's reward is the outcome (1 a win,
+  -1 a loss, 0 a tie): pysc2 scores a LAN game that way."""
   obs = ts.observation
   return Frame(
     player_relative=np.asarray(obs["feature_screen"][PLAYER_RELATIVE]),
@@ -92,7 +111,8 @@ def to_frame(ts) -> Frame:
     last=bool(ts.last()),
     loop=int(obs["game_loop"][0]),
     can_move=F.Move_screen.id in {int(a) for a in obs["available_actions"]}
-    and all_selected(obs))
+    and all_selected(obs),
+    outcome=int(ts.reward) if match and ts.last() else None)
 
 
 def launch_kwargs(kwargs: dict, minimized: bool, startupinfo_cls=None) -> dict:
@@ -165,8 +185,15 @@ def check_built(map_name: str) -> None:
                      f'flycraft-maps --sc2path "{data_dir}"')
 
 
+def _interface(screen: int) -> features.AgentInterfaceFormat:
+  return features.AgentInterfaceFormat(
+    feature_dimensions=features.Dimensions(screen=screen, minimap=MINIMAP))
+
+
 class SC2Game:
   """The client's Game on real SC2 (spec 7.5): step_mul 1 here, the client passes its own."""
+
+  match = False  # a LAN match, scored by its outcome
 
   def __init__(self, map_name: str, screen: int, mode: str, run_seed: int,
                realtime: bool = False, window: tuple[int, int] = WINDOW, log=_log,
@@ -178,15 +205,18 @@ class SC2Game:
       check_built(map_name)
       self.env = sc2_env.SC2Env(
         map_name=map_name, players=[sc2_env.Agent(sc2_env.Race[race])],
-        agent_interface_format=features.AgentInterfaceFormat(
-          feature_dimensions=features.Dimensions(screen=screen, minimap=MINIMAP)),
-        step_mul=1, realtime=realtime, random_seed=run_seed, visualize=False)
+        agent_interface_format=_interface(screen), step_mul=1, realtime=realtime,
+        random_seed=run_seed, visualize=False)
     except SC2_ERRORS as e:
       raise GameError(f"SC2 did not start: {e}") from e
     except (maps.lib.NoMapError, ValueError) as e:  # a bad map name or setting: fatal
       raise SetupError(f"SC2 cannot start as configured: {e}") from e
     self._available = ()
-    if minimized and sys.platform == "win32":
+    if minimized:
+      self._minimize(log)
+
+  def _minimize(self, log) -> None:
+    if sys.platform == "win32":
       n = minimize_windows(self.env._sc2_procs[0].pid)
       log(f"SC2 window: {n} minimized by pid" if n
           else "SC2 window: none found to minimize, so it may be showing")
@@ -197,7 +227,8 @@ class SC2Game:
     except PLAY_ERRORS as e:
       raise GameError(f"SC2 failed: {e}") from e
     self._available = ts.observation["available_actions"]
-    return to_frame(ts)
+    self.player = int(ts.observation["player"][features.Player.player_id])
+    return to_frame(ts, self.match)
 
   def reset(self) -> Frame:
     return self._take(self.env.reset)
@@ -211,3 +242,50 @@ class SC2Game:
       self.env.close()
     except Exception as e:  # best effort: the run is ending or relaunching anyway
       _log(f"SC2 did not close cleanly: {e}")
+
+
+class _LanEnv(lan_sc2_env.LanSC2Env):
+  """pysc2 4.0's LanSC2Env, mended: it calls SC2Env's interface helper by an argument name the
+  helper no longer has, and SC2Env's reset reads the players' races, which only SC2Env's own
+  launch records."""
+
+  @staticmethod
+  def _get_interface(agent_interface_format, require_raw):
+    return sc2_env.SC2Env._get_interface(agent_interface_format, require_raw)
+
+  def _launch_remote(self, *args):
+    super()._launch_remote(*args)
+    self._requested_races = {p.player_id: p.race_requested
+                             for p in self._game_info[0].player_info
+                             if p.type != sc_pb.Observer}
+
+
+class SC2LanGame(SC2Game):
+  """The fly's side of a Skirmish match (spec M6): LanSC2Env joins the game that
+  flycraft-match hosts on port, as player 2, in real time, with SC2 minimized. A match is one
+  episode; LanSC2Env cannot restart, so the client plays it once."""
+
+  match = True
+
+  def __init__(self, port: int, screen: int, window: tuple[int, int] = WINDOW, log=_log,
+               race: str = "zerg"):
+    use_flag_defaults()
+    install_launch_shim(True, window)
+    log(f"joining the match on port {port}; flycraft-match must be waiting there")
+    try:
+      self.env = _LanEnv(
+        host=LAN_HOST, config_port=port, race=sc2_env.Race[race], name="fly",
+        agent_interface_format=_interface(screen), step_mul=1, realtime=True)
+    except SC2_ERRORS as e:
+      raise GameError(f"could not join the match on port {port}: {e}") from e
+    except ValueError as e:  # an SC2 version this pysc2 does not know, say
+      raise SetupError(f"cannot join the match as configured: {e}") from e
+    self._available = ()
+    self._minimize(log)
+
+  def reset(self) -> Frame:
+    frame = super().reset()
+    if self.player != FLY:
+      raise SetupError(f"the fly joined the match as player {self.player}, not {FLY}: the "
+                       "person's flycraft-match joins first, and a match takes one fly")
+    return frame

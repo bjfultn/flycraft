@@ -63,6 +63,12 @@ class DecoderConfig:
   turn_pos: tuple[tuple[str, str], ...] = (("DNa02", "R"),)
   turn_neg: tuple[tuple[str, str], ...] = (("DNa02", "L"),)
   fwd: tuple[tuple[str, str], ...] = (("DNp09", "L"), ("DNp09", "R"))
+  # Up/down pair found by the grid sweep (docs/m6/README.md, "Off to the sides: the grid"):
+  # DNbe007 fires more above the horizon, DNge043 more below.
+  pitch_pos: tuple[tuple[str, str], ...] = (("DNbe007", "L"), ("DNbe007", "R"))
+  pitch_neg: tuple[tuple[str, str], ...] = (("DNge043", "L"), ("DNge043", "R"))
+  pitch_bias_hz: float = 17.1  # the grid's mean raw pitch signal at elevation 0
+  pitch_scale_hz: float = 50.0  # about the grid's p95 of |raw - bias|
   aotu019_term: bool = False
   tau_ms: float = 150.0
   s0: float = 0.5
@@ -85,6 +91,7 @@ class CalibrationConfig:
   g1_trial_ms: float = 2000.0
   g1_radius_deg: float = 10.0
   g1_n_se: float = 3.0
+  g2_factor: float = 0.5  # G2 scales the PAM-compartment KC -> MBON weights by this
   ladder: tuple[str, ...] = LADDER_RUNGS
   sample_every_ms: float = 50.0
   sample_warmup_ms: float = 500.0
@@ -258,6 +265,8 @@ def _check_value_ranges(cfg: Config) -> None:
     raise ConfigError(f"decoder.tau_ms must be > 0, got {cfg.decoder.tau_ms!r}")
   if not cfg.decoder.gain_floor_hz > 0:
     raise ConfigError(f"decoder.gain_floor_hz must be > 0, got {cfg.decoder.gain_floor_hz!r}")
+  if not cfg.decoder.pitch_scale_hz > 0:
+    raise ConfigError(f"decoder.pitch_scale_hz must be > 0, got {cfg.decoder.pitch_scale_hz!r}")
   if not 0 < cfg.calibration.g0_precision < 1:
     raise ConfigError(
       f"calibration.g0_precision must be in (0, 1), got {cfg.calibration.g0_precision!r}")
@@ -293,6 +302,8 @@ def validate(cfg: Config) -> None:
     _choice("calibration.ladder entry", rung, LADDER_RUNGS)
   if cal.g1_repeats < 2:
     raise ConfigError("calibration.g1_repeats must be at least 2 (the gate needs a variance)")
+  if not 0 <= cal.g2_factor < 1:
+    raise ConfigError(f"calibration.g2_factor must be in [0, 1), got {cal.g2_factor!r}")
   if not cal.g0_blank_ms >= cfg.sim.dt_ms:
     raise ConfigError(
       f"calibration.g0_blank_ms must be >= sim.dt_ms, got {cal.g0_blank_ms!r} < {cfg.sim.dt_ms!r}")
@@ -314,7 +325,7 @@ def validate(cfg: Config) -> None:
     raise ConfigError(
       f"calibration.g1_azimuths_deg needs at least two distinct values, got "
       f"{list(cal.g1_azimuths_deg)}")
-  for name in ("turn_pos", "turn_neg", "fwd"):
+  for name in ("turn_pos", "turn_neg", "fwd", "pitch_pos", "pitch_neg"):
     if name != "fwd" and not getattr(cfg.decoder, name):
       raise ConfigError(f"decoder.{name} must not be empty")
     for group in getattr(cfg.decoder, name):

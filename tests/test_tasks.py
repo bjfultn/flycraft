@@ -27,7 +27,7 @@ def test_the_tasks():
 def test_defeat_marines_is_defeat_roaches_played_as_zerg():
   marines = TASKS["DefeatMarines"]
   assert marines.race == "zerg"
-  assert dataclasses.replace(marines, map="DefeatRoaches", race="terran") == ROACHES
+  assert dataclasses.replace(marines, map="DefeatRoaches", race="terran", cone_deg=30.0) == ROACHES
 
 
 def test_a_beacon_is_one_target_even_split_in_two():
@@ -85,6 +85,17 @@ def test_the_strike_lands_on_the_roach_even_when_its_middle_does_not():
   assert ROACHES.targets(layer) == [Blob((64.0, 38.0), 48)]
   assert layer[38, 64] != ENEMY
   assert _strike(ROACHES, layer, 0.0) == (64.0, 40.0)  # the patch's pixel nearest its middle
+
+
+@pytest.mark.parametrize("name", ["DefeatMarines", "Skirmish"])
+def test_zerglings_only_attack_move(name):
+  """Marines attack the roach ahead; zerglings never target a marine, they attack-move along
+  the heading and fight what they meet (docs/m6/README.md: 189 against 398 for the oracle)."""
+  zerg = TASKS[name]
+  assert (zerg.race, zerg.order, zerg.cone_deg) == ("zerg", "attack", 0.0)
+  layer = _layer((59, 39, 3, ENEMY))  # dead ahead of heading 0
+  assert _strike(ROACHES, layer, 0.0) == (60.0, 40.0)
+  assert _strike(zerg, layer, 0.0) is None
 
 
 def test_nothing_to_strike():

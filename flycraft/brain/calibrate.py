@@ -146,8 +146,9 @@ def _finite(x: float):
   return x if math.isfinite(x) else ("inf" if x > 0 else "-inf")
 
 
-def _trial(brain: Brain, img: np.ndarray) -> tuple[dict[str, float], list[tuple[float, float]]]:
-  """One trial: rates after the warmup, and decoder samples every sample_every_ms after it."""
+def _run_trial(brain: Brain, img: np.ndarray) -> tuple[np.ndarray, list[tuple[float, float]]]:
+  """One trial: every neuron's rate (Hz) after the warmup, and decoder samples every
+  sample_every_ms after it."""
   c = brain.cfg.calibration
   brain.reset()
   samples, t = [], 0.0
@@ -160,7 +161,12 @@ def _trial(brain: Brain, img: np.ndarray) -> tuple[dict[str, float], list[tuple[
       continue
     samples.append(brain.decoder.raw())
   counts, ms = brain.take_counts()
-  rate = counts / (ms / 1000.0)
+  return counts / (ms / 1000.0), samples
+
+
+def _trial(brain: Brain, img: np.ndarray) -> tuple[dict[str, float], list[tuple[float, float]]]:
+  """One trial: the G1 groups' rates after the warmup, and the decoder samples."""
+  rate, samples = _run_trial(brain, img)
   g, geom = brain.decoder.groups, brain.geom
   rates = {
     "lc10a_L": float(rate[geom.vpn_idx[geom.vpn_side == "L"]].mean()),
@@ -245,3 +251,106 @@ def calibrate_decoder(brain: Brain, g1: G1Result) -> Calibration:
   calib = calibrate(g1.blank, g1.stim, brain.cfg.decoder)
   brain.set_calibration(calib)
   return calib
+
+
+def g1_stimuli(cfg: Config) -> list[tuple[str, np.ndarray]]:
+  """The G1 stimulus set as (condition, eye image): the blank, then a spot at each azimuth."""
+  c, pol = cfg.calibration, cfg.eye.polarity
+  return [("blank", eye.blank(pol))] + [
+    (f"{az:g}", eye.disk(az, c.g1_radius_deg, pol)) for az in c.g1_azimuths_deg]
+
+
+@dataclass
+class Responses:
+  raw: dict[str, np.ndarray]  # condition -> (g1_repeats, 2): per-trial mean decoder (turn, fwd)
+  pop_hz: dict[str, dict[str, float]]  # condition -> population -> mean rate (Hz)
+
+
+def measure_responses(brain: Brain, pops: dict[str, np.ndarray] | None = None) -> Responses:
+  """The G1 stimulus set, g1_repeats trials per condition, read out as the decoder's mean turn
+  and forward signals per trial, plus the mean rate of each named population."""
+  c = brain.cfg.calibration
+  pops = pops or {}
+  raw: dict[str, np.ndarray] = {}
+  pop_hz: dict[str, dict[str, float]] = {}
+  for cond, img in g1_stimuli(brain.cfg):
+    per, sums = [], {k: 0.0 for k in pops}
+    for _ in range(c.g1_repeats):
+      rate, samples = _run_trial(brain, img)
+      per.append(np.asarray(samples, np.float64).reshape(-1, 2).mean(axis=0))
+      for k, idx in pops.items():
+        sums[k] += float(rate[idx].mean()) if len(idx) else 0.0
+    raw[cond] = np.asarray(per)
+    pop_hz[cond] = {k: v / c.g1_repeats for k, v in sums.items()}
+  return Responses(raw, pop_hz)
+
+
+def contrast_z(a_hi, a_lo, b_hi, b_lo) -> float:
+  """z of (mean(a_hi) - mean(a_lo)) - (mean(b_hi) - mean(b_lo)), four independent samples.
+  Zero spread gives 0 for no difference, else +-inf."""
+  groups = [np.asarray(x, np.float64) for x in (a_hi, a_lo, b_hi, b_lo)]
+  m = [float(g.mean()) for g in groups]
+  d = (m[0] - m[1]) - (m[2] - m[3])
+  se = math.sqrt(sum(g.var(ddof=1) / g.size for g in groups))
+  if se == 0:
+    return 0.0 if d == 0 else math.copysign(math.inf, d)
+  return d / se
+
+
+@dataclass
+class G2Result:
+  factor: float
+  n_edges: int
+  z_turn: float  # change in the steering contrast (turn at the rightmost spot minus leftmost)
+  z_fwd: float  # change in the forward signal over every G1 trial
+  by_condition: dict[str, dict[str, float]]  # condition -> {"turn", "fwd"} z; not gating
+  passed: bool
+  before: Responses = field(repr=False)
+  after: Responses = field(repr=False)
+
+  def to_dict(self) -> dict:
+    def means(r: Responses) -> dict:
+      return {cond: {"turn": float(a[:, 0].mean()), "fwd": float(a[:, 1].mean()),
+                     "pop_hz": r.pop_hz[cond]} for cond, a in r.raw.items()}
+    return {"factor": self.factor, "n_edges": self.n_edges, "passed": self.passed,
+            "z_turn": _finite(self.z_turn), "z_fwd": _finite(self.z_fwd),
+            "by_condition": {cond: {k: _finite(v) for k, v in d.items()}
+                             for cond, d in self.by_condition.items()},
+            "before": means(self.before), "after": means(self.after)}
+
+
+def run_g2(brain: Brain, edges: np.ndarray, pops: dict[str, np.ndarray] | None = None,
+           log=print) -> G2Result:
+  """Gate G2 (spec section 8): does scaling these plastic edges by g2_factor move steering?
+
+  Runs the G1 stimulus set before and after the scaling. Two measures gate it, each a z of
+  after minus before: the turn response (per-trial mean turn at the rightmost spot minus the
+  leftmost, the contrast G1 reads) and the forward response (per-trial mean forward over every
+  G1 trial, blanks included). Passes if either |z| exceeds g1_n_se. Per-condition z's are
+  reported but do not gate: eight tests at 3 SE would pass by chance about 6% of the time.
+  The edges get their weights back afterwards, even if a run fails.
+  """
+  c = brain.cfg.calibration
+  edges = np.asarray(edges)
+  before = measure_responses(brain, pops)
+  w0 = brain.edge_weights(edges)
+  brain.set_edge_weights(edges, w0 * c.g2_factor)
+  try:
+    after = measure_responses(brain, pops)
+  finally:
+    brain.set_edge_weights(edges, w0)
+  hi, lo = f"{max(c.g1_azimuths_deg):g}", f"{min(c.g1_azimuths_deg):g}"
+  z_turn = contrast_z(after.raw[hi][:, 0], after.raw[lo][:, 0],
+                      before.raw[hi][:, 0], before.raw[lo][:, 0])
+  z_fwd = z_score(np.concatenate([a[:, 1] for a in after.raw.values()]),
+                  np.concatenate([a[:, 1] for a in before.raw.values()]))
+  by_condition = {cond: {"turn": z_score(after.raw[cond][:, 0], before.raw[cond][:, 0]),
+                         "fwd": z_score(after.raw[cond][:, 1], before.raw[cond][:, 1])}
+                  for cond in before.raw}
+  passed = abs(z_turn) > c.g1_n_se or abs(z_fwd) > c.g1_n_se
+  for cond, d in by_condition.items():
+    log(f"G2 {cond}: z turn {d['turn']:+.2f}, z fwd {d['fwd']:+.2f}")
+  log(f"G2: {edges.size:,} edges at x{c.g2_factor:g}: z turn response {z_turn:+.2f}, "
+      f"z forward {z_fwd:+.2f} -> {'pass' if passed else 'fail'}")
+  return G2Result(c.g2_factor, int(edges.size), z_turn, z_fwd, by_condition, passed, before,
+                  after)

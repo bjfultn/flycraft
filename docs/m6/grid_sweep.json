@@ -1,0 +1,2355 @@
+{
+  "generated": "2026-10-09T03:37:05+00:00",
+  "wiring": "REAL WIRING",
+  "calibration": "docs/m1/calibration.json",
+  "rung": "vpn",
+  "w_scale": 0.84375,
+  "device": "cuda",
+  "polarity": "dark_on_bright",
+  "repeats": 4,
+  "lc10a_drive": [
+    {
+      "radius": 2.0,
+      "az": -180.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -165.0,
+      "lc10a_driven_L": 2,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -150.0,
+      "lc10a_driven_L": 3,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -135.0,
+      "lc10a_driven_L": 5,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -120.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -105.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -90.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -75.0,
+      "lc10a_driven_L": 7,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -60.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -45.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -30.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 2.0,
+      "az": -15.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 12
+    },
+    {
+      "radius": 2.0,
+      "az": 0.0,
+      "lc10a_driven_L": 16,
+      "lc10a_driven_R": 20
+    },
+    {
+      "radius": 2.0,
+      "az": 15.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 11
+    },
+    {
+      "radius": 2.0,
+      "az": 30.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 10
+    },
+    {
+      "radius": 2.0,
+      "az": 45.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 2.0,
+      "az": 60.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 8
+    },
+    {
+      "radius": 2.0,
+      "az": 75.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 2.0,
+      "az": 90.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 2.0,
+      "az": 105.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 6
+    },
+    {
+      "radius": 2.0,
+      "az": 120.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 2.0,
+      "az": 135.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 2.0,
+      "az": 150.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 3
+    },
+    {
+      "radius": 2.0,
+      "az": 165.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 1
+    },
+    {
+      "radius": 3.0,
+      "az": -180.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -165.0,
+      "lc10a_driven_L": 2,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -150.0,
+      "lc10a_driven_L": 3,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -135.0,
+      "lc10a_driven_L": 5,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -120.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -105.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -90.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -75.0,
+      "lc10a_driven_L": 7,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -60.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -45.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -30.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 3.0,
+      "az": -15.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 12
+    },
+    {
+      "radius": 3.0,
+      "az": 0.0,
+      "lc10a_driven_L": 16,
+      "lc10a_driven_R": 20
+    },
+    {
+      "radius": 3.0,
+      "az": 15.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 11
+    },
+    {
+      "radius": 3.0,
+      "az": 30.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 10
+    },
+    {
+      "radius": 3.0,
+      "az": 45.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 3.0,
+      "az": 60.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 8
+    },
+    {
+      "radius": 3.0,
+      "az": 75.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 3.0,
+      "az": 90.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 3.0,
+      "az": 105.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 6
+    },
+    {
+      "radius": 3.0,
+      "az": 120.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 3.0,
+      "az": 135.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 3.0,
+      "az": 150.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 3
+    },
+    {
+      "radius": 3.0,
+      "az": 165.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 1
+    },
+    {
+      "radius": 5.0,
+      "az": -180.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -165.0,
+      "lc10a_driven_L": 2,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -150.0,
+      "lc10a_driven_L": 3,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -135.0,
+      "lc10a_driven_L": 5,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -120.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -105.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -90.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -75.0,
+      "lc10a_driven_L": 7,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -60.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -45.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -30.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 5.0,
+      "az": -15.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 12
+    },
+    {
+      "radius": 5.0,
+      "az": 0.0,
+      "lc10a_driven_L": 16,
+      "lc10a_driven_R": 20
+    },
+    {
+      "radius": 5.0,
+      "az": 15.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 11
+    },
+    {
+      "radius": 5.0,
+      "az": 30.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 10
+    },
+    {
+      "radius": 5.0,
+      "az": 45.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 5.0,
+      "az": 60.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 8
+    },
+    {
+      "radius": 5.0,
+      "az": 75.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 5.0,
+      "az": 90.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9
+    },
+    {
+      "radius": 5.0,
+      "az": 105.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 6
+    },
+    {
+      "radius": 5.0,
+      "az": 120.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 5.0,
+      "az": 135.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 5.0,
+      "az": 150.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 3
+    },
+    {
+      "radius": 5.0,
+      "az": 165.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 1
+    },
+    {
+      "radius": 10.0,
+      "az": -180.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -165.0,
+      "lc10a_driven_L": 3,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -150.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -135.0,
+      "lc10a_driven_L": 8,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -120.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -105.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -90.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -75.0,
+      "lc10a_driven_L": 13,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -60.0,
+      "lc10a_driven_L": 16,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -45.0,
+      "lc10a_driven_L": 15,
+      "lc10a_driven_R": 0
+    },
+    {
+      "radius": 10.0,
+      "az": -30.0,
+      "lc10a_driven_L": 12,
+      "lc10a_driven_R": 6
+    },
+    {
+      "radius": 10.0,
+      "az": -15.0,
+      "lc10a_driven_L": 20,
+      "lc10a_driven_R": 20
+    },
+    {
+      "radius": 10.0,
+      "az": 0.0,
+      "lc10a_driven_L": 22,
+      "lc10a_driven_R": 30
+    },
+    {
+      "radius": 10.0,
+      "az": 15.0,
+      "lc10a_driven_L": 17,
+      "lc10a_driven_R": 23
+    },
+    {
+      "radius": 10.0,
+      "az": 30.0,
+      "lc10a_driven_L": 7,
+      "lc10a_driven_R": 18
+    },
+    {
+      "radius": 10.0,
+      "az": 45.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 16
+    },
+    {
+      "radius": 10.0,
+      "az": 60.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 16
+    },
+    {
+      "radius": 10.0,
+      "az": 75.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 17
+    },
+    {
+      "radius": 10.0,
+      "az": 90.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 13
+    },
+    {
+      "radius": 10.0,
+      "az": 105.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 13
+    },
+    {
+      "radius": 10.0,
+      "az": 120.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 8
+    },
+    {
+      "radius": 10.0,
+      "az": 135.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 7
+    },
+    {
+      "radius": 10.0,
+      "az": 150.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5
+    },
+    {
+      "radius": 10.0,
+      "az": 165.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 2
+    }
+  ],
+  "stimuli": [
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 2.598,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -5.064,
+        -7.668,
+        -2.491,
+        -10.422
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.054
+      ],
+      "dns_firing": [
+        274,
+        341,
+        285,
+        281
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 13,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 3.088,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -5.769,
+        -7.922,
+        -29.411,
+        -15.834
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.025,
+        0.0
+      ],
+      "dns_firing": [
+        357,
+        297,
+        37,
+        280
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 12,
+      "lc10a_driven_R": 6,
+      "lc10a_hz_L": 3.673,
+      "lc10a_hz_R": 0.34,
+      "turn_raw": [
+        -7.236,
+        -3.245,
+        -1.957,
+        -8.501
+      ],
+      "fwd_raw": [
+        0.293,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        338,
+        351,
+        278,
+        15
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 10,
+      "lc10a_hz_L": 1.964,
+      "lc10a_hz_R": 1.962,
+      "turn_raw": [
+        1.764,
+        -1.311,
+        0.023,
+        0.985
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        15,
+        12,
+        10,
+        12
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 5,
+      "lc10a_driven_R": 14,
+      "lc10a_hz_L": 0.217,
+      "lc10a_hz_R": 2.837,
+      "turn_raw": [
+        13.619,
+        13.162,
+        16.78,
+        12.216
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        76,
+        81,
+        88,
+        78
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 16,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.954,
+      "turn_raw": [
+        -4.898,
+        22.06,
+        23.605,
+        27.081
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        275,
+        84,
+        89,
+        84
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": -60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 12,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.6,
+      "turn_raw": [
+        16.998,
+        27.835,
+        27.719,
+        28.14
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        272,
+        206,
+        196,
+        82
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 22,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 3.712,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -4.438,
+        -13.829,
+        -2.828,
+        -5.716
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        299,
+        306,
+        276,
+        309
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 25,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 3.926,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -4.946,
+        -8.3,
+        -7.629,
+        -5.182
+      ],
+      "fwd_raw": [
+        0.093,
+        0.321,
+        0.0,
+        0.125
+      ],
+      "dns_firing": [
+        268,
+        351,
+        320,
+        285
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 25,
+      "lc10a_driven_R": 12,
+      "lc10a_hz_L": 5.626,
+      "lc10a_hz_R": 1.173,
+      "turn_raw": [
+        -0.731,
+        -1.928,
+        -0.05,
+        -0.745
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.131
+      ],
+      "dns_firing": [
+        48,
+        35,
+        36,
+        177
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 20,
+      "lc10a_driven_R": 20,
+      "lc10a_hz_L": 4.417,
+      "lc10a_hz_R": 4.592,
+      "turn_raw": [
+        -0.612,
+        -0.585,
+        -5.518,
+        -1.385
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.376,
+        0.0
+      ],
+      "dns_firing": [
+        25,
+        30,
+        419,
+        51
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 8,
+      "lc10a_driven_R": 24,
+      "lc10a_hz_L": 0.84,
+      "lc10a_hz_R": 4.92,
+      "turn_raw": [
+        1.1,
+        1.067,
+        0.603,
+        3.096
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        78,
+        74,
+        90,
+        80
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 25,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 4.288,
+      "turn_raw": [
+        2.532,
+        1.32,
+        20.989,
+        20.239
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        255,
+        257,
+        83,
+        92
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": -40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 24,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 4.24,
+      "turn_raw": [
+        22.662,
+        2.641,
+        15.195,
+        17.457
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        249,
+        260,
+        283,
+        228
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 22,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 3.663,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -12.5,
+        -33.814,
+        -9.251,
+        -35.265
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.031
+      ],
+      "dns_firing": [
+        278,
+        289,
+        276,
+        272
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 20,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 4.142,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -7.424,
+        -16.987,
+        -9.877,
+        -20.244
+      ],
+      "fwd_raw": [
+        0.106,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        324,
+        281,
+        279,
+        272
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 27,
+      "lc10a_driven_R": 15,
+      "lc10a_hz_L": 4.443,
+      "lc10a_hz_R": 2.329,
+      "turn_raw": [
+        -1.359,
+        -2.965,
+        -0.026,
+        -1.373
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        29,
+        18,
+        29,
+        49
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 25,
+      "lc10a_driven_R": 27,
+      "lc10a_hz_L": 5.252,
+      "lc10a_hz_R": 5.776,
+      "turn_raw": [
+        0.0,
+        0.0,
+        -0.025,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        80,
+        77,
+        90,
+        105
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 13,
+      "lc10a_driven_R": 25,
+      "lc10a_hz_L": 1.365,
+      "lc10a_hz_R": 4.063,
+      "turn_raw": [
+        0.0,
+        0.977,
+        0.603,
+        1.224
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        5,
+        10,
+        8,
+        7
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 22,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 3.668,
+      "turn_raw": [
+        16.296,
+        15.701,
+        9.405,
+        3.331
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        113,
+        190,
+        274,
+        266
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": -20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 20,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 3.758,
+      "turn_raw": [
+        13.172,
+        1.276,
+        1.431,
+        15.605
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        276,
+        297,
+        299,
+        325
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 16,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 3.416,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -11.387,
+        -8.0,
+        -7.658,
+        -32.037
+      ],
+      "fwd_raw": [
+        0.079,
+        0.015,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        275,
+        280,
+        284,
+        302
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 14,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 2.938,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -9.007,
+        -9.126,
+        -19.799,
+        -16.346
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        279,
+        290,
+        307,
+        295
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 17,
+      "lc10a_driven_R": 18,
+      "lc10a_hz_L": 2.74,
+      "lc10a_hz_R": 2.813,
+      "turn_raw": [
+        -4.905,
+        -6.646,
+        -3.908,
+        -9.901
+      ],
+      "fwd_raw": [
+        0.339,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        368,
+        313,
+        280,
+        296
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 22,
+      "lc10a_driven_R": 30,
+      "lc10a_hz_L": 5.896,
+      "lc10a_hz_R": 6.499,
+      "turn_raw": [
+        -0.708,
+        -0.466,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.036,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        269,
+        274,
+        164,
+        357
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 13,
+      "lc10a_driven_R": 20,
+      "lc10a_hz_L": 2.605,
+      "lc10a_hz_R": 3.413,
+      "turn_raw": [
+        2.47,
+        0.359,
+        0.596,
+        0.839
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        335,
+        397,
+        382,
+        349
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 18,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.885,
+      "turn_raw": [
+        17.185,
+        17.07,
+        26.922,
+        4.122
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        344,
+        290,
+        196,
+        359
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": 0.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 16,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.979,
+      "turn_raw": [
+        0.426,
+        14.191,
+        20.294,
+        -1.076
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        276,
+        300,
+        253,
+        271
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 1.909,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -2.328,
+        -14.625,
+        -17.439,
+        -4.201
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.028
+      ],
+      "dns_firing": [
+        272,
+        296,
+        294,
+        273
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 1.951,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -0.076,
+        -5.884,
+        -1.954,
+        -1.361
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        25,
+        278,
+        59,
+        47
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 14,
+      "lc10a_driven_R": 12,
+      "lc10a_hz_L": 2.507,
+      "lc10a_hz_R": 1.823,
+      "turn_raw": [
+        -10.225,
+        -9.726,
+        -4.369,
+        -3.529
+      ],
+      "fwd_raw": [
+        0.036,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        303,
+        293,
+        294,
+        281
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 17,
+      "lc10a_driven_R": 19,
+      "lc10a_hz_L": 3.309,
+      "lc10a_hz_R": 4.14,
+      "turn_raw": [
+        -0.81,
+        -3.612,
+        -4.231,
+        -1.977
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.019
+      ],
+      "dns_firing": [
+        278,
+        291,
+        293,
+        277
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 17,
+      "lc10a_hz_L": 1.549,
+      "lc10a_hz_R": 2.349,
+      "turn_raw": [
+        -2.813,
+        1.3,
+        -1.363,
+        3.744
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.045
+      ],
+      "dns_firing": [
+        302,
+        427,
+        288,
+        321
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 13,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.119,
+      "turn_raw": [
+        3.676,
+        0.484,
+        -0.774,
+        4.98
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        389,
+        275,
+        303,
+        318
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": 20.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 12,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 1.97,
+      "turn_raw": [
+        33.769,
+        1.246,
+        24.695,
+        0.962
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        96,
+        271,
+        398,
+        272
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 1.489,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -2.573,
+        -7.502,
+        -7.268,
+        -4.977
+      ],
+      "fwd_raw": [
+        0.037,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        275,
+        385,
+        276,
+        281
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 12,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 2.126,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -2.233,
+        -10.816,
+        0.0,
+        -0.076
+      ],
+      "fwd_raw": [
+        0.332,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        391,
+        318,
+        62,
+        45
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 14,
+      "lc10a_driven_R": 5,
+      "lc10a_hz_L": 2.715,
+      "lc10a_hz_R": 0.356,
+      "turn_raw": [
+        -16.024,
+        -1.888,
+        -2.654,
+        -1.018
+      ],
+      "fwd_raw": [
+        0.151,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        324,
+        376,
+        323,
+        316
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 12,
+      "lc10a_driven_R": 9,
+      "lc10a_hz_L": 1.837,
+      "lc10a_hz_R": 1.427,
+      "turn_raw": [
+        -4.933,
+        -5.752,
+        -10.997,
+        -3.628
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        279,
+        288,
+        282,
+        397
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 3,
+      "lc10a_driven_R": 12,
+      "lc10a_hz_L": 0.279,
+      "lc10a_hz_R": 1.865,
+      "turn_raw": [
+        2.114,
+        8.346,
+        2.952,
+        1.508
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        439,
+        164,
+        414,
+        375
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 12,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.129,
+      "turn_raw": [
+        3.344,
+        -3.843,
+        0.227,
+        -0.509
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.132,
+        0.0
+      ],
+      "dns_firing": [
+        426,
+        274,
+        278,
+        358
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": 40.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 14,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.083,
+      "turn_raw": [
+        -2.292,
+        -2.017,
+        -0.914,
+        -0.898
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        275,
+        279,
+        359,
+        272
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -60.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 11,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 2.112,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        1.8,
+        4.016,
+        -2.01,
+        4.485
+      ],
+      "fwd_raw": [
+        0.695,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        446,
+        151,
+        361,
+        364
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -40.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 10,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 1.756,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -5.679,
+        0.877,
+        2.656,
+        4.258
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        280,
+        35,
+        400,
+        122
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": -20.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 7,
+      "lc10a_driven_R": 1,
+      "lc10a_hz_L": 1.781,
+      "lc10a_hz_R": 0.011,
+      "turn_raw": [
+        -2.911,
+        -2.977,
+        2.384,
+        2.532
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        349,
+        343,
+        55,
+        54
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 0.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 4,
+      "lc10a_hz_L": 1.085,
+      "lc10a_hz_R": 0.425,
+      "turn_raw": [
+        -2.969,
+        1.712,
+        -1.355,
+        -4.324
+      ],
+      "fwd_raw": [
+        0.305,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        406,
+        121,
+        273,
+        332
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 20.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 2,
+      "lc10a_driven_R": 7,
+      "lc10a_hz_L": 0.117,
+      "lc10a_hz_R": 1.533,
+      "turn_raw": [
+        -7.464,
+        0.105,
+        1.872,
+        -8.738
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        412,
+        57,
+        59,
+        309
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 40.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.313,
+      "turn_raw": [
+        -1.63,
+        -9.052,
+        -4.615,
+        2.791
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.064,
+        0.0
+      ],
+      "dns_firing": [
+        308,
+        422,
+        282,
+        400
+      ]
+    },
+    {
+      "sweep": "grid",
+      "az": 60.0,
+      "el": 60.0,
+      "radius": 10.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 10,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 2.936,
+      "turn_raw": [
+        -9.679,
+        -6.849,
+        -10.901,
+        -6.634
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        293,
+        267,
+        328,
+        294
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -150.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 3,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.088,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -135.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 5,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.147,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -120.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.198,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -1.297,
+        0.0,
+        -9.591,
+        -0.755
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        1,
+        0,
+        405,
+        1
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -105.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.19,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -3.298,
+        -2.477,
+        -0.044,
+        -0.575
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        5,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -90.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 6,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.143,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -1.189,
+        -3.995,
+        -1.037,
+        -8.68
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.32
+      ],
+      "dns_firing": [
+        1,
+        1,
+        1,
+        327
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -60.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.273,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        -6.445,
+        -5.194,
+        -4.314,
+        -5.906
+      ],
+      "fwd_raw": [
+        0.0,
+        0.063,
+        0.0,
+        0.32
+      ],
+      "dns_firing": [
+        438,
+        294,
+        1,
+        414
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": -30.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 9,
+      "lc10a_driven_R": 0,
+      "lc10a_hz_L": 0.212,
+      "lc10a_hz_R": 0.0,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 30.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 10,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.246,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 60.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 8,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.242,
+      "turn_raw": [
+        4.892,
+        4.734,
+        4.29,
+        -1.75
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        3,
+        2,
+        2,
+        352
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 90.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 9,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.239,
+      "turn_raw": [
+        8.083,
+        8.966,
+        9.824,
+        3.043
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        2,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 105.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 6,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.175,
+      "turn_raw": [
+        5.136,
+        4.464,
+        2.169,
+        2.366
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        335,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 120.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.131,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.071,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        415,
+        0
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 135.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 5,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.148,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "sweep": "small",
+      "az": 150.0,
+      "el": 0.0,
+      "radius": 3.0,
+      "lc10a_driven_L": 0,
+      "lc10a_driven_R": 3,
+      "lc10a_hz_L": 0.0,
+      "lc10a_hz_R": 0.106,
+      "turn_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fwd_raw": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dns_firing": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "wall_s": 2974.4
+}

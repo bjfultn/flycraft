@@ -27,6 +27,8 @@ class Groups:
   turn_pos: np.ndarray
   turn_neg: np.ndarray
   fwd: np.ndarray
+  pitch_pos: np.ndarray
+  pitch_neg: np.ndarray
   aotu_pos: np.ndarray  # empty unless decoder.aotu019_term
   aotu_neg: np.ndarray
   mdn: np.ndarray  # logged only
@@ -34,8 +36,9 @@ class Groups:
   @property
   def watch(self) -> np.ndarray:
     """Sorted unique neuron indices the decoder needs spikes for."""
-    return np.unique(np.concatenate([self.turn_pos, self.turn_neg, self.fwd, self.aotu_pos,
-                                     self.aotu_neg, self.mdn])).astype(np.int64)
+    return np.unique(np.concatenate([self.turn_pos, self.turn_neg, self.fwd, self.pitch_pos,
+                                     self.pitch_neg, self.aotu_pos, self.aotu_neg,
+                                     self.mdn])).astype(np.int64)
 
 
 def resolve_groups(conn: Connectome, cfg: DecoderConfig) -> Groups:
@@ -52,11 +55,13 @@ def resolve_groups(conn: Connectome, cfg: DecoderConfig) -> Groups:
     return np.concatenate(out).astype(np.int64) if out else np.zeros(0, np.int64)
 
   turn_pos, turn_neg, fwd = pick(cfg.turn_pos), pick(cfg.turn_neg), pick(cfg.fwd)
+  pitch_pos, pitch_neg = pick(cfg.pitch_pos), pick(cfg.pitch_neg)
   aotu = (("AOTU019", "R"),), (("AOTU019", "L"),)
   aotu_pos, aotu_neg = (pick(a) for a in aotu) if cfg.aotu019_term else (pick(()), pick(()))
   if missing:
     raise DecoderError("decoder cell types not in the connectome: " + ", ".join(missing))
-  return Groups(turn_pos, turn_neg, fwd, aotu_pos, aotu_neg, conn.select(MDN_PATTERN))
+  return Groups(turn_pos, turn_neg, fwd, pitch_pos, pitch_neg, aotu_pos, aotu_neg,
+               conn.select(MDN_PATTERN))
 
 
 class RateFilter:
@@ -119,7 +124,8 @@ class Decoder:
     self.watch = groups.watch
     self.filter = RateFilter(self.watch.size, cfg.tau_ms, dt_ms)
     self._pos = {name: np.searchsorted(self.watch, getattr(groups, name))
-                 for name in ("turn_pos", "turn_neg", "fwd", "aotu_pos", "aotu_neg", "mdn")}
+                 for name in ("turn_pos", "turn_neg", "fwd", "pitch_pos", "pitch_neg",
+                              "aotu_pos", "aotu_neg", "mdn")}
     self.t_game_s = cfg.decision_frames / cfg.game_fps
 
   def reset(self) -> None:
@@ -151,6 +157,13 @@ class Decoder:
     dtheta = float(np.clip(self.calib.k_turn * turn * self.t_game_s, -lim, lim))
     speed = float(np.clip(self.cfg.s0 + self.calib.k_fwd * fwd, 0.0, 1.0))
     return dtheta, speed
+
+  def pitch(self) -> tuple[float, float]:
+    """(pitch in [-1, 1], raw Hz before bias and scale). Positive is up, which is north in the
+    compass eye (M6, docs/m6/README.md, "The compass fly")."""
+    raw = self._mean("pitch_pos") - self._mean("pitch_neg")
+    pitch = float(np.clip((raw - self.cfg.pitch_bias_hz) / self.cfg.pitch_scale_hz, -1.0, 1.0))
+    return pitch, raw
 
   def rates(self) -> dict[str, float]:
     """Group mean rates, for logging."""

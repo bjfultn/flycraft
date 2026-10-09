@@ -61,6 +61,14 @@ class Brain:
     self.w_scale = float(scale)
     self.lif.set_weight_scale(self.w_scale)
 
+  def edge_weights(self, edges: np.ndarray) -> np.ndarray:
+    """Unscaled weights (mV) of these wiring edges."""
+    return self.lif.edge_weights(edges).cpu().numpy().astype(np.float64)
+
+  def set_edge_weights(self, edges: np.ndarray, weight_mV: np.ndarray) -> None:
+    """Overwrite these wiring edges' unscaled weights; w_scale still applies on top."""
+    self.lif.set_edge_weights(edges, weight_mV)
+
   def set_calibration(self, calib: Calibration) -> None:
     self.decoder.calib = calib
 

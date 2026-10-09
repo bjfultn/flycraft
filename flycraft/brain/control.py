@@ -26,6 +26,8 @@ class Command:
   speed: float  # 0 to 1
   turn_raw: float = 0.0  # the signals behind the command, for logs and the view
   fwd_raw: float = 0.0
+  pitch: float = 0.0  # -1 to 1, positive up/north (M6, docs/m6/README.md, "The compass fly")
+  pitch_raw: float = 0.0
 
 
 @dataclass(frozen=True)

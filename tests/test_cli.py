@@ -167,7 +167,7 @@ def test_brain_serves_a_stub_until_sigterm():
       assert (ready["brain_id"], ready["polarity"], ready["decision_frames"]) == (
         "stub-oracle", cfg.eye.polarity, cfg.decoder.decision_frames)
       proc.send_signal(signal.SIGTERM)
-      assert protocol.decode(ws.recv(timeout=10)) == {"type": "abort", "v": 1,
+      assert protocol.decode(ws.recv(timeout=10)) == {"type": "abort", "v": 2,
                                                       "reason": "shutdown"}
     _, err = proc.communicate(timeout=10)
   finally:
@@ -210,6 +210,29 @@ def calibration_for(data, tmp_path, capsys):
   path = tmp_path / "calibration.json"
   path.write_text(json.dumps(rec))
   return path
+
+
+
+def test_g2_via_cli(data, tmp_path, capsys):
+  calib = calibration_for(data, tmp_path, capsys)
+  out = tmp_path / "g2"
+  argv = ["g2", "--config", REAL, "--calibration", str(calib), "--out", str(out),
+          "--device", "cpu", "--set", f"connectome.data_dir={data}",
+          "--set", "calibration.g1_repeats=2", "--set", "calibration.g1_trial_ms=100",
+          "--set", "calibration.sample_warmup_ms=50", "--set", "calibration.sample_every_ms=50",
+          "--set", "calibration.g1_azimuths_deg=[-25.0, 25.0]"]
+  code = cli.main(argv)
+  rec = json.loads((out / "g2.json").read_text())
+  assert code == (0 if rec["g2"]["passed"] else 3)
+  assert rec["rung"] == "vpn" and rec["w_scale"] == 3.0 and rec["device"] == "cpu"
+  d = rec["dopamine_map"]
+  assert (d["n_pam"], d["n_ppl1"], d["n_mbons"], d["n_pam_mbons"]) == (10, 8, 6, 2)
+  assert d["pam_mbon_types"] == ["MBON01", "MBON04"]
+  g = rec["g2"]
+  assert g["factor"] == 0.5 and g["n_edges"] > 0
+  assert set(g["before"]) == {"blank", "-25", "25"}
+  assert set(g["before"]["25"]["pop_hz"]) == {"kc", "mbon_pam", "mbon_other", "dn_turn",
+                                              "dn_fwd"}
 
 
 def brain_argv(data, *more):
@@ -299,23 +322,24 @@ def test_brain_serves_the_fly_and_its_view_until_sigterm(data, tmp_path, capsys)
 def record(pilot, score, aborted=None, phase="eval", frames=960, late=0, fps=22.4):
   return {"episode": 0, "seed": 0, "phase": phase, "pilot": pilot, "score": score, "steps": 120,
           "frames": frames, "wall_s": 42.9, "late_frames": late, "max_wait_ms": 3.0,
-          "aborted": aborted, "fps": fps, "counts": aborted in (None, "runaway")}
+          "aborted": aborted, "fps": fps, "counts": aborted in (None, "runaway", "stalled")}
 
 
-def test_summarize_counts_runaways_and_drops_discarded(tmp_path, capsys):
+def test_summarize_counts_runaways_and_stalls_and_drops_discarded(tmp_path, capsys):
   a, b = tmp_path / "a.jsonl", tmp_path / "b.jsonl"
   a.write_text("\n".join(json.dumps(r) for r in [
     record("stub-oracle", 20.0, late=2), record("stub-oracle", 24.0, fps=None),
-    record("stub-oracle", 3.0, aborted="sc2"), record("stub-oracle", 9.0, aborted="runaway")]))
+    record("stub-oracle", 3.0, aborted="sc2"), record("stub-oracle", 9.0, aborted="runaway"),
+    record("stub-oracle", 13.0, aborted="stalled")]))
   b.write_text(json.dumps(record("scripted", 25.0, phase="watch")) + "\n\n")
   assert cli.main(["summarize", str(a), str(b)]) == 0
   out = capsys.readouterr().out.splitlines()
   assert out[0].split() == ["pilot", "phase", "n", "mean", "sd", "min", "max", "runaway",
-                            "discard", "fps", "late"]
-  assert out[1].split() == ["scripted", "watch", "1", "25.00", "-", "25", "25", "0", "0",
+                            "stall", "discard", "fps", "late"]
+  assert out[1].split() == ["scripted", "watch", "1", "25.00", "-", "25", "25", "0", "0", "0",
                             "22.4", "0.0%"]
-  assert out[2].split() == ["stub-oracle", "eval", "3", "17.67", "7.77", "9", "24", "1", "1",
-                            "22.4", "0.1%"]
+  assert out[2].split() == ["stub-oracle", "eval", "4", "16.50", "6.76", "9", "24", "1", "1",
+                            "1", "22.4", "0.1%"]
 
 
 def test_summarize_rejects_a_bad_line(tmp_path, capsys):

@@ -329,6 +329,7 @@ Photoreceptors are driven on every rung, as BJ specified.
 |---|---|---|---|
 | train / eval | 8 | every step | lockstep, as fast as the brain allows |
 | watch | 1 | every 8th frame | 1/22.4 s per frame ("faster" game speed) |
+| real time (a match, or watch with `--realtime`) | 1 | every 8th frame or later: once the act is in | SC2 keeps time; the client never waits for the brain |
 
 - **Brain time per decision:** 50 ms in every mode. The brain's clock runs about 7× slower than game time; this time dilation is a stated design choice, configurable via `decision_ms`.
 - **Decision cadence:** the decision cadence is the same in both modes: 8 game frames per decision. In watch mode the frames in between are no-ops, which leave the current move order running. Watch mode therefore renders smoothly; the 10-07 demo looked choppy at step_mul 8.
@@ -336,6 +337,7 @@ Photoreceptors are driven on every rung, as BJ specified.
 - **Pipelining:** the client sends observation k and keeps stepping while the brain computes. It applies the resulting action at decision k+1. The brain answers every observation, the episode's last included, so the client always drains exactly one act per obs before `episode_end`.
 - **Episode length:** at 240 decisions, a train episode takes about 55 s of wall time and a watch episode about 90 s.
 - **M2 check:** M2 verifies that step_mul 1 keeps up at 22.4 Hz on the PC. The fallback is PySC2 `realtime=True`.
+- **Real time (M6):** in real time the game runs on while the client waits, so the client does not wait. A decision that is due plays no-ops until the act is in, then decides on the newest frame. The body aims its strike and step from the frame it decides on. When the client instead blocked about 640 ms for the act, that frame was about 14 game loops old, the squad had walked onto the attack step by the time SC2 got the order, and SC2 read it as "attack this zergling": the zerglings' friendly fire (docs/m6/README.md).
 
 ### 7.6 Handedness convention
 
@@ -411,6 +413,13 @@ Pilot, real brain:
 
 If it fails, KC→MBON learning cannot reach steering. The pilot stops and we report back before changing the plastic set; any change is pre-registered before the main runs.
 
+Rulings fixed before the run:
+
+- An MBON is in a PAM compartment if more than half its DAN→MBON synapses come from PAM neurons (a tie is not a majority). The DANs are `^PAM` and `^PPL10[1-8]`.
+- The two measures are the turn response (mean turn at the rightmost G1 spot minus the leftmost) and the forward response (mean forward over every G1 trial). Each is a z of after minus before; G2 passes if either |z| > 3. Per-condition z's are reported but do not gate.
+
+**Result (2026-10-08): fail.** 41 of 97 MBONs are PAM-majority; their 32,626 KC→MBON edges scaled by 0.5 gave z = -0.58 (turn) and -1.15 (forward). A dose check with the edges removed (x0, not gating) also failed: -0.12 and -1.15. Removing them cut the PAM MBONs' rate by half or more; the DNa02 rates moved by under 1 Hz. The forward DNs (DNp09) fire at 0 Hz under every stimulus, so the forward measure cannot pass with any plastic set. Records and population rates: `docs/m4/`. The pilot is stopped.
+
 ## 9. Experiment and statistics
 
 ### Design
@@ -479,6 +488,7 @@ After the pilot, the repo commits `prereg.md` and tags it `prereg-v1`, before an
 |---|---|
 | Brain-caused (runaway: the mean population rate over the last 1 s of brain time is above 50 Hz, input neurons left out; or NaN) | Ends the episode with the score of the obs the brain answered, so the client's record and the brain's agree. It counts, even if SC2 fails before the client hears of it. |
 | Environment-caused (yield, SC2 crash, client disconnect) | The episode is discarded and rerun with the same seed. |
+| Stall, solo tasks only (added 2026-10-08, M6: over the last 25 decisions every `dtheta` is exactly 0, the score held, and the squad's seen middle stayed within 2 px; never on the last frame) | Ends the episode with the score of the last obs sent, `aborted: "stalled"`. It counts. `docs/m6/README.md`, "Stall stop", has the check on recorded traces. |
 
 **Seeds.** Episode `e` of a run with seed `r` has seed `r * 1,000,000 + e`. It seeds the body's starting heading and any brain-side RNG. SC2 takes `r` once per launch and places the beacons itself, so a rerun after an SC2 relaunch has the same seed but not the same beacon positions.
 
@@ -746,7 +756,7 @@ After each run, a copy is pulled off the PC for analysis.
 
 **Later minigames** (a separate spec after Phase 1 results):
 - **CollectMineralShards.** Two marines: one body per marine, each with its own eye image.
-- **DefeatRoaches.** Moved up to M3b as a demo (BJ, 2026-10-07), which attacks the roach nearest the heading inside a fixed 30 degree cone, with no attack output; the experiment version still waits for this spec. Adds `attack` and `target` outputs. An attack DN group, chosen by a criterion pre-registered in that spec, triggers `Attack_screen` on the object nearest the center of the frontal visual field.
+- **DefeatRoaches.** Moved up to M3b as a demo (BJ, 2026-10-07), which attacks the roach nearest the heading inside a fixed 30 degree cone, with no attack output (zerglings, from M6, only attack-move: docs/m6/README.md); the experiment version still waits for this spec. Adds `attack` and `target` outputs. An attack DN group, chosen by a criterion pre-registered in that spec, triggers `Attack_screen` on the object nearest the center of the frontal visual field.
 - **Protocol.** The `act` message gets new fields under a protocol version bump.
 
 ## 16. Risks

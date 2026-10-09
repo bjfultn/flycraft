@@ -48,6 +48,10 @@ disk, the squad attacks the marine nearest the heading within 30 degrees, and ot
 attack-moves a step along it onto clear ground. pysc2's scripted agent for it is the
 DefeatRoaches one (attack the lowest enemy pixel).
 
+**Ruling (2026-10-08, M6):** zerglings now only attack-move (the task's cone is 0), after the
+oracle scored 189 targeting and 398 attack-moving (docs/m6/README.md, Zergling orders). The
+baselines below were run with the 30 degree cone and are rerun with attack-move.
+
 ## 4. Unit counts
 
 The counts are DefeatRoaches' unless the baselines show they leave no room: if the random

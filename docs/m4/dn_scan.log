@@ -1,0 +1,33 @@
+REAL WIRING, rung vpn, w_scale 0.84375, on cuda: 1314 DNs, 97 MBONs, kc_mbon0 61,210 edges, mbon_out0 39,280 edges
+base -60: mean DN rate 5.316 Hz
+base 0: mean DN rate 4.862 Hz
+base 60: mean DN rate 5.593 Hz
+kc_mbon0 -60: mean DN rate 5.792 Hz
+kc_mbon0 0: mean DN rate 4.368 Hz
+kc_mbon0 60: mean DN rate 4.878 Hz
+mbon_out0 -60: mean DN rate 5.156 Hz
+mbon_out0 0: mean DN rate 7.038 Hz
+mbon_out0 60: mean DN rate 6.386 Hz
+kc_mbon0: 5 DNs pass |z| > 4.12 and >= 1 Hz
+  DNg44       R      2.40    5.51   +3.11  z 4.66206443017564
+  DNg63       L      0.22    4.44   +4.22  z 4.373244206863545
+  DNp68       R      6.69    0.62   -6.07  z -4.327038927001358
+  DNg63       R      0.53   14.93  +14.40  z 4.298697280586714
+  DNbe006     R      4.71   10.67   +5.96  z 4.175510806500092
+  DNpe021     R      0.53    5.84   +5.31  z 3.9852403088698978
+  DNpe028     L      1.07    2.64   +1.58  z 3.8727272727272717
+  DNg03       R      1.24    0.16   -1.09  z -3.801865410822257
+  DNge125     R     10.07   13.87   +3.80  z 3.7563521879199713
+  DNp52       R      1.00    5.76   +4.76  z 3.610047321285932
+mbon_out0: 58 DNs pass |z| > 4.12 and >= 1 Hz
+  DNpe028     L      1.07    6.73   +5.67  z 11.229376701264462
+  DNbe006     R      4.71   18.29  +13.58  z 10.45178526982794
+  DNg44       L      1.16    7.36   +6.20  z 9.94808533093981
+  DNg44       R      2.40   12.31   +9.91  z 9.69972768992906
+  DNge104     L     11.73    2.51   -9.22  z -9.581743509575432
+  DNg63       R      0.53   21.49  +20.96  z 8.575759643064364
+  DNpe021     R      0.53   12.02  +11.49  z 8.44770740615854
+  DNg111      L     19.13   31.78  +12.64  z 7.601546476510745
+  DNp34       R      2.82    9.69   +6.87  z 7.465375032275831
+  DNbe007     R     41.31   72.58  +31.27  z 7.448314535688793
+wrote runs/dn_scan/dn_scan.json in 1019.3 s

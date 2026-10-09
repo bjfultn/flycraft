@@ -1,0 +1,16 @@
+{"map": "DefeatRoaches", "ep": 0, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [26, 26, 37, 40], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[26, 37], [26, 39], [26, 40], [26, 38]]}
+{"map": "DefeatRoaches", "policy": "wander", "ep": 0, "steps": 103, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatRoaches", "ep": 1, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [39, 39, 34, 37], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[39, 35], [39, 36], [39, 37], [39, 34]]}
+{"map": "DefeatRoaches", "policy": "wander", "ep": 1, "steps": 93, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatMarines", "ep": 0, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [26, 26, 37, 40], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[26, 37], [26, 39], [26, 40], [26, 38]]}
+{"map": "DefeatMarines", "policy": "wander", "ep": 0, "steps": 81, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatMarines", "ep": 1, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [39, 39, 34, 37], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[39, 35], [39, 34], [39, 37], [39, 36]]}
+{"map": "DefeatMarines", "policy": "wander", "ep": 1, "steps": 51, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatRoaches", "ep": 0, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [26, 26, 37, 40], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[26, 37], [26, 39], [26, 40], [26, 38]]}
+{"map": "DefeatRoaches", "policy": "focus", "ep": 0, "steps": 240, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatRoaches", "ep": 1, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [24, 24, 36, 39], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[24, 36], [24, 38], [24, 39], [24, 37]]}
+{"map": "DefeatRoaches", "policy": "focus", "ep": 1, "steps": 98, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatMarines", "ep": 0, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [26, 26, 37, 40], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[26, 37], [26, 39], [26, 40], [26, 38]]}
+{"map": "DefeatMarines", "policy": "focus", "ep": 0, "steps": 240, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}
+{"map": "DefeatMarines", "ep": 1, "camera": [21, 44, 27, 50], "pathable": [11, 53, 20, 54], "mm_enemy": [27, 27, 34, 37], "raw_enemy": 4, "screen_enemy": 4, "raw_enemy_xy": [[27, 34], [27, 37], [27, 36], [27, 35]]}
+{"map": "DefeatMarines", "policy": "focus", "ep": 1, "steps": 240, "off_screen_steps": 0, "max_off_screen": 0, "mm_enemy_outside_cam_steps": 0, "cameras": ["(21, 44, 27, 50)"]}

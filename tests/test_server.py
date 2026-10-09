@@ -61,7 +61,7 @@ def wait_for(pred, timeout=5.0):
 def test_handshake_announces_the_brain():
   with serving(Spy()) as (url, _), connect(url) as ws:
     ready = start(ws)
-  assert ready == {"type": "ready", "v": 1, "brain_id": "spy", "wiring": "real",
+  assert ready == {"type": "ready", "v": 2, "brain_id": "spy", "wiring": "real",
                    "scramble_seed": 3, "plasticity": True, "eye_shape": [30, 72],
                    "decision_frames": 8, "polarity": "bright_on_dark"}
 
@@ -79,8 +79,8 @@ def test_one_act_per_obs_including_the_last():
     send(ws, "episode_end", episode=4, score=2.0, steps=3, aborted=None)
     wait_for(lambda: spy.calls[-1][0] == "end")
   assert [a["step"] for a in acts] == [0, 1, 2]
-  assert acts[0] == {"type": "act", "v": 1, "step": 0, "dtheta": 5.0, "speed": 0.5,
-                     "turn_raw": 1.5, "fwd_raw": -0.5}
+  assert acts[0] == {"type": "act", "v": 2, "step": 0, "dtheta": 5.0, "speed": 0.5,
+                     "turn_raw": 1.5, "fwd_raw": -0.5, "pitch": 0.0, "pitch_raw": 0.0}
   kinds = [c[0] for c in spy.calls]
   assert kinds == ["start", "step", "step", "step", "end"]
   assert spy.calls[0][1] == (4, 4_000_004, "eval")
@@ -94,7 +94,7 @@ def test_a_second_client_is_busy():
   with serving(Spy()) as (url, _), connect(url) as first:
     start(first)
     with connect(url) as second:
-      assert recv(second) == {"type": "error", "v": 1, "message": "busy"}
+      assert recv(second) == {"type": "error", "v": 2, "message": "busy"}
       with pytest.raises(ConnectionClosed):
         second.recv(timeout=5)
     send(first, "episode_start", episode=0, seed=0, phase="train")  # the first is unaffected
@@ -117,8 +117,8 @@ def test_a_new_client_is_welcome_after_the_old_one_leaves():
 
 
 @pytest.mark.parametrize("frame, match", [
-  (msgpack.packb({"type": "hello", "v": 2, "client_version": "x", "map": "m", "screen": 84,
-                  "mode": "watch"}), "protocol version 2"),
+  (msgpack.packb({"type": "hello", "v": 3, "client_version": "x", "map": "m", "screen": 84,
+                  "mode": "watch"}), "protocol version 3"),
   ("a text frame", "binary frame"),
   (protocol.encode(obs(0)), "expected hello, got obs"),
 ])
@@ -136,7 +136,8 @@ def test_a_bad_first_message_gets_an_error_and_a_close(frame, match):
   ([protocol.make("episode_start", episode=0, seed=0, phase="train")] * 2,
    "unexpected episode_start in an episode"),
   ([hello()], "unexpected hello outside"),
-  ([protocol.make("act", step=0, dtheta=0.0, speed=0.0, turn_raw=0.0, fwd_raw=0.0)],
+  ([protocol.make("act", step=0, dtheta=0.0, speed=0.0, turn_raw=0.0, fwd_raw=0.0, pitch=0.0,
+                  pitch_raw=0.0)],
    "unexpected act outside"),
 ])
 def test_messages_out_of_order(msgs, match):
@@ -157,7 +158,7 @@ def test_a_runaway_command_ends_the_episode_not_the_session(cmd):
       start(ws)
       send(ws, "episode_start", episode=0, seed=0, phase="train")
       ws.send(protocol.encode(obs(0)))
-      assert recv(ws) == {"type": "abort", "v": 1, "reason": "runaway"}
+      assert recv(ws) == {"type": "abort", "v": 2, "reason": "runaway"}
       wait_for(lambda: spy.calls[-1][0] == "end")
       assert spy.calls[-1][1] == (0.0, 1, "runaway")
       spy.cmd = CMD  # the next episode runs normally on the same connection
@@ -179,7 +180,7 @@ def test_shutdown_aborts_the_client():
       ws.send(protocol.encode(obs(0)))
       recv(ws)
       server.close()  # stop the server with the client still connected
-      assert recv(ws) == {"type": "abort", "v": 1, "reason": "shutdown"}
+      assert recv(ws) == {"type": "abort", "v": 2, "reason": "shutdown"}
   assert spy.calls[-1] == ("end", (0.0, 1, "shutdown"))
 
 
@@ -197,7 +198,8 @@ def test_the_trace_has_a_line_per_obs_and_one_for_the_abort():
   lines = [json.loads(line) for line in trace.getvalue().splitlines()]
   assert lines == [
     {"episode": 2, "step": 0, "marine_xy": [1.0, 2.0], "beacon_xy": [3.0, 4.0], "reward": 0.0,
-     "score": 0.0, "dtheta": 5.0, "speed": 0.5, "turn_raw": 1.5, "fwd_raw": -0.5},
+     "score": 0.0, "dtheta": 5.0, "speed": 0.5, "turn_raw": 1.5, "fwd_raw": -0.5, "pitch": 0.0,
+     "pitch_raw": 0.0},
     {"episode": 2, "step": 1, "marine_xy": [5.0, 6.0], "beacon_xy": [3.0, 4.0], "reward": 1.0,
      "score": 0.0, "aborted": "runaway", "why": "too hot"}]
 

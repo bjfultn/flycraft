@@ -36,12 +36,14 @@ dev = ["pytest>=8", "ruff>=0.6"]
 flycraft = "flycraft.cli:main"
 flycraft-client = "flycraft.game.client:main"
 flycraft-maps = "flycraft.game.mapbuild:main"
+flycraft-match = "flycraft.game.match:main"
 
 [tool.setuptools.packages.find]
 include = ["flycraft*"]
 
 [tool.setuptools.package-data]
 "flycraft.view" = ["static/*"]
+"flycraft.game" = ["*.galaxy"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

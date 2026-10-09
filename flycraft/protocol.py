@@ -13,7 +13,7 @@ import numbers
 
 import msgpack
 
-VERSION = 1
+VERSION = 2
 EYE_SHAPE = (30, 72)  # flycraft.eye.EYE_ROWS, EYE_COLS; a test keeps them equal
 EYE_BYTES = EYE_SHAPE[0] * EYE_SHAPE[1]
 MODES = ("watch", "train", "eval")
@@ -26,7 +26,7 @@ FIELDS = {
             "polarity"),
   "episode_start": ("episode", "seed", "phase"),
   "obs": ("step", "eye", "reward", "score", "last", "marine_xy", "beacon_xy"),
-  "act": ("step", "dtheta", "speed", "turn_raw", "fwd_raw"),
+  "act": ("step", "dtheta", "speed", "turn_raw", "fwd_raw", "pitch", "pitch_raw"),
   "episode_end": ("episode", "score", "steps", "aborted"),
   "abort": ("reason",),
   "error": ("message",),
@@ -76,7 +76,8 @@ _KINDS = {
           "reward": _num, "score": _num, "last": lambda x: isinstance(x, bool),
           "marine_xy": _xy, "beacon_xy": _xy},
   "act": {"step": lambda x: _int(x) and x >= 0, "dtheta": _num,
-          "speed": lambda x: _num(x) and 0.0 <= x <= 1.0, "turn_raw": _num, "fwd_raw": _num},
+          "speed": lambda x: _num(x) and 0.0 <= x <= 1.0, "turn_raw": _num, "fwd_raw": _num,
+          "pitch": lambda x: _num(x) and -1.0 <= x <= 1.0, "pitch_raw": _num},
   "episode_end": {"episode": lambda x: _int(x) and x >= 0, "score": _num,
                   "steps": lambda x: _int(x) and x >= 0, "aborted": _opt_str},
   "abort": {"reason": lambda x: x in ABORT_REASONS},

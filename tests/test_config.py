@@ -62,14 +62,20 @@ def test_to_dict_is_json_friendly():
   (["calibration.g0_blank_ms=0.05"], "g0_blank_ms"),
   (["calibration.g0_max_halvings=0"], "g0_max_halvings"),
   (["decoder.gain_floor_hz=0"], "gain_floor_hz"),
+  (["decoder.pitch_scale_hz=0"], "pitch_scale_hz"),
+  (["decoder.pitch_scale_hz=-1"], "pitch_scale_hz"),
   (["calibration.sample_every_ms=0.25"], "whole multiple"),
   (["decoder.decision_ms=0.25"], "whole multiple"),
   (["calibration.ladder=[]"], "ladder"),
   (["decoder.turn_pos=[]"], "turn_pos"),
   (["decoder.turn_neg=[]"], "turn_neg"),
+  (["decoder.pitch_pos=[]"], "pitch_pos"),
+  (["decoder.pitch_neg=[]"], "pitch_neg"),
   (["calibration.g1_azimuths_deg=[-200.0, 0.0, 60.0]"], "g1_azimuths_deg"),
   (["calibration.g1_azimuths_deg=[5.0, 5.0]"], "at least two distinct"),
   (["connectome.wiring=scrambled", "connectome.scramble_seed=-1"], "scramble_seed"),
+  (["calibration.g2_factor=1"], "g2_factor"),
+  (["calibration.g2_factor=-0.5"], "g2_factor"),
 ])
 def test_invalid_configs_fail_with_a_clear_message(override, message):
   with pytest.raises(ConfigError, match=message):
